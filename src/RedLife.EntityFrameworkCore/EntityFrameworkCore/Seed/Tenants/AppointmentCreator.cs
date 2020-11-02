@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RedLife.Appointments;
+using RedLife.Core.Appointments;
 using RedLife.Authorization.Users;
 using System;
 using System.Linq;

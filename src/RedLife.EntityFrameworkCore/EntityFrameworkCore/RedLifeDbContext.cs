@@ -1,6 +1,6 @@
 ﻿using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using RedLife.Appointments;
+using RedLife.Core.Appointments;
 using RedLife.Authorization.Roles;
 using RedLife.Authorization.Users;
 using RedLife.MultiTenancy;

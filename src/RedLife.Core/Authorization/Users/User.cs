@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Authorization.Users;
 using Abp.Extensions;
-using RedLife.Appointments;
+using RedLife.Core.Appointments;
 
 namespace RedLife.Authorization.Users
 {

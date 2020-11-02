@@ -1,11 +1,8 @@
 ﻿using Abp.Domain.Entities;
 using RedLife.Authorization.Users;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RedLife.Appointments
+namespace RedLife.Core.Appointments
 {
     public class Appointment : Entity<int>
     {
