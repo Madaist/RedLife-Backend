@@ -1,0 +1,649 @@
+DEBUG 2020-10-20 14:54:52,451 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-10-20 14:54:52,897 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-10-20 14:54:52,962 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,969 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,970 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,971 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,972 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,972 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,974 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,975 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,975 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,976 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,977 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,978 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,978 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,979 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:52,989 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-10-20 14:54:53,643 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-20 14:54:53,643 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-20 14:54:53,644 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-20 14:54:53,644 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-20 14:54:55,213 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-20 14:54:57,516 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-10-20 14:54:57,629 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-10-20 14:54:57,669 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-10-20 14:54:57,687 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-10-20 14:54:57,709 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-10-20 14:54:58,208 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-10-20 14:54:58,526 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-10-20 14:54:58,730 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-10-20 14:54:58,730 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-10-20 14:54:58,750 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-10-20 14:54:58,751 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-10-20 14:54:58,752 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-10-20 14:54:58,753 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-10-20 14:54:58,754 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-10-20 14:54:58,754 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-10-20 14:54:58,755 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+DEBUG 2020-10-22 20:49:50,810 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-10-22 20:49:50,943 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-10-22 20:49:51,002 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,014 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,015 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,016 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,017 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,018 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,021 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,022 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,023 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,024 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,025 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,026 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,028 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:51,039 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-10-22 20:49:51,315 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-22 20:49:51,315 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-22 20:49:51,315 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-22 20:49:51,315 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-22 20:49:52,207 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-22 20:49:55,061 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-10-22 20:49:55,213 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-10-22 20:49:55,229 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-10-22 20:49:55,237 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-10-22 20:49:55,246 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-10-22 20:49:55,823 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-10-22 20:49:56,276 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-10-22 20:49:56,469 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-10-22 20:49:56,469 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-10-22 20:49:56,482 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-10-22 20:49:56,483 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-10-22 20:49:56,484 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-10-22 20:49:56,484 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-10-22 20:49:56,484 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-10-22 20:49:56,485 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-10-22 20:49:56,485 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+INFO  2020-10-22 20:50:06,147 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-10-22 20:50:07,366 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\mistrate\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-10-22 20:50:07,629 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-10-22 20:50:07,925 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-10-22 20:50:15,507 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller RedLife.Web.Host.Controllers.HomeController (RedLife.Web.Host).
+INFO  2020-10-22 20:50:18,739 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-10-22 20:50:18,768 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host) in 3237.9984ms
+INFO  2020-10-22 20:50:18,776 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-10-22 20:50:18,836 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2020-10-22 20:50:18,841 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 11212.9987ms 302 
+INFO  2020-10-22 20:50:18,941 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 101.9534ms 301 
+INFO  2020-10-22 20:50:18,952 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-10-22 20:50:19,054 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 108.8092ms 200 text/html;charset=utf-8
+INFO  2020-10-22 20:50:19,112 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2020-10-22 20:50:19,116 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2020-10-22 20:50:19,123 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2020-10-22 20:50:19,127 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2020-10-22 20:50:19,138 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2020-10-22 20:50:19,216 [15   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'C:\Users\mistrate\source\repos\RedLife\5.8.1\aspnet-core\src\RedLife.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2020-10-22 20:50:19,218 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'C:\Users\mistrate\source\repos\RedLife\5.8.1\aspnet-core\src\RedLife.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2020-10-22 20:50:19,224 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 102.0375ms 200 application/javascript
+INFO  2020-10-22 20:50:19,225 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 106.2201ms 200 application/javascript
+INFO  2020-10-22 20:50:19,243 [15   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2020-10-22 20:50:19,247 [14   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2020-10-22 20:50:19,264 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 142.1439ms 200 application/javascript
+INFO  2020-10-22 20:50:19,281 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 145.6208ms 200 text/css
+INFO  2020-10-22 20:50:19,304 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2020-10-22 20:50:19,308 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 199.8787ms 200 application/javascript
+INFO  2020-10-22 20:50:19,611 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AntiForgery/SetCookie  
+INFO  2020-10-22 20:50:19,626 [7    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-10-22 20:50:19,714 [7    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller RedLife.Web.Host.Controllers.AntiForgeryController (RedLife.Web.Host).
+INFO  2020-10-22 20:50:19,732 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-10-22 20:50:19,771 [9    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-10-22 20:50:19,806 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/favicon-32x32.png  
+INFO  2020-10-22 20:50:19,824 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+INFO  2020-10-22 20:50:19,828 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 25.9848ms 200 image/png
+INFO  2020-10-22 20:50:20,040 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host) in 320.8403ms
+INFO  2020-10-22 20:50:20,042 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-10-22 20:50:20,046 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 434.751ms 200 application/json; charset=utf-8
+INFO  2020-10-22 20:50:20,050 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 317.7846ms 200 application/json;charset=utf-8
+INFO  2020-10-22 21:13:45,460 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2020-10-22 21:13:45,481 [7    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-10-22 21:13:45,492 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 31.5688ms 204 
+INFO  2020-10-22 21:13:45,497 [37   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2020-10-22 21:13:45,502 [37   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-10-22 21:13:45,518 [37   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)'
+INFO  2020-10-22 21:13:45,553 [37   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.JsonResult] GetAll() on controller Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController (Abp.AspNetCore).
+INFO  2020-10-22 21:13:47,565 [37   ] tonsoftJson.NewtonsoftJsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-10-22 21:13:47,684 [37   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 2126.9965ms
+INFO  2020-10-22 21:13:47,688 [37   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)'
+INFO  2020-10-22 21:13:47,692 [37   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 2194.2217ms 200 application/json; charset=utf-8
+INFO  2020-10-22 21:13:47,713 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 OPTIONS http://localhost:21021/api/services/app/Session/GetCurrentLoginInformations  
+INFO  2020-10-22 21:13:47,717 [7    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-10-22 21:13:47,721 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.9516ms 204 
+INFO  2020-10-22 21:13:47,728 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/Session/GetCurrentLoginInformations  
+INFO  2020-10-22 21:13:47,731 [7    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2020-10-22 21:13:47,736 [7    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Sessions.SessionAppService.GetCurrentLoginInformations (RedLife.Application)'
+INFO  2020-10-22 21:13:47,750 [7    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetCurrentLoginInformations", controller = "Session"}. Executing controller action with signature System.Threading.Tasks.Task`1[RedLife.Sessions.Dto.GetCurrentLoginInformationsOutput] GetCurrentLoginInformations() on controller RedLife.Sessions.SessionAppService (RedLife.Application).
+INFO  2020-10-22 21:13:47,880 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-10-22 21:13:47,915 [7    ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Sessions.SessionAppService.GetCurrentLoginInformations (RedLife.Application) in 159.7312ms
+INFO  2020-10-22 21:13:47,921 [7    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Sessions.SessionAppService.GetCurrentLoginInformations (RedLife.Application)'
+INFO  2020-10-22 21:13:47,927 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 197.4387ms 200 application/json; charset=utf-8
+DEBUG 2020-10-31 23:15:50,014 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-10-31 23:15:50,315 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-10-31 23:15:50,356 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,362 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,365 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,365 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,366 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,366 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,367 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,371 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:50,380 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-10-31 23:15:50,612 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-31 23:15:50,613 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-31 23:15:50,613 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-31 23:15:50,613 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-10-31 23:15:51,649 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-10-31 23:15:53,960 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-10-31 23:15:54,067 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-10-31 23:15:54,107 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-10-31 23:15:54,123 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-10-31 23:15:54,134 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-10-31 23:15:54,653 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-10-31 23:15:55,028 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-10-31 23:15:55,172 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-10-31 23:15:55,173 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-10-31 23:15:55,188 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-10-31 23:15:55,189 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-10-31 23:15:55,191 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-10-31 23:15:55,191 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-10-31 23:15:55,191 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-10-31 23:15:55,192 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-10-31 23:15:55,192 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+INFO  2020-10-31 23:16:01,853 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-10-31 23:16:02,801 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\mistrate\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-10-31 23:16:02,930 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-10-31 23:16:03,185 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-10-31 23:16:09,975 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller RedLife.Web.Host.Controllers.HomeController (RedLife.Web.Host).
+INFO  2020-10-31 23:16:12,248 [11   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-10-31 23:16:12,260 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host) in 2276.4116ms
+INFO  2020-10-31 23:16:12,264 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-10-31 23:16:12,291 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9361.1266ms 302 
+INFO  2020-10-31 23:16:12,293 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2020-10-31 23:16:12,351 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 58.6079ms 301 
+INFO  2020-10-31 23:16:12,358 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-10-31 23:16:12,414 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 56.23ms 200 text/html;charset=utf-8
+INFO  2020-10-31 23:16:12,467 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2020-10-31 23:16:12,472 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2020-10-31 23:16:12,518 [15   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2020-10-31 23:16:12,518 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2020-10-31 23:16:12,523 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 57.8558ms 200 text/css
+INFO  2020-10-31 23:16:12,526 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 52.5394ms 200 application/javascript
+INFO  2020-10-31 23:16:12,542 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2020-10-31 23:16:12,555 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2020-10-31 23:16:12,558 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2020-10-31 23:16:12,563 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 19.414ms 200 application/javascript
+INFO  2020-10-31 23:16:12,584 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'C:\Users\mistrate\source\repos\RedLife\5.8.1\aspnet-core\src\RedLife.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2020-10-31 23:16:12,587 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 30.924ms 200 application/javascript
+INFO  2020-10-31 23:16:12,605 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2020-10-31 23:16:12,628 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'C:\Users\mistrate\source\repos\RedLife\5.8.1\aspnet-core\src\RedLife.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2020-10-31 23:16:12,631 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 27.2822ms 200 application/javascript
+INFO  2020-10-31 23:16:12,892 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AntiForgery/SetCookie  
+INFO  2020-10-31 23:16:12,902 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-10-31 23:16:12,928 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller RedLife.Web.Host.Controllers.AntiForgeryController (RedLife.Web.Host).
+INFO  2020-10-31 23:16:12,983 [10   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-10-31 23:16:13,000 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-10-31 23:16:13,080 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/favicon-32x32.png  
+INFO  2020-10-31 23:16:13,087 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+INFO  2020-10-31 23:16:13,092 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 11.7533ms 200 image/png
+INFO  2020-10-31 23:16:13,202 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host) in 271.0998ms
+INFO  2020-10-31 23:16:13,204 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-10-31 23:16:13,208 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 317.3538ms 200 application/json; charset=utf-8
+INFO  2020-10-31 23:16:13,235 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 236.4486ms 200 application/json;charset=utf-8
+DEBUG 2020-11-02 22:51:54,548 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 22:51:54,831 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 22:51:54,889 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,902 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,905 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,907 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,908 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,908 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,909 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,910 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,911 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,912 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,912 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,913 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,914 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,914 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,915 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:54,923 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 22:51:55,319 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:51:55,319 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:51:55,319 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:51:55,319 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:51:56,436 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:51:58,836 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 22:51:58,924 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 22:51:58,950 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 22:51:58,960 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 22:51:58,978 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 22:51:59,660 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 22:52:00,120 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 22:52:00,348 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 22:52:00,348 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 22:52:00,374 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 22:52:00,376 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 22:52:00,378 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 22:52:00,378 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 22:52:00,379 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 22:52:00,379 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 22:52:00,380 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+INFO  2020-11-02 22:52:11,748 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-11-02 22:52:12,925 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\mistrate\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-11-02 22:52:13,253 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-11-02 22:52:13,675 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 22:52:20,527 [15   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller RedLife.Web.Host.Controllers.HomeController (RedLife.Web.Host).
+INFO  2020-11-02 22:52:22,745 [11   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-11-02 22:52:22,757 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host) in 2220.9028ms
+INFO  2020-11-02 22:52:22,760 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 22:52:22,793 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2020-11-02 22:52:22,799 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9554.2236ms 302 
+INFO  2020-11-02 22:52:22,859 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 67.1185ms 301 
+INFO  2020-11-02 22:52:22,865 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-11-02 22:52:22,921 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 55.249ms 200 text/html;charset=utf-8
+INFO  2020-11-02 22:52:22,979 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2020-11-02 22:52:22,983 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2020-11-02 22:52:23,041 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2020-11-02 22:52:23,046 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2020-11-02 22:52:23,049 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 68.9709ms 200 text/css
+INFO  2020-11-02 22:52:23,052 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 69.9321ms 200 application/javascript
+INFO  2020-11-02 22:52:23,063 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2020-11-02 22:52:23,075 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2020-11-02 22:52:23,078 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 15.8818ms 200 application/javascript
+INFO  2020-11-02 22:52:23,115 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2020-11-02 22:52:23,138 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2020-11-02 22:52:23,149 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'C:\Users\mistrate\source\repos\RedLife\5.8.1\aspnet-core\src\RedLife.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2020-11-02 22:52:23,153 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 37.5859ms 200 application/javascript
+INFO  2020-11-02 22:52:23,166 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'C:\Users\mistrate\source\repos\RedLife\5.8.1\aspnet-core\src\RedLife.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2020-11-02 22:52:23,170 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 36.1497ms 200 application/javascript
+INFO  2020-11-02 22:52:23,421 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AntiForgery/SetCookie  
+INFO  2020-11-02 22:52:23,432 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 22:52:23,456 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller RedLife.Web.Host.Controllers.AntiForgeryController (RedLife.Web.Host).
+INFO  2020-11-02 22:52:23,508 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-11-02 22:52:23,544 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-11-02 22:52:23,770 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host) in 311.0038ms
+INFO  2020-11-02 22:52:23,773 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 22:52:23,775 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 356.9361ms 200 application/json; charset=utf-8
+INFO  2020-11-02 22:52:23,810 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 267.1721ms 200 application/json;charset=utf-8
+DEBUG 2020-11-02 22:56:55,096 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 22:56:55,337 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 22:56:55,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,367 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,371 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,371 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,372 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,372 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,372 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,373 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,373 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:56:55,379 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 22:57:14,100 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 22:57:14,214 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 22:57:14,239 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,243 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,244 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,244 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,245 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,245 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,246 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,247 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,248 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,248 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,249 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,249 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,250 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,250 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,251 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:14,255 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 22:57:14,372 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:57:14,372 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:57:14,372 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:57:14,372 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:57:14,915 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:57:16,604 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 22:57:16,695 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 22:57:16,721 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 22:57:16,731 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 22:57:16,739 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 22:57:17,146 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 22:57:17,427 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 22:57:17,549 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 22:57:17,549 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 22:57:17,562 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 22:57:17,563 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 22:57:17,564 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 22:57:17,564 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 22:57:17,564 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 22:57:17,564 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 22:57:17,565 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+DEBUG 2020-11-02 22:58:46,270 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 22:58:46,507 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 22:58:46,554 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,559 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,561 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,561 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,562 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,563 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,563 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,564 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,565 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,568 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,569 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:46,577 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 22:58:46,797 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:58:46,798 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:58:46,798 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:58:46,798 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 22:58:48,094 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 22:58:50,703 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 22:58:50,796 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 22:58:50,817 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 22:58:50,827 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 22:58:50,836 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 22:58:51,141 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 22:58:51,479 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 22:58:51,584 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 22:58:51,585 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 22:58:51,592 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 22:58:51,593 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 22:58:51,593 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 22:58:51,594 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 22:58:51,594 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 22:58:51,594 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 22:58:51,594 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+DEBUG 2020-11-02 23:01:04,790 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 23:01:04,972 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 23:01:05,017 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,022 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,023 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,023 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,024 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,025 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,028 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,029 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,030 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,031 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,031 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,032 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,033 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,033 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:05,042 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 23:01:05,248 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:01:05,248 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:01:05,248 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:01:05,248 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:01:06,221 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:01:08,607 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 23:01:08,698 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 23:01:08,743 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 23:01:08,760 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 23:01:08,777 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 23:01:09,253 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 23:01:09,576 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 23:01:09,739 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 23:01:09,739 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 23:01:09,755 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 23:01:09,757 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 23:01:09,758 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 23:01:09,759 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 23:01:09,759 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 23:01:09,759 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 23:01:09,760 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+INFO  2020-11-02 23:01:23,762 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-11-02 23:01:24,423 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\mistrate\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-11-02 23:01:24,602 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-11-02 23:01:24,898 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 23:01:32,320 [15   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller RedLife.Web.Host.Controllers.HomeController (RedLife.Web.Host).
+INFO  2020-11-02 23:01:35,637 [8    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-11-02 23:01:35,654 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host) in 3320.2652ms
+INFO  2020-11-02 23:01:35,659 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 23:01:35,696 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 11097.0054ms 302 
+INFO  2020-11-02 23:01:35,703 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-11-02 23:01:35,882 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 178.7738ms 200 text/html;charset=utf-8
+INFO  2020-11-02 23:01:36,315 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AntiForgery/SetCookie  
+INFO  2020-11-02 23:01:36,329 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 23:01:36,354 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller RedLife.Web.Host.Controllers.AntiForgeryController (RedLife.Web.Host).
+INFO  2020-11-02 23:01:36,415 [15   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-11-02 23:01:36,434 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-11-02 23:01:36,520 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/favicon-32x32.png  
+INFO  2020-11-02 23:01:36,549 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+INFO  2020-11-02 23:01:36,574 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 34.0912ms 200 image/png
+INFO  2020-11-02 23:01:36,779 [15   ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host) in 420.8222ms
+INFO  2020-11-02 23:01:36,783 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 23:01:36,787 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 473.3851ms 200 application/json; charset=utf-8
+INFO  2020-11-02 23:01:36,831 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 396.9864ms 200 application/json;charset=utf-8
+DEBUG 2020-11-02 23:12:23,516 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 23:12:23,691 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 23:12:23,742 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,751 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,753 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,754 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,756 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,757 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,758 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,760 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,761 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,762 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,763 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,764 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,765 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,766 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,767 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:23,779 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 23:12:24,039 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:12:24,040 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:12:24,040 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:12:24,040 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:12:25,033 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:12:27,572 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 23:12:27,728 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 23:12:27,775 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 23:12:27,798 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 23:12:27,824 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 23:12:28,369 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 23:12:28,709 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 23:12:28,817 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 23:12:28,817 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 23:12:28,828 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 23:12:28,829 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 23:12:28,831 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 23:12:28,831 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 23:12:28,832 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 23:12:28,832 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 23:12:28,832 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+INFO  2020-11-02 23:12:37,319 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-11-02 23:12:38,010 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\mistrate\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-11-02 23:12:38,192 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-11-02 23:12:38,451 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 23:12:47,138 [15   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller RedLife.Web.Host.Controllers.HomeController (RedLife.Web.Host).
+INFO  2020-11-02 23:12:49,850 [14   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-11-02 23:12:49,869 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host) in 2715.859ms
+INFO  2020-11-02 23:12:49,873 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 23:12:49,921 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 11731.8362ms 302 
+INFO  2020-11-02 23:12:49,926 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-11-02 23:12:50,100 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 173.0325ms 200 text/html;charset=utf-8
+INFO  2020-11-02 23:12:50,332 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AntiForgery/SetCookie  
+INFO  2020-11-02 23:12:50,344 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 23:12:50,360 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller RedLife.Web.Host.Controllers.AntiForgeryController (RedLife.Web.Host).
+INFO  2020-11-02 23:12:50,402 [10   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-11-02 23:12:50,404 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-11-02 23:12:50,651 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host) in 285.756ms
+INFO  2020-11-02 23:12:50,655 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 23:12:50,659 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 327.0222ms 200 application/json; charset=utf-8
+INFO  2020-11-02 23:12:50,665 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 262.4748ms 200 application/json;charset=utf-8
+DEBUG 2020-11-02 23:14:16,577 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 23:14:16,769 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 23:14:16,821 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,828 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,829 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,830 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,831 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,832 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,833 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,834 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,835 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,836 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,836 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,837 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,838 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,839 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,840 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:16,847 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 23:14:17,066 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:14:17,066 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:14:17,066 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:14:17,066 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:14:17,674 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:19,540 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 23:14:19,623 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 23:14:19,649 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 23:14:19,662 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 23:14:19,675 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 23:14:20,063 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 23:14:20,355 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 23:14:20,426 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 23:14:20,426 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 23:14:20,434 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 23:14:20,435 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 23:14:20,435 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 23:14:20,436 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 23:14:20,436 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 23:14:20,436 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 23:14:20,436 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+DEBUG 2020-11-02 23:14:59,533 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 23:14:59,707 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 23:14:59,747 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,753 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,754 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,755 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,755 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,756 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,757 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,758 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,759 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,759 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,760 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,761 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,762 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,763 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,764 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:14:59,771 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 23:14:59,955 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:14:59,956 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:14:59,956 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:14:59,956 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:15:00,946 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:15:03,056 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 23:15:03,237 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 23:15:03,279 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 23:15:03,296 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 23:15:03,317 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 23:15:03,822 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 23:15:04,010 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 23:15:04,092 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 23:15:04,092 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 23:15:04,102 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 23:15:04,103 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 23:15:04,104 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 23:15:04,104 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 23:15:04,104 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 23:15:04,104 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 23:15:04,105 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+DEBUG 2020-11-02 23:21:35,875 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-11-02 23:21:36,064 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-11-02 23:21:36,109 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.Web.Host.Startup.RedLifeWebHostModule, RedLife.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,115 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeWebCoreModule, RedLife.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,116 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeApplicationModule, RedLife.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,117 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.RedLifeCoreModule, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,117 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,118 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,119 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,120 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,121 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: RedLife.EntityFrameworkCore.RedLifeEntityFrameworkModule, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,122 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,123 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,125 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,126 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.13.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:36,134 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-11-02 23:21:36,350 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:21:36,350 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:21:36,350 [1    ] o.Configuration.LanguageManagementConfig - Converted RedLife (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:21:36,350 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-11-02 23:21:37,312 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: RedLife.EntityFrameworkCore.RedLifeDbContext, RedLife.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-11-02 23:21:39,674 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-11-02 23:21:39,781 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-11-02 23:21:39,818 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-11-02 23:21:39,832 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: RedLife
+DEBUG 2020-11-02 23:21:39,848 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-11-02 23:21:40,401 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-11-02 23:21:40,731 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[RedLife.MultiTenancy.Tenant, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[RedLife.Authorization.Users.User, RedLife.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-11-02 23:21:40,888 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 8 classes define auto mapping attributes
+DEBUG 2020-11-02 23:21:40,889 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-11-02 23:21:40,904 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.CreateUserDto
+DEBUG 2020-11-02 23:21:40,905 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Users.Dto.UserDto
+DEBUG 2020-11-02 23:21:40,906 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-11-02 23:21:40,907 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-11-02 23:21:40,907 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.Roles.Dto.PermissionDto
+DEBUG 2020-11-02 23:21:40,907 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-11-02 23:21:40,907 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - RedLife.MultiTenancy.Dto.TenantDto
+INFO  2020-11-02 23:22:02,000 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-11-02 23:22:02,532 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\mistrate\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-11-02 23:22:02,672 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-11-02 23:22:02,850 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 23:22:10,530 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller RedLife.Web.Host.Controllers.HomeController (RedLife.Web.Host).
+INFO  2020-11-02 23:22:13,026 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-11-02 23:22:13,045 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host) in 2499.9617ms
+INFO  2020-11-02 23:22:13,051 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.HomeController.Index (RedLife.Web.Host)'
+INFO  2020-11-02 23:22:13,091 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10422.7791ms 302 
+INFO  2020-11-02 23:22:13,096 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-11-02 23:22:13,273 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 176.9959ms 200 text/html;charset=utf-8
+INFO  2020-11-02 23:22:13,544 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AntiForgery/SetCookie  
+INFO  2020-11-02 23:22:13,554 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 23:22:13,570 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller RedLife.Web.Host.Controllers.AntiForgeryController (RedLife.Web.Host).
+INFO  2020-11-02 23:22:13,614 [14   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-11-02 23:22:13,634 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-11-02 23:22:13,916 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host) in 341.1733ms
+INFO  2020-11-02 23:22:13,924 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'RedLife.Web.Host.Controllers.AntiForgeryController.SetCookie (RedLife.Web.Host)'
+INFO  2020-11-02 23:22:13,930 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 383.5903ms 200 application/json; charset=utf-8
+INFO  2020-11-02 23:22:14,020 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 385.1232ms 200 application/json;charset=utf-8
