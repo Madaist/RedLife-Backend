@@ -24,6 +24,7 @@ namespace RedLife.Authorization.Users
         public virtual ICollection<Appointment> DonorAppointments { get; set; }
 
         public const string DefaultPassword = "123qwe";
+
         public const string HospitalAdminUserName = "HospitalAdmin";
         public const string CenterAdminUserName = "CenterAdmin";
 
@@ -31,8 +32,6 @@ namespace RedLife.Authorization.Users
         public const string CenterPersonnelUserName = "CenterPersonnel";
 
         public const string DonorUserName = "Donor";
-
-
 
 
         public static string CreateRandomPassword()

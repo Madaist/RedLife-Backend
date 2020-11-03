@@ -7,12 +7,12 @@ namespace RedLife.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<RedLifeDbContext> builder, string connectionString)
         {
-            builder.UseSqlServer(connectionString);
+            builder.UseSqlServer(connectionString).UseLazyLoadingProxies();
         }
 
         public static void Configure(DbContextOptionsBuilder<RedLifeDbContext> builder, DbConnection connection)
         {
-            builder.UseSqlServer(connection);
+            builder.UseSqlServer(connection).UseLazyLoadingProxies();
         }
     }
 }

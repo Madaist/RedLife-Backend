@@ -13,7 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\RedLife.Core\RedLife.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Appointments\Dto\" />
-  </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
-using System;
-using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using RedLife.Authorization.Users;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RedLife.Users.Dto
 {
@@ -36,5 +36,13 @@ namespace RedLife.Users.Dto
         public DateTime CreationTime { get; set; }
 
         public string[] RoleNames { get; set; }
+
+        public string Country { get; set; }
+        public string County { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string InstitutionName { get; set; }
     }
 }

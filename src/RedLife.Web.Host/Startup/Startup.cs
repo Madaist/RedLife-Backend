@@ -51,7 +51,6 @@ namespace RedLife.Web.Host.Startup
             });
 
 
-
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
 

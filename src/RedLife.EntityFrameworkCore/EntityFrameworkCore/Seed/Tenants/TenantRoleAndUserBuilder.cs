@@ -392,7 +392,10 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var permissions = PermissionFinder
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name))
+                            !grantedPermissions.Contains(p.Name) &&
+                            // write permission names here with || between them
+                            p.Name == PermissionNames.Pages_Appointment_Create
+                            )
                 .ToList();
 
             if (permissions.Any())
