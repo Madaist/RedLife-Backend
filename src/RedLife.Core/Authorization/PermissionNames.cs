@@ -8,6 +8,6 @@
 
         public const string Pages_Roles = "Pages.Roles";
 
-        public const string Pages_Appointment_Create = "Pages.Appointment.Create";
+        public const string Appointment_Create = "Appointment.Create";
     }
 }

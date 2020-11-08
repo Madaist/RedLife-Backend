@@ -16,10 +16,10 @@ namespace RedLife.Application.Appointments
         {
             _appointmentRepository = appointmentRepository;
 
-            CreatePermissionName = PermissionNames.Pages_Appointment_Create;
+            CreatePermissionName = PermissionNames.Appointment_Create;
         }
 
-        //[AbpAuthorize(PermissionNames.Pages_Appointment_Create)]
+        //[AbpAuthorize(PermissionNames.Appointment_Create)]
         //public int Getrandom()
         //{
         //    return 5;
