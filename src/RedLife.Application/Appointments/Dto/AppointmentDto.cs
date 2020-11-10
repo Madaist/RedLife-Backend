@@ -1,5 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
-using AutoMapper;
+using Abp.AutoMapper;
 using RedLife.Core.Appointments;
 using System;
 

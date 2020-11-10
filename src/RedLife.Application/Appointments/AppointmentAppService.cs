@@ -1,22 +1,101 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
+using Abp.Linq.Extensions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using RedLife.Application.Appointments.Dto;
 using RedLife.Authorization;
+using RedLife.Authorization.Roles;
+using RedLife.Authorization.Users;
 using RedLife.Core.Appointments;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RedLife.Application.Appointments
 {
     [AllowAnonymous]
-    public class AppointmentAppService : AsyncCrudAppService<Appointment, AppointmentDto>, IAppointmentAppService
+    public class AppointmentAppService : AsyncCrudAppService<Appointment, AppointmentDto, int, PagedAppointmentResultRequestDto>, IAppointmentAppService
     {
         private readonly IRepository<Appointment> _appointmentRepository;
+        private readonly IRepository<User, long> _userRepository;
+        private readonly UserManager _usermanager;
 
-        public AppointmentAppService(IRepository<Appointment> appointmentRepository) : base(appointmentRepository)
+        public AppointmentAppService(IRepository<Appointment> appointmentRepository, IRepository<User, long> userRepository) : base(appointmentRepository)
         {
             _appointmentRepository = appointmentRepository;
+            _userRepository = userRepository;
 
             CreatePermissionName = PermissionNames.Appointment_Create;
+        }
+
+        [AbpAuthorize()]
+        public override Task<AppointmentDto> GetAsync(EntityDto<int> input)
+        {
+            var entity = _appointmentRepository.Get(input.Id);
+
+            if (entity.DonorId != AbpSession.UserId)
+            {
+                return null;
+            }
+            else
+            {
+                return base.GetAsync(input);
+            }
+        }
+
+
+        public override async Task<PagedResultDto<AppointmentDto>> GetAllAsync(PagedAppointmentResultRequestDto input)
+        {
+            var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
+            var isAdmin = await _usermanager.IsInRoleAsync(currentUser, StaticRoleNames.Tenants.CenterAdmin);
+            var isDonor = await _usermanager.IsInRoleAsync(currentUser, StaticRoleNames.Tenants.Donor);
+
+            if (isDonor)
+            {
+                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(_appointmentRepository.GetAll().Where(x => x.DonorId == currentUser.Id).ToList());
+                return new PagedResultDto<AppointmentDto>
+                {
+                    Items = appointmentDtoOutput,
+                    TotalCount = appointmentDtoOutput.Count
+                };
+            }
+            else if (isAdmin)
+            {
+                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(base.GetAllAsync(input));
+                return new PagedResultDto<AppointmentDto>
+                {
+                    Items = appointmentDtoOutput,
+                    TotalCount = appointmentDtoOutput.Count
+                };
+            }
+            else // isCenterPersonnel or CenterAdmin or HospitalPersonnel or HospitalAdmin
+            {
+                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(_appointmentRepository.GetAll().Where(x => x.CenterId == currentUser.EmployerId).ToList());
+                return new PagedResultDto<AppointmentDto>
+                {
+                    Items = appointmentDtoOutput,
+                    TotalCount = appointmentDtoOutput.Count
+                };
+            }
+        }
+
+
+
+        protected override IQueryable<Appointment> CreateFilteredQuery(PagedAppointmentResultRequestDto input)
+        {
+            return Repository.GetAll()
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.DonorId.ToString().Contains(input.Keyword)
+                || x.CenterId.ToString().Contains(input.Keyword)
+                || x.Date.ToString().Contains(input.Keyword));
+        }
+
+        protected override IQueryable<Appointment> ApplySorting(IQueryable<Appointment> query, PagedAppointmentResultRequestDto input)
+        {
+            return query.OrderByDescending(r => r.Date);
         }
 
         //[AbpAuthorize(PermissionNames.Appointment_Create)]

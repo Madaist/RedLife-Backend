@@ -23,6 +23,9 @@ namespace RedLife.Authorization.Users
         [InverseProperty("Donor")]
         public virtual ICollection<Appointment> DonorAppointments { get; set; }
 
+        public long EmployerId { get; set; }
+        public virtual User Employer { get; set; }
+
         public const string DefaultPassword = "123qwe";
 
         public const string HospitalAdminUserName = "HospitalAdmin";

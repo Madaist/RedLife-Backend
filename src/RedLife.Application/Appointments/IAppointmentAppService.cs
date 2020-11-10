@@ -3,7 +3,7 @@ using RedLife.Application.Appointments.Dto;
 
 namespace RedLife.Application.Appointments
 {
-    public interface IAppointmentAppService : IAsyncCrudAppService<AppointmentDto>
+    public interface IAppointmentAppService : IAsyncCrudAppService<AppointmentDto, int, PagedAppointmentResultRequestDto>
     {
 
     }
