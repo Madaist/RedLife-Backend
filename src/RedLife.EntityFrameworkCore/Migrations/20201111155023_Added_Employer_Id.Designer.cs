@@ -10,8 +10,8 @@ using RedLife.EntityFrameworkCore;
 namespace RedLife.Migrations
 {
     [DbContext(typeof(RedLifeDbContext))]
-    [Migration("20201110212858_added_employer_id")]
-    partial class added_employer_id
+    [Migration("20201111155023_Added_Employer_Id")]
+    partial class Added_Employer_Id
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1439,7 +1439,7 @@ namespace RedLife.Migrations
                         .HasColumnType("nvarchar(328)")
                         .HasMaxLength(328);
 
-                    b.Property<long>("EmployerId")
+                    b.Property<long?>("EmployerId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("InstitutionName")
@@ -1821,9 +1821,7 @@ namespace RedLife.Migrations
 
                     b.HasOne("RedLife.Authorization.Users.User", "Employer")
                         .WithMany()
-                        .HasForeignKey("EmployerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployerId");
 
                     b.HasOne("RedLife.Authorization.Users.User", "LastModifierUser")
                         .WithMany()

@@ -1437,7 +1437,7 @@ namespace RedLife.Migrations
                         .HasColumnType("nvarchar(328)")
                         .HasMaxLength(328);
 
-                    b.Property<long>("EmployerId")
+                    b.Property<long?>("EmployerId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("InstitutionName")
@@ -1819,9 +1819,7 @@ namespace RedLife.Migrations
 
                     b.HasOne("RedLife.Authorization.Users.User", "Employer")
                         .WithMany()
-                        .HasForeignKey("EmployerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployerId");
 
                     b.HasOne("RedLife.Authorization.Users.User", "LastModifierUser")
                         .WithMany()

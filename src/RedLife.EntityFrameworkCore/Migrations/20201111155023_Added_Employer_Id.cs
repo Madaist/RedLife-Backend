@@ -2,15 +2,14 @@
 
 namespace RedLife.Migrations
 {
-    public partial class added_employer_id : Migration
+    public partial class Added_Employer_Id : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<long>(
                 name: "EmployerId",
                 table: "AbpUsers",
-                nullable: false,
-                defaultValue: 0L);
+                nullable: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpUsers_EmployerId",
@@ -23,7 +22,7 @@ namespace RedLife.Migrations
                 column: "EmployerId",
                 principalTable: "AbpUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

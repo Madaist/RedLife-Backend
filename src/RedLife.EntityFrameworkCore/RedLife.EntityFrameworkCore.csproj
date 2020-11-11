@@ -17,6 +17,10 @@
     <Compile Remove="Migrations\20201102191752_updated_appointments.Designer.cs" />
     <Compile Remove="Migrations\20201102195506_app_fk_test.cs" />
     <Compile Remove="Migrations\20201102195506_app_fk_test.Designer.cs" />
+    <Compile Remove="Migrations\20201110212858_added_employer_id.cs" />
+    <Compile Remove="Migrations\20201110212858_added_employer_id.Designer.cs" />
+    <Compile Remove="Migrations\20201111154531_Added_Employer_Id.cs" />
+    <Compile Remove="Migrations\20201111154531_Added_Employer_Id.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
