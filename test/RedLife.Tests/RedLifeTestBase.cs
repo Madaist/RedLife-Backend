@@ -14,11 +14,14 @@ using RedLife.EntityFrameworkCore;
 using RedLife.EntityFrameworkCore.Seed.Host;
 using RedLife.EntityFrameworkCore.Seed.Tenants;
 using RedLife.MultiTenancy;
+using RedLife.Core.LastId;
 
 namespace RedLife.Tests
 {
     public abstract class RedLifeTestBase : AbpIntegratedTestBase<RedLifeTestModule>
     {
+        private readonly LastUserIdManager _lastUserIdManager;
+
         protected RedLifeTestBase()
         {
             void NormalizeDbContext(RedLifeDbContext context)

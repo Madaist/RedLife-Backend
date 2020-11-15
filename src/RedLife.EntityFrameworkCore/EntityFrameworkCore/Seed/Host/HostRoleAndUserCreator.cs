@@ -9,6 +9,8 @@ using RedLife.Authorization.Roles;
 using RedLife.Authorization.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using RedLife.Core.LastId;
+using Abp.Domain.Uow;
 
 namespace RedLife.EntityFrameworkCore.Seed.Host
 {
@@ -20,12 +22,23 @@ namespace RedLife.EntityFrameworkCore.Seed.Host
         {
             _context = context;
         }
-
+        
+        public long GetAndUpdateLastUserId()
+        {
+            var lastUserId = _context.LastUserId.FirstOrDefault();
+            lastUserId.LastId++;
+            _context.LastUserId.Update(lastUserId);
+            return lastUserId.LastId;
+        }
+      
         public void Create()
         {
             CreateHostRoleAndUsers();
         }
 
+
+
+        [System.Obsolete]
         private void CreateHostRoleAndUsers()
         {
             // Admin role for host
@@ -79,13 +92,15 @@ namespace RedLife.EntityFrameworkCore.Seed.Host
                     EmailAddress = "admin@aspnetboilerplate.com",
                     IsEmailConfirmed = true,
                     IsActive = true,
-                    EmployerId = null
+                    EmployerId = null,
+                    Id = GetAndUpdateLastUserId()
                 };
 
                 user.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(user, "123qwe");
                 user.SetNormalizedNames();
 
                 adminUserForHost = _context.Users.Add(user).Entity;
+
                 _context.SaveChanges();
 
                 // Assign Admin role to admin user

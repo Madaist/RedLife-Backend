@@ -9,6 +9,7 @@ using Abp.MultiTenancy;
 using RedLife.Authorization;
 using RedLife.Authorization.Roles;
 using RedLife.Authorization.Users;
+using RedLife.Core.LastId;
 
 namespace RedLife.EntityFrameworkCore.Seed.Tenants
 {
@@ -25,8 +26,19 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
         public void Create()
         {
+            //CreateInitialUserId();
             CreateRolesAndUsers();
         }
+
+        //private void CreateInitialUserId()
+        //{
+        //    var id = _context.LastUserId.IgnoreQueryFilters().FirstOrDefault();
+        //    if (id == null)
+        //    {
+        //        _context.LastUserId.Add(new LastUserId() { LastId = 0 });
+        //        _context.SaveChanges();
+        //    }
+        //}
 
         private void CreateRolesAndUsers()
         {
@@ -75,6 +87,14 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         {
             var donorRole = CreateDonorRole();
             CreateDonorUser(donorRole);
+        }
+
+        public long GetAndUpdateLastUserId()
+        {
+            var lastUserId = _context.LastUserId.FirstOrDefault();
+            lastUserId.LastId++;
+            _context.LastUserId.Update(lastUserId);
+            return lastUserId.LastId;
         }
 
         private Role CreateAdminRole()
@@ -126,6 +146,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminUser, "123qwe");
                 adminUser.IsEmailConfirmed = true;
                 adminUser.IsActive = true;
+                adminUser.Id = GetAndUpdateLastUserId();
 
                 _context.Users.Add(adminUser);
                 _context.SaveChanges();
@@ -185,6 +206,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminUser, "123qwe");
                 centerAdminUser.IsEmailConfirmed = true;
                 centerAdminUser.IsActive = true;
+                centerAdminUser.Id = GetAndUpdateLastUserId();
 
                 _context.Users.Add(centerAdminUser);
                 _context.SaveChanges();
@@ -244,6 +266,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 hospitalAdminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalAdminUser, "123qwe");
                 hospitalAdminUser.IsEmailConfirmed = true;
                 hospitalAdminUser.IsActive = true;
+                hospitalAdminUser.Id = GetAndUpdateLastUserId();
 
                 _context.Users.Add(hospitalAdminUser);
                 _context.SaveChanges();
@@ -303,6 +326,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
                 hospitalPersonnelUser.IsEmailConfirmed = true;
                 hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -362,6 +386,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
                 centerPersonnelUser.IsEmailConfirmed = true;
                 centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
 
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
@@ -424,6 +449,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
                 donorUser.IsEmailConfirmed = true;
                 donorUser.IsActive = true;
+                donorUser.Id = 2990407460021;
 
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();

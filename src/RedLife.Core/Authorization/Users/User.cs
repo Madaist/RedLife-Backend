@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Authorization.Users;
 using Abp.Extensions;
@@ -9,6 +10,8 @@ namespace RedLife.Authorization.Users
 {
     public class User : AbpUser<User>
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public override long Id { get => base.Id; set => base.Id = value; }
         public string Country { get; set; }
         public string County { get; set; }
         public string City { get; set; }

@@ -7,20 +7,24 @@ using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
 using RedLife.EntityFrameworkCore.Seed.Host;
 using RedLife.EntityFrameworkCore.Seed.Tenants;
+using RedLife.Core.LastId;
+using Abp.Domain.Repositories;
 
 namespace RedLife.EntityFrameworkCore.Seed
 {
     public static class SeedHelper
     {
+        [Obsolete]
         public static void SeedHostDb(IIocResolver iocResolver)
         {
             WithDbContext<RedLifeDbContext>(iocResolver, SeedHostDb);
         }
 
+
+        [Obsolete]
         public static void SeedHostDb(RedLifeDbContext context)
         {
             context.SuppressAutoSetTenantId = true;
-
             // Host seed
             new InitialHostDbBuilder(context).Create();
 

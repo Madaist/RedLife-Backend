@@ -27,6 +27,8 @@ namespace RedLife.Users.Dto
         [StringLength(AbpUserBase.MaxEmailAddressLength)]
         public string EmailAddress { get; set; }
 
+        public long? SocialSecurityNumber { get; set; }
+
         public bool IsActive { get; set; }
 
         public string[] RoleNames { get; set; }

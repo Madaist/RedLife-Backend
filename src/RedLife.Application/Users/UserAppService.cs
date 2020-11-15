@@ -21,6 +21,7 @@ using RedLife.Roles.Dto;
 using RedLife.Users.Dto;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RedLife.Core.LastId;
 
 namespace RedLife.Users
 {
@@ -33,6 +34,7 @@ namespace RedLife.Users
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IAbpSession _abpSession;
         private readonly LogInManager _logInManager;
+        private readonly LastUserIdManager _lastUserIdManager;
 
         public UserAppService(
             IRepository<User, long> repository,
@@ -41,7 +43,8 @@ namespace RedLife.Users
             IRepository<Role> roleRepository,
             IPasswordHasher<User> passwordHasher,
             IAbpSession abpSession,
-            LogInManager logInManager)
+            LogInManager logInManager,
+            LastUserIdManager lastUserIdManager)
             : base(repository)
         {
             _userManager = userManager;
@@ -50,28 +53,38 @@ namespace RedLife.Users
             _passwordHasher = passwordHasher;
             _abpSession = abpSession;
             _logInManager = logInManager;
+            _lastUserIdManager = lastUserIdManager;
         }
 
         public override async Task<UserDto> CreateAsync(CreateUserDto input)
         {
+            //var currentUser = await _userManager.FindByIdAsync(AbpSession.UserId.ToString());
+            //var currentUserRole = await _userManager.GetCurrentUserRoleAsync(currentUser);
+            
             CheckCreatePermission();
 
             var user = ObjectMapper.Map<User>(input);
-
             user.TenantId = AbpSession.TenantId;
             user.IsEmailConfirmed = true;
 
             await _userManager.InitializeOptionsAsync(AbpSession.TenantId);
 
-            CheckErrors(await _userManager.CreateAsync(user, input.Password));
-
             if (input.RoleNames != null)
             {
-                CheckErrors(await _userManager.SetRolesAsync(user, input.RoleNames));
+                if (input.RoleNames.Contains("DONOR"))
+                {
+                    user.Id = (long) input.SocialSecurityNumber;
+                }
+                else
+                {
+                    user.Id = _lastUserIdManager.GetAndUpdateLastUserId();
+                }
             }
 
-            CurrentUnitOfWork.SaveChanges();
+            CheckErrors(await _userManager.CreateAsync(user, input.Password));
+            CheckErrors(await _userManager.SetRolesAsync(user, input.RoleNames));
 
+            CurrentUnitOfWork.SaveChanges();
             return MapToEntityDto(user);
         }
 

@@ -1,4 +1,7 @@
-﻿namespace RedLife.EntityFrameworkCore.Seed.Host
+﻿using RedLife.Core.LastId;
+using RedLife.EntityFrameworkCore.Seed.Tenants;
+
+namespace RedLife.EntityFrameworkCore.Seed.Host
 {
     public class InitialHostDbBuilder
     {
@@ -9,8 +12,10 @@
             _context = context;
         }
 
+        [System.Obsolete]
         public void Create()
         {
+            new LastUserIdCreator(_context).Create();
             new DefaultEditionCreator(_context).Create();
             new DefaultLanguagesCreator(_context).Create();
             new HostRoleAndUserCreator(_context).Create();

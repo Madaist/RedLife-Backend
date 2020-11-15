@@ -69,12 +69,7 @@ namespace RedLife.Application.Appointments
             }
             else if (roleName == "Admin")
             {
-                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(base.GetAllAsync(input));
-                return new PagedResultDto<AppointmentDto>
-                {
-                    Items = appointmentDtoOutput,
-                    TotalCount = appointmentDtoOutput.Count
-                };
+                return await base.GetAllAsync(input);
             }
             else if (roleName.Contains("Center"))
             {
