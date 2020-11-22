@@ -14,9 +14,9 @@ namespace RedLife.Core.LastId
         public long GetAndUpdateLastUserId()
         {
             var lastUserId =  _lastUserIdRepository.GetAllList()[0];
-            lastUserId.LastId++;
+            lastUserId.Counter++;
             _lastUserIdRepository.Update(lastUserId);
-            return lastUserId.LastId;
+            return lastUserId.Counter;
         }
     }
 }

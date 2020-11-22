@@ -35,7 +35,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         //    var id = _context.LastUserId.IgnoreQueryFilters().FirstOrDefault();
         //    if (id == null)
         //    {
-        //        _context.LastUserId.Add(new LastUserId() { LastId = 0 });
+        //        _context.LastUserId.Add(new LastUserId() { Counter = 0 });
         //        _context.SaveChanges();
         //    }
         //}
@@ -92,9 +92,9 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         public long GetAndUpdateLastUserId()
         {
             var lastUserId = _context.LastUserId.FirstOrDefault();
-            lastUserId.LastId++;
+            lastUserId.Counter++;
             _context.LastUserId.Update(lastUserId);
-            return lastUserId.LastId;
+            return lastUserId.Counter;
         }
 
         private Role CreateAdminRole()

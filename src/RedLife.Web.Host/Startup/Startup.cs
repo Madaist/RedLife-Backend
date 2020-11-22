@@ -18,6 +18,7 @@ using Abp.Dependency;
 using Abp.Json;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using RedLife.Core.LastId;
 
 namespace RedLife.Web.Host.Startup
 {
@@ -36,6 +37,8 @@ namespace RedLife.Web.Host.Startup
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<LastUserIdManager>();
+
             //MVC
             services.AddControllersWithViews(
                 options =>

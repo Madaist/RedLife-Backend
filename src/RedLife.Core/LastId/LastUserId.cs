@@ -4,6 +4,6 @@ namespace RedLife.Core.LastId
 {
     public class LastUserId : Entity<int>
     {
-        public long LastId { get; set; }
+        public long Counter { get; set; }
     }
 }

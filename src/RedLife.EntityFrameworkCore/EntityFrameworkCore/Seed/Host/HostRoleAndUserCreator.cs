@@ -26,9 +26,9 @@ namespace RedLife.EntityFrameworkCore.Seed.Host
         public long GetAndUpdateLastUserId()
         {
             var lastUserId = _context.LastUserId.FirstOrDefault();
-            lastUserId.LastId++;
+            lastUserId.Counter++;
             _context.LastUserId.Update(lastUserId);
-            return lastUserId.LastId;
+            return lastUserId.Counter;
         }
       
         public void Create()
