@@ -1,12 +1,14 @@
 ﻿using Abp.AutoMapper;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using RedLife.Application.Appointments.Dto;
 using RedLife.Authorization;
+using RedLife.Core.Appointments;
 
 namespace RedLife
 {
     [DependsOn(
-        typeof(RedLifeCoreModule), 
+        typeof(RedLifeCoreModule),
         typeof(AbpAutoMapperModule))]
     public class RedLifeApplicationModule : AbpModule
     {

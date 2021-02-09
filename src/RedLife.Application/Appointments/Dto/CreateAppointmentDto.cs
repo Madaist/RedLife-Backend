@@ -1,14 +1,14 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using RedLife.Core.Appointments;
 using System;
 
 namespace RedLife.Application.Appointments.Dto
 {
-    public class AppointmentDto : EntityDto<int>
+    public class CreateAppointmentDto
     {
-        public string DonorName { get; set; }
-        public string CenterName { get; set; }
         public long DonorId { get; set; }
         public long CenterId { get; set; }
-        public String Date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

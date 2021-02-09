@@ -1,9 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
+using Abp.ObjectMapping;
 using Microsoft.AspNetCore.Authorization;
 using RedLife.Application.Appointments.Dto;
 using RedLife.Authorization;
@@ -17,22 +17,24 @@ using System.Threading.Tasks;
 namespace RedLife.Application.Appointments
 {
     [AllowAnonymous]
-    public class AppointmentAppService : AsyncCrudAppService<Appointment, AppointmentDto, int, PagedAppointmentResultRequestDto>, IAppointmentAppService
+    public class AppointmentAppService : AsyncCrudAppService<Appointment, AppointmentDto, int, PagedAppointmentResultRequestDto, CreateAppointmentDto, UpdateAppointmentDto>, 
+                                         IAppointmentAppService
     {
         private readonly IRepository<Appointment> _appointmentRepository;
         private readonly IRepository<User, long> _userRepository;
         private readonly UserManager _userManager;
+        private readonly IObjectMapper _objectMapper;
 
-        public AppointmentAppService(IRepository<Appointment> appointmentRepository, IRepository<User, long> userRepository, UserManager userManager) : base(appointmentRepository)
+        public AppointmentAppService(IRepository<Appointment> appointmentRepository, IRepository<User, long> userRepository, UserManager userManager, IObjectMapper objectMapper) : base(appointmentRepository)
         {
             _appointmentRepository = appointmentRepository;
             _userRepository = userRepository;
             _userManager = userManager;
+            _objectMapper = objectMapper;
 
             CreatePermissionName = PermissionNames.Appointment_Create;
         }
 
-        [AbpAuthorize()]
         public override async Task<AppointmentDto> GetAsync(EntityDto<int> input)
         {
             var entity = _appointmentRepository.Get(input.Id);
@@ -51,7 +53,6 @@ namespace RedLife.Application.Appointments
             }
         }
 
-
         public override async Task<PagedResultDto<AppointmentDto>> GetAllAsync(PagedAppointmentResultRequestDto input)
         {
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
@@ -59,12 +60,16 @@ namespace RedLife.Application.Appointments
 
             if (roleName == "Donor")
             {
-                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(_appointmentRepository.GetAll().
-                                           Where(x => x.DonorId == currentUser.Id).ToList());
+                ICollection<AppointmentDto> donorAppointmentsDto = new List<AppointmentDto>();
+                var donorAppointments = _appointmentRepository.GetAll().Where(x => x.DonorId == currentUser.Id).ToList();
+                foreach(Appointment appointment in donorAppointments)
+                {
+                    donorAppointmentsDto.Add(_objectMapper.Map<AppointmentDto>(appointment));
+                }
                 return new PagedResultDto<AppointmentDto>
                 {
-                    Items = appointmentDtoOutput,
-                    TotalCount = appointmentDtoOutput.Count
+                    Items = (IReadOnlyList<AppointmentDto>)donorAppointmentsDto,
+                    TotalCount = donorAppointmentsDto.Count
                 };
             }
             else if (roleName == "Admin")
@@ -87,7 +92,7 @@ namespace RedLife.Application.Appointments
             }
         }
 
-        public override async Task<AppointmentDto> UpdateAsync(AppointmentDto input)
+        public override async Task<AppointmentDto> UpdateAsync(UpdateAppointmentDto input)
         {
             var entity = _appointmentRepository.Get(input.Id);
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
@@ -105,7 +110,7 @@ namespace RedLife.Application.Appointments
             }
         }
 
-        public override async Task<AppointmentDto> CreateAsync(AppointmentDto input)
+        public override async Task<AppointmentDto> CreateAsync(CreateAppointmentDto input)
         {
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
@@ -120,7 +125,6 @@ namespace RedLife.Application.Appointments
             }
         }
 
-
         protected override IQueryable<Appointment> CreateFilteredQuery(PagedAppointmentResultRequestDto input)
         {
             return Repository.GetAll()
@@ -134,10 +138,5 @@ namespace RedLife.Application.Appointments
             return query.OrderByDescending(r => r.Date);
         }
 
-        //[AbpAuthorize(PermissionNames.Appointment_Create)]
-        //public int Getrandom()
-        //{
-        //    return 5;
-        //}
     }
 }
