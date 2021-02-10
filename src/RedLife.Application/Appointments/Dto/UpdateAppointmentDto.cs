@@ -5,6 +5,7 @@ using System;
 
 namespace RedLife.Application.Appointments.Dto
 {
+    [AutoMapTo(typeof(Appointment))]
     public class UpdateAppointmentDto : EntityDto<int>
     {
         public long DonorId { get; set; }

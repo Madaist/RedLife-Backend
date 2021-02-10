@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RedLife.Application.Appointments.Dto
 {
