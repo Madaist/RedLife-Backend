@@ -57,9 +57,8 @@ namespace RedLife.Authorization.Users
         {
         }
 
-        public async Task<string>  GetCurrentUserRoleAsync(User user)
+        public async Task<string> GetCurrentUserRoleAsync(User user)
         {
-
             var roleId = user.Roles.FirstOrDefault().RoleId;
             return RoleManager.GetRoleByIdAsync(roleId).Result.Name;
         }

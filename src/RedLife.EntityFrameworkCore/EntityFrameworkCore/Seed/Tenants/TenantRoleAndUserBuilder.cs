@@ -26,19 +26,9 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
         public void Create()
         {
-            //CreateInitialUserId();
             CreateRolesAndUsers();
         }
 
-        //private void CreateInitialUserId()
-        //{
-        //    var id = _context.LastUserId.IgnoreQueryFilters().FirstOrDefault();
-        //    if (id == null)
-        //    {
-        //        _context.LastUserId.Add(new LastUserId() { Counter = 0 });
-        //        _context.SaveChanges();
-        //    }
-        //}
 
         private void CreateRolesAndUsers()
         {
@@ -117,7 +107,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var permissions = PermissionFinder
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name))
+                            !grantedPermissions.Contains(p.Name) &&
+                            p.Name == PermissionNames.Appointments_Create)
                 .ToList();
 
             if (permissions.Any())
@@ -406,7 +397,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 _context.SaveChanges();
             }
 
-            // Grant all permissions to personnel role
+            // Grant all permissions to donor role
 
             var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
                 .OfType<RolePermissionSetting>()
@@ -419,7 +410,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
                             // write permission names here with || between them
-                            p.Name == PermissionNames.Appointment_Create
+                            p.Name == PermissionNames.Appointments_Create
                             )
                 .ToList();
 

@@ -22,6 +22,7 @@ using RedLife.Users.Dto;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RedLife.Core.LastId;
+using static RedLife.Authorization.Roles.StaticRoleNames;
 
 namespace RedLife.Users
 {
@@ -71,7 +72,7 @@ namespace RedLife.Users
 
             if (input.RoleNames != null)
             {
-                if (input.RoleNames.Contains("DONOR"))
+                if (input.RoleNames.Contains(Tenants.Donor))
                 {
                     user.Id = (long) input.SocialSecurityNumber;
                 }
@@ -234,6 +235,11 @@ namespace RedLife.Users
             }
 
             return true;
+        }
+
+        public void GeTransfusionCenters()
+        {
+            //var transfusionCenters = ObjectMapper.Map<UserDto, _userManager.GetUsersInRoleAsync("Donor");
         }
     }
 }

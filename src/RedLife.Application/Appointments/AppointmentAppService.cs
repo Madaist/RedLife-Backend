@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static RedLife.Authorization.Roles.StaticRoleNames;
 
 namespace RedLife.Application.Appointments
 {
@@ -32,7 +33,7 @@ namespace RedLife.Application.Appointments
             _userManager = userManager;
             _objectMapper = objectMapper;
 
-            CreatePermissionName = PermissionNames.Appointment_Create;
+            CreatePermissionName = PermissionNames.Appointments_Create;
         }
 
         public override async Task<AppointmentDto> GetAsync(EntityDto<int> input)
@@ -41,8 +42,8 @@ namespace RedLife.Application.Appointments
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
 
-            if ((roleName == "Donor" && entity.DonorId == AbpSession.UserId) ||
-                (roleName == "Admin") ||
+            if ((roleName == Tenants.Donor && entity.DonorId == AbpSession.UserId) ||
+                (roleName == Tenants.Admin) ||
                 (roleName.Contains("Center") && entity.CenterId == currentUser.EmployerId))
             {
                 return await base.GetAsync(input);
@@ -58,21 +59,17 @@ namespace RedLife.Application.Appointments
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
 
-            if (roleName == "Donor")
+            if (roleName == Tenants.Donor)
             {
-                ICollection<AppointmentDto> donorAppointmentsDto = new List<AppointmentDto>();
-                var donorAppointments = _appointmentRepository.GetAll().Where(x => x.DonorId == currentUser.Id).ToList();
-                foreach(Appointment appointment in donorAppointments)
-                {
-                    donorAppointmentsDto.Add(_objectMapper.Map<AppointmentDto>(appointment));
-                }
+                var appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(_appointmentRepository.GetAll().
+                                           Where(x => x.DonorId == currentUser.Id).ToList());
                 return new PagedResultDto<AppointmentDto>
                 {
-                    Items = (IReadOnlyList<AppointmentDto>)donorAppointmentsDto,
-                    TotalCount = donorAppointmentsDto.Count
+                    Items = appointmentDtoOutput,
+                    TotalCount = appointmentDtoOutput.Count
                 };
             }
-            else if (roleName == "Admin")
+            else if (roleName == Tenants.Admin)
             {
                 return await base.GetAllAsync(input);
             }
@@ -115,7 +112,7 @@ namespace RedLife.Application.Appointments
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
 
-            if (roleName == "Donor" || roleName == "Admin")
+            if (roleName == Tenants.Donor || roleName == Tenants.Admin)
             {
                 return await base.CreateAsync(input);
             }
@@ -137,6 +134,8 @@ namespace RedLife.Application.Appointments
         {
             return query.OrderByDescending(r => r.Date);
         }
+
+     
 
     }
 }

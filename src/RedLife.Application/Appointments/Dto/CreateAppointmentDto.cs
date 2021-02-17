@@ -1,7 +1,7 @@
-﻿using Abp.Application.Services.Dto;
-using Abp.AutoMapper;
+﻿using Abp.AutoMapper;
 using RedLife.Core.Appointments;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RedLife.Application.Appointments.Dto
 {
@@ -10,6 +10,7 @@ namespace RedLife.Application.Appointments.Dto
     {
         public long DonorId { get; set; }
         public long CenterId { get; set; }
+        [Required]
         public DateTime Date { get; set; }
     }
 }
