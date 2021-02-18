@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
@@ -17,7 +18,7 @@ using static RedLife.Authorization.Roles.StaticRoleNames;
 
 namespace RedLife.Application.Appointments
 {
-    [AllowAnonymous]
+    [AbpAuthorize]
     public class AppointmentAppService : AsyncCrudAppService<Appointment, AppointmentDto, int, PagedAppointmentResultRequestDto, CreateAppointmentDto, UpdateAppointmentDto>,
                                          IAppointmentAppService
     {
@@ -32,15 +33,13 @@ namespace RedLife.Application.Appointments
             _userRepository = userRepository;
             _userManager = userManager;
             _objectMapper = objectMapper;
-
-            CreatePermissionName = PermissionNames.Appointments_Create;
         }
 
         public override async Task<AppointmentDto> GetAsync(EntityDto<int> input)
         {
             var entity = _appointmentRepository.Get(input.Id);
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
-            var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
+            var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
             if ((roleName == Tenants.Donor && entity.DonorId == AbpSession.UserId) ||
                 (roleName == Tenants.Admin) ||
@@ -58,7 +57,7 @@ namespace RedLife.Application.Appointments
         {
             var filteredAppointments = CreateFilteredQuery(input).ToList();
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
-            var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
+            var roleName =  _userManager.GetCurrentUserRoleAsync(currentUser);
 
             if (roleName == Tenants.Donor)
             {
@@ -94,7 +93,7 @@ namespace RedLife.Application.Appointments
         {
             var entity = _appointmentRepository.Get(input.Id);
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
-            var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
+            var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
             if ((roleName == "Admin") ||
                 (roleName == "Donor" && entity.DonorId == AbpSession.UserId) ||
@@ -108,19 +107,11 @@ namespace RedLife.Application.Appointments
             }
         }
 
+        [AbpAuthorize(PermissionNames.Appointments_Create)]
         public override async Task<AppointmentDto> CreateAsync(CreateAppointmentDto input)
         {
-            var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
-            var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
+            return await base.CreateAsync(input);
 
-            if (roleName == Tenants.Donor || roleName == Tenants.Admin)
-            {
-                return await base.CreateAsync(input);
-            }
-            else
-            {
-                throw new Exception("Not authorized");
-            }
         }
 
         protected override IQueryable<Appointment> CreateFilteredQuery(PagedAppointmentResultRequestDto input)

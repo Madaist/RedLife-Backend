@@ -410,8 +410,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
                             // write permission names here with || between them
-                            p.Name == PermissionNames.Appointments_Create
-                            )
+                            p.Name == PermissionNames.Appointments_Create ||
+                            p.Name == PermissionNames.Pages_Users)
                 .ToList();
 
             if (permissions.Any())

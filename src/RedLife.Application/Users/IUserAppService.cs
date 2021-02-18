@@ -13,5 +13,7 @@ namespace RedLife.Users
         Task ChangeLanguage(ChangeUserLanguageDto input);
 
         Task<bool> ChangePassword(ChangePasswordDto input);
+
+        public ListResultDto<UserDto> GetTransfusionCenters();
     }
 }

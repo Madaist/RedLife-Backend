@@ -59,9 +59,6 @@ namespace RedLife.Users
 
         public override async Task<UserDto> CreateAsync(CreateUserDto input)
         {
-            //var currentUser = await _userManager.FindByIdAsync(AbpSession.UserId.ToString());
-            //var currentUserRole = await _userManager.GetCurrentUserRoleAsync(currentUser);
-            
             CheckCreatePermission();
 
             var user = ObjectMapper.Map<User>(input);
@@ -237,9 +234,10 @@ namespace RedLife.Users
             return true;
         }
 
-        public void GeTransfusionCenters()
+        public ListResultDto<UserDto> GetTransfusionCenters()
         {
-            //var transfusionCenters = ObjectMapper.Map<UserDto, _userManager.GetUsersInRoleAsync("Donor");
+            var transfusionCenters = _userManager.GetUsersInRoleAsync(Tenants.CenterAdmin).Result;
+            return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(transfusionCenters));
         }
     }
 }
