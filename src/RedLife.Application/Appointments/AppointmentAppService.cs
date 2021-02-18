@@ -18,7 +18,7 @@ using static RedLife.Authorization.Roles.StaticRoleNames;
 namespace RedLife.Application.Appointments
 {
     [AllowAnonymous]
-    public class AppointmentAppService : AsyncCrudAppService<Appointment, AppointmentDto, int, PagedAppointmentResultRequestDto, CreateAppointmentDto, UpdateAppointmentDto>, 
+    public class AppointmentAppService : AsyncCrudAppService<Appointment, AppointmentDto, int, PagedAppointmentResultRequestDto, CreateAppointmentDto, UpdateAppointmentDto>,
                                          IAppointmentAppService
     {
         private readonly IRepository<Appointment> _appointmentRepository;
@@ -56,12 +56,13 @@ namespace RedLife.Application.Appointments
 
         public override async Task<PagedResultDto<AppointmentDto>> GetAllAsync(PagedAppointmentResultRequestDto input)
         {
+            var filteredAppointments = CreateFilteredQuery(input).ToList();
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = await _userManager.GetCurrentUserRoleAsync(currentUser);
 
             if (roleName == Tenants.Donor)
             {
-                var appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(_appointmentRepository.GetAll().
+                var appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.
                                            Where(x => x.DonorId == currentUser.Id).ToList());
                 return new PagedResultDto<AppointmentDto>
                 {
@@ -125,17 +126,15 @@ namespace RedLife.Application.Appointments
         protected override IQueryable<Appointment> CreateFilteredQuery(PagedAppointmentResultRequestDto input)
         {
             return Repository.GetAll()
-                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.DonorId.ToString().Contains(input.Keyword)
-                || x.CenterId.ToString().Contains(input.Keyword)
-                || x.Date.ToString().Contains(input.Keyword));
+                             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.UserName.Contains(input.Keyword)
+                                      || x.Center.InstitutionName.Contains(input.Keyword)
+                                      || x.Date.ToString().Contains(input.Keyword));
         }
 
         protected override IQueryable<Appointment> ApplySorting(IQueryable<Appointment> query, PagedAppointmentResultRequestDto input)
         {
             return query.OrderByDescending(r => r.Date);
         }
-
-     
 
     }
 }
