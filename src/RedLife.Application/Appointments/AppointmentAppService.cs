@@ -5,7 +5,6 @@ using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.ObjectMapping;
-using Microsoft.AspNetCore.Authorization;
 using RedLife.Application.Appointments.Dto;
 using RedLife.Authorization;
 using RedLife.Authorization.Users;
@@ -35,6 +34,7 @@ namespace RedLife.Application.Appointments
             _objectMapper = objectMapper;
         }
 
+        [AbpAuthorize(PermissionNames.Appointments_Get)]
         public override async Task<AppointmentDto> GetAsync(EntityDto<int> input)
         {
             var entity = _appointmentRepository.Get(input.Id);
@@ -53,6 +53,7 @@ namespace RedLife.Application.Appointments
             }
         }
 
+        [AbpAuthorize(PermissionNames.Appointments_Get)]
         public override async Task<PagedResultDto<AppointmentDto>> GetAllAsync(PagedAppointmentResultRequestDto input)
         {
             var filteredAppointments = CreateFilteredQuery(input).ToList();
@@ -89,6 +90,7 @@ namespace RedLife.Application.Appointments
             }
         }
 
+        [AbpAuthorize(PermissionNames.Appointments_Update)]
         public override async Task<AppointmentDto> UpdateAsync(UpdateAppointmentDto input)
         {
             var entity = _appointmentRepository.Get(input.Id);
@@ -111,6 +113,12 @@ namespace RedLife.Application.Appointments
         public override async Task<AppointmentDto> CreateAsync(CreateAppointmentDto input)
         {
             return await base.CreateAsync(input);
+        }
+
+        [AbpAuthorize(PermissionNames.Appointments_Delete)]
+        public override Task DeleteAsync(EntityDto<int> input)
+        {
+            return base.DeleteAsync(input);
         }
 
         protected override IQueryable<Appointment> CreateFilteredQuery(PagedAppointmentResultRequestDto input)

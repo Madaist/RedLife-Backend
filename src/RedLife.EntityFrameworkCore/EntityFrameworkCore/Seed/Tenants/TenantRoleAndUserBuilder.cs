@@ -1,15 +1,14 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Abp.Authorization;
+﻿using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
 using Abp.MultiTenancy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using RedLife.Authorization;
 using RedLife.Authorization.Roles;
 using RedLife.Authorization.Users;
-using RedLife.Core.LastId;
+using System.Linq;
 
 namespace RedLife.EntityFrameworkCore.Seed.Tenants
 {
@@ -108,7 +107,11 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
-                            p.Name == PermissionNames.Appointments_Create)
+                            p.Name == PermissionNames.Appointments_Create ||
+                            p.Name == PermissionNames.Appointments_SeeDonor ||
+                            p.Name == PermissionNames.Appointments_Get ||
+                            p.Name == PermissionNames.Appointments_Update ||
+                            p.Name == PermissionNames.Appointments_Delete)
                 .ToList();
 
             if (permissions.Any())
@@ -168,7 +171,9 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var permissions = PermissionFinder
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name))
+                            !grantedPermissions.Contains(p.Name) ||
+                            p.Name == PermissionNames.Appointments_SeeDonor ||
+                            p.Name == PermissionNames.Appointments_Get)
                 .ToList();
 
             if (permissions.Any())
@@ -377,7 +382,9 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var permissions = PermissionFinder
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name))
+                            !grantedPermissions.Contains(p.Name) ||
+                            p.Name == PermissionNames.Appointments_SeeDonor ||
+                            p.Name == PermissionNames.Appointments_Get)
                 .ToList();
 
             if (permissions.Any())
@@ -440,7 +447,10 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             !grantedPermissions.Contains(p.Name) &&
                             // write permission names here with || between them
                             p.Name == PermissionNames.Appointments_Create ||
-                            p.Name == PermissionNames.Pages_Users)
+                            p.Name == PermissionNames.Pages_Users ||
+                            p.Name == PermissionNames.Appointments_Get ||
+                            p.Name == PermissionNames.Appointments_Update ||
+                            p.Name == PermissionNames.Appointments_Delete)
                 .ToList();
 
             if (permissions.Any())
