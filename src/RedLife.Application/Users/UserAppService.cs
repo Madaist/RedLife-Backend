@@ -146,7 +146,7 @@ namespace RedLife.Users
 
             var userDto = base.MapToEntityDto(user);
             userDto.RoleNames = roles.ToArray();
-
+           
             return userDto;
         }
 

@@ -198,6 +198,13 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminUser.IsEmailConfirmed = true;
                 centerAdminUser.IsActive = true;
                 centerAdminUser.Id = GetAndUpdateLastUserId();
+                centerAdminUser.InstitutionName = "Regina Maria";
+                centerAdminUser.EmployerId = centerAdminUser.Id;
+                centerAdminUser.Country = "Romania";
+                centerAdminUser.City = "Bucharest";
+                centerAdminUser.County = "Bucharest";
+                centerAdminUser.Number = "15";
+                centerAdminUser.Street = "Brancusi";
 
                 _context.Users.Add(centerAdminUser);
                 _context.SaveChanges();
@@ -205,6 +212,28 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // Assign Admin role to admin user
                 _context.UserRoles.Add(new UserRole(_tenantId, centerAdminUser.Id, centerAdminRole.Id));
                 _context.SaveChanges();
+
+                // transfusion center 2
+                var centerAdminUser2 = User.CreateTenantCenterAdminUser(_tenantId, "centerAdmin2@defaulttenant.com");
+                centerAdminUser2.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminUser2, "123qwe");
+                centerAdminUser2.IsEmailConfirmed = true;
+                centerAdminUser2.IsActive = true;
+                centerAdminUser2.Id = GetAndUpdateLastUserId();
+                centerAdminUser2.InstitutionName = "Sinevo";
+                centerAdminUser2.EmployerId = centerAdminUser2.Id;
+                centerAdminUser2.Country = "Romania";
+                centerAdminUser2.City = "Bucharest";
+                centerAdminUser2.County = "Bucharest";
+                centerAdminUser2.Number = "7";
+                centerAdminUser2.Street = "Veteranilor";
+
+                _context.Users.Add(centerAdminUser2);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminUser2.Id, centerAdminRole.Id));
+                _context.SaveChanges();
+
             }
         }
 

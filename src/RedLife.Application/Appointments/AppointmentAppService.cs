@@ -111,7 +111,6 @@ namespace RedLife.Application.Appointments
         public override async Task<AppointmentDto> CreateAsync(CreateAppointmentDto input)
         {
             return await base.CreateAsync(input);
-
         }
 
         protected override IQueryable<Appointment> CreateFilteredQuery(PagedAppointmentResultRequestDto input)
