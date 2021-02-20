@@ -26,7 +26,6 @@ using static RedLife.Authorization.Roles.StaticRoleNames;
 
 namespace RedLife.Users
 {
-    [AbpAuthorize(PermissionNames.Pages_Users)]
     public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUserResultRequestDto, CreateUserDto, UserDto>, IUserAppService
     {
         private readonly UserManager _userManager;
@@ -57,6 +56,7 @@ namespace RedLife.Users
             _lastUserIdManager = lastUserIdManager;
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public override async Task<UserDto> CreateAsync(CreateUserDto input)
         {
             CheckCreatePermission();
@@ -86,6 +86,7 @@ namespace RedLife.Users
             return MapToEntityDto(user);
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public override async Task<UserDto> UpdateAsync(UserDto input)
         {
             CheckUpdatePermission();
@@ -104,18 +105,23 @@ namespace RedLife.Users
             return await GetAsync(input);
         }
 
+
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public override async Task DeleteAsync(EntityDto<long> input)
         {
             var user = await _userManager.GetUserByIdAsync(input.Id);
             await _userManager.DeleteAsync(user);
         }
 
+
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task<ListResultDto<RoleDto>> GetRoles()
         {
             var roles = await _roleRepository.GetAllListAsync();
             return new ListResultDto<RoleDto>(ObjectMapper.Map<List<RoleDto>>(roles));
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task ChangeLanguage(ChangeUserLanguageDto input)
         {
             await SettingManager.ChangeSettingForUserAsync(
@@ -157,6 +163,8 @@ namespace RedLife.Users
                 .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
         }
 
+
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         protected override async Task<User> GetEntityByIdAsync(long id)
         {
             var user = await Repository.GetAllIncluding(x => x.Roles).FirstOrDefaultAsync(x => x.Id == id);
@@ -169,6 +177,7 @@ namespace RedLife.Users
             return user;
         }
 
+
         protected override IQueryable<User> ApplySorting(IQueryable<User> query, PagedUserResultRequestDto input)
         {
             return query.OrderBy(r => r.UserName);
@@ -179,6 +188,7 @@ namespace RedLife.Users
             identityResult.CheckErrors(LocalizationManager);
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task<bool> ChangePassword(ChangePasswordDto input)
         {
             if (_abpSession.UserId == null)
@@ -201,6 +211,7 @@ namespace RedLife.Users
             return true;
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task<bool> ResetPassword(ResetPasswordDto input)
         {
             if (_abpSession.UserId == null)
@@ -234,10 +245,18 @@ namespace RedLife.Users
             return true;
         }
 
+        [AbpAuthorize(PermissionNames.Users_GetCenters)]
         public ListResultDto<UserDto> GetTransfusionCenters()
         {
             var transfusionCenters = _userManager.GetUsersInRoleAsync(Tenants.CenterAdmin).Result;
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(transfusionCenters));
+        }
+
+        [AbpAuthorize(PermissionNames.Users_GetDonors)]
+        public ListResultDto<UserDto> GetDonors()
+        {
+            var donors = _userManager.GetUsersInRoleAsync(Tenants.Donor).Result;
+            return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(donors));
         }
     }
 }

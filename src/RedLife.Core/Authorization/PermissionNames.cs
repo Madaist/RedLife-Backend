@@ -11,5 +11,9 @@
         public const string Appointments_Update = "Appointments.Update";
         public const string Appointments_Delete = "Appointments.Delete";
         public const string Appointments_SeeDonor = "Appointments.SeeDonor";
+        public const string Appointments_None = "Appointments.None"; //to be deleted
+
+        public const string Users_GetCenters = "Users.GetCenters";
+        public const string Users_GetDonors = "Users.GetDonors";
     }
 }

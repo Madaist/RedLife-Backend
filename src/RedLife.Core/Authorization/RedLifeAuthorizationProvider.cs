@@ -17,6 +17,11 @@ namespace RedLife.Authorization
             context.CreatePermission(PermissionNames.Appointments_Update, L("AppointmentsUpdate"));
             context.CreatePermission(PermissionNames.Appointments_Delete, L("AppointmentsDelete"));
             context.CreatePermission(PermissionNames.Appointments_SeeDonor, L("AppointmentsSeeDonor"));
+            context.CreatePermission(PermissionNames.Appointments_None, L("AppointmentsNone"));
+
+            context.CreatePermission(PermissionNames.Users_GetCenters, L("UsersGetCenters"));
+            context.CreatePermission(PermissionNames.Users_GetDonors, L("Users_GetDonors"));
+
         }
 
         private static ILocalizableString L(string name)

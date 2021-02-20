@@ -15,5 +15,7 @@ namespace RedLife.Users
         Task<bool> ChangePassword(ChangePasswordDto input);
 
         public ListResultDto<UserDto> GetTransfusionCenters();
+
+        public ListResultDto<UserDto> GetDonors();
     }
 }

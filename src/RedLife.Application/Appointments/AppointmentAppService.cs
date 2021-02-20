@@ -72,12 +72,17 @@ namespace RedLife.Application.Appointments
             }
             else if (roleName == Tenants.Admin)
             {
-                return await base.GetAllAsync(input);
+                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments).ToList();
+                return new PagedResultDto<AppointmentDto>
+                {
+                    Items = appointmentDtoOutput,
+                    TotalCount = appointmentDtoOutput.Count
+                };
             }
             else if (roleName.Contains("Center"))
             {
-                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(_appointmentRepository.GetAll().
-                                           Where(x => x.CenterId == currentUser.EmployerId).ToList());
+                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
+                                            .Where(x => x.CenterId == currentUser.EmployerId).ToList());
                 return new PagedResultDto<AppointmentDto>
                 {
                     Items = appointmentDtoOutput,

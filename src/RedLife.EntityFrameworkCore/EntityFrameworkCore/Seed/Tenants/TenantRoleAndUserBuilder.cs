@@ -107,11 +107,19 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
-                            p.Name == PermissionNames.Appointments_Create ||
+                            p.Name == PermissionNames.Pages_Users           ||
+                            p.Name == PermissionNames.Pages_Tenants         ||
+                            p.Name == PermissionNames.Pages_Roles           ||
+
+                            p.Name == PermissionNames.Appointments_Get      ||
+                            p.Name == PermissionNames.Appointments_Create   ||
+                            p.Name == PermissionNames.Appointments_Update   ||
+                            p.Name == PermissionNames.Appointments_Delete   ||
                             p.Name == PermissionNames.Appointments_SeeDonor ||
-                            p.Name == PermissionNames.Appointments_Get ||
-                            p.Name == PermissionNames.Appointments_Update ||
-                            p.Name == PermissionNames.Appointments_Delete)
+
+                            p.Name == PermissionNames.Users_GetCenters      ||
+                            p.Name == PermissionNames.Users_GetDonors
+                            )
                 .ToList();
 
             if (permissions.Any())
@@ -130,27 +138,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
             return adminRole;
         }
-
-        private void CreateAdminUser(Role adminRole)
-        {
-            var adminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == AbpUserBase.AdminUserName);
-            if (adminUser == null)
-            {
-                adminUser = User.CreateTenantAdminUser(_tenantId, "admin@defaulttenant.com");
-                adminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminUser, "123qwe");
-                adminUser.IsEmailConfirmed = true;
-                adminUser.IsActive = true;
-                adminUser.Id = GetAndUpdateLastUserId();
-
-                _context.Users.Add(adminUser);
-                _context.SaveChanges();
-
-                // Assign Admin role to admin user
-                _context.UserRoles.Add(new UserRole(_tenantId, adminUser.Id, adminRole.Id));
-                _context.SaveChanges();
-            }
-        }
-
+        
         private Role CreateCenterAdminRole()
         {
             var centerAdminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.CenterAdmin);
@@ -171,9 +159,10 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var permissions = PermissionFinder
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name) ||
-                            p.Name == PermissionNames.Appointments_SeeDonor ||
-                            p.Name == PermissionNames.Appointments_Get)
+                            !grantedPermissions.Contains(p.Name) &&
+                            p.Name == PermissionNames.Appointments_Get ||
+                            p.Name == PermissionNames.Appointments_SeeDonor
+                            )
                 .ToList();
 
             if (permissions.Any())
@@ -191,6 +180,198 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             }
 
             return centerAdminRole;
+        }
+        
+        private Role CreateHospitalAdminRole()
+        {
+            var hospitalAdminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.HospitalAdmin);
+            if (hospitalAdminRole == null)
+            {
+                hospitalAdminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.HospitalAdmin, StaticRoleNames.Tenants.HospitalAdmin) { IsStatic = true }).Entity;
+                _context.SaveChanges();
+            }
+
+            // Grant all permissions to admin role
+
+            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
+                .OfType<RolePermissionSetting>()
+                .Where(p => p.TenantId == _tenantId && p.RoleId == hospitalAdminRole.Id)
+                .Select(p => p.Name)
+                .ToList();
+
+            var permissions = PermissionFinder
+                .GetAllPermissions(new RedLifeAuthorizationProvider())
+                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
+                            !grantedPermissions.Contains(p.Name) &&
+                            p.Name == PermissionNames.Appointments_None
+                            )
+                .ToList();
+
+            if (permissions.Any())
+            {
+                _context.Permissions.AddRange(
+                    permissions.Select(permission => new RolePermissionSetting
+                    {
+                        TenantId = _tenantId,
+                        Name = permission.Name,
+                        IsGranted = true,
+                        RoleId = hospitalAdminRole.Id
+                    })
+                );
+                _context.SaveChanges();
+            }
+
+            return hospitalAdminRole;
+        }
+        
+        private Role CreateHospitalPersonnelRole()
+        {
+            var hospitalPersonnelRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.HospitalPersonnel);
+            if (hospitalPersonnelRole == null)
+            {
+                hospitalPersonnelRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.HospitalPersonnel, StaticRoleNames.Tenants.HospitalPersonnel) { IsStatic = true }).Entity;
+                _context.SaveChanges();
+            }
+
+            // Grant all permissions to personnel role
+
+            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
+                .OfType<RolePermissionSetting>()
+                .Where(p => p.TenantId == _tenantId && p.RoleId == hospitalPersonnelRole.Id)
+                .Select(p => p.Name)
+                .ToList();
+
+            var permissions = PermissionFinder
+                .GetAllPermissions(new RedLifeAuthorizationProvider())
+                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
+                            !grantedPermissions.Contains(p.Name) &&
+                            p.Name == PermissionNames.Appointments_None)
+                .ToList();
+
+            if (permissions.Any())
+            {
+                _context.Permissions.AddRange(
+                    permissions.Select(permission => new RolePermissionSetting
+                    {
+                        TenantId = _tenantId,
+                        Name = permission.Name,
+                        IsGranted = true,
+                        RoleId = hospitalPersonnelRole.Id
+                    })
+                );
+                _context.SaveChanges();
+            }
+
+            return hospitalPersonnelRole;
+        }
+        
+        private Role CreateCenterPersonnelRole()
+        {
+            var centerPersonnelRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.CenterPersonnel);
+            if (centerPersonnelRole == null)
+            {
+                centerPersonnelRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.CenterPersonnel, StaticRoleNames.Tenants.CenterPersonnel) { IsStatic = true }).Entity;
+                _context.SaveChanges();
+            }
+
+            // Grant all permissions to personnel role
+
+            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
+                .OfType<RolePermissionSetting>()
+                .Where(p => p.TenantId == _tenantId && p.RoleId == centerPersonnelRole.Id)
+                .Select(p => p.Name)
+                .ToList();
+
+            var permissions = PermissionFinder
+                .GetAllPermissions(new RedLifeAuthorizationProvider())
+                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
+                            !grantedPermissions.Contains(p.Name) &&
+                            p.Name == PermissionNames.Appointments_SeeDonor ||
+                            p.Name == PermissionNames.Appointments_Get)
+                .ToList();
+
+            if (permissions.Any())
+            {
+                _context.Permissions.AddRange(
+                    permissions.Select(permission => new RolePermissionSetting
+                    {
+                        TenantId = _tenantId,
+                        Name = permission.Name,
+                        IsGranted = true,
+                        RoleId = centerPersonnelRole.Id
+                    })
+                );
+                _context.SaveChanges();
+            }
+
+            return centerPersonnelRole;
+        }
+
+        private Role CreateDonorRole()
+        {
+            var donorRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Donor);
+            if (donorRole == null)
+            {
+                donorRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Donor, StaticRoleNames.Tenants.Donor) { IsStatic = true }).Entity;
+                _context.SaveChanges();
+            }
+
+            // Grant all permissions to donor role
+
+            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
+                .OfType<RolePermissionSetting>()
+                .Where(p => p.TenantId == _tenantId && p.RoleId == donorRole.Id)
+                .Select(p => p.Name)
+                .ToList();
+
+            var permissions = PermissionFinder
+                .GetAllPermissions(new RedLifeAuthorizationProvider())
+                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
+                            !grantedPermissions.Contains(p.Name) &&
+                            // write permission names here with || between them
+                            p.Name == PermissionNames.Appointments_Get ||
+                            p.Name == PermissionNames.Appointments_Create ||
+                            p.Name == PermissionNames.Appointments_Update ||
+                            p.Name == PermissionNames.Appointments_Delete ||
+
+                            p.Name == PermissionNames.Users_GetCenters)
+                .ToList();
+
+            if (permissions.Any())
+            {
+                _context.Permissions.AddRange(
+                    permissions.Select(permission => new RolePermissionSetting
+                    {
+                        TenantId = _tenantId,
+                        Name = permission.Name,
+                        IsGranted = true,
+                        RoleId = donorRole.Id
+                    })
+                );
+                _context.SaveChanges();
+            }
+
+            return donorRole;
+        }
+
+        private void CreateAdminUser(Role adminRole)
+        {
+            var adminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == AbpUserBase.AdminUserName);
+            if (adminUser == null)
+            {
+                adminUser = User.CreateTenantAdminUser(_tenantId, "admin@defaulttenant.com");
+                adminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminUser, "123qwe");
+                adminUser.IsEmailConfirmed = true;
+                adminUser.IsActive = true;
+                adminUser.Id = GetAndUpdateLastUserId();
+
+                _context.Users.Add(adminUser);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, adminUser.Id, adminRole.Id));
+                _context.SaveChanges();
+            }
         }
 
         private void CreateCenterAdminUser(Role centerAdminRole)
@@ -242,46 +423,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             }
         }
 
-        private Role CreateHospitalAdminRole()
-        {
-            var hospitalAdminRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.HospitalAdmin);
-            if (hospitalAdminRole == null)
-            {
-                hospitalAdminRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.HospitalAdmin, StaticRoleNames.Tenants.HospitalAdmin) { IsStatic = true }).Entity;
-                _context.SaveChanges();
-            }
-
-            // Grant all permissions to admin role
-
-            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
-                .OfType<RolePermissionSetting>()
-                .Where(p => p.TenantId == _tenantId && p.RoleId == hospitalAdminRole.Id)
-                .Select(p => p.Name)
-                .ToList();
-
-            var permissions = PermissionFinder
-                .GetAllPermissions(new RedLifeAuthorizationProvider())
-                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name))
-                .ToList();
-
-            if (permissions.Any())
-            {
-                _context.Permissions.AddRange(
-                    permissions.Select(permission => new RolePermissionSetting
-                    {
-                        TenantId = _tenantId,
-                        Name = permission.Name,
-                        IsGranted = true,
-                        RoleId = hospitalAdminRole.Id
-                    })
-                );
-                _context.SaveChanges();
-            }
-
-            return hospitalAdminRole;
-        }
-
         private void CreateHospitalAdminUser(Role hospitalAdminRole)
         {
             var hospitalAdminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.HospitalAdminUserName);
@@ -300,46 +441,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 _context.UserRoles.Add(new UserRole(_tenantId, hospitalAdminUser.Id, hospitalAdminRole.Id));
                 _context.SaveChanges();
             }
-        }
-
-        private Role CreateHospitalPersonnelRole()
-        {
-            var hospitalPersonnelRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.HospitalPersonnel);
-            if (hospitalPersonnelRole == null)
-            {
-                hospitalPersonnelRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.HospitalPersonnel, StaticRoleNames.Tenants.HospitalPersonnel) { IsStatic = true }).Entity;
-                _context.SaveChanges();
-            }
-
-            // Grant all permissions to personnel role
-
-            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
-                .OfType<RolePermissionSetting>()
-                .Where(p => p.TenantId == _tenantId && p.RoleId == hospitalPersonnelRole.Id)
-                .Select(p => p.Name)
-                .ToList();
-
-            var permissions = PermissionFinder
-                .GetAllPermissions(new RedLifeAuthorizationProvider())
-                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name))
-                .ToList();
-
-            if (permissions.Any())
-            {
-                _context.Permissions.AddRange(
-                    permissions.Select(permission => new RolePermissionSetting
-                    {
-                        TenantId = _tenantId,
-                        Name = permission.Name,
-                        IsGranted = true,
-                        RoleId = hospitalPersonnelRole.Id
-                    })
-                );
-                _context.SaveChanges();
-            }
-
-            return hospitalPersonnelRole;
         }
 
         private void CreateHospitalPersonnelUser(Role hospitalPersonnelRole)
@@ -362,48 +463,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             }
         }
 
-        private Role CreateCenterPersonnelRole()
-        {
-            var centerPersonnelRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.CenterPersonnel);
-            if (centerPersonnelRole == null)
-            {
-                centerPersonnelRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.CenterPersonnel, StaticRoleNames.Tenants.CenterPersonnel) { IsStatic = true }).Entity;
-                _context.SaveChanges();
-            }
-
-            // Grant all permissions to personnel role
-
-            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
-                .OfType<RolePermissionSetting>()
-                .Where(p => p.TenantId == _tenantId && p.RoleId == centerPersonnelRole.Id)
-                .Select(p => p.Name)
-                .ToList();
-
-            var permissions = PermissionFinder
-                .GetAllPermissions(new RedLifeAuthorizationProvider())
-                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name) ||
-                            p.Name == PermissionNames.Appointments_SeeDonor ||
-                            p.Name == PermissionNames.Appointments_Get)
-                .ToList();
-
-            if (permissions.Any())
-            {
-                _context.Permissions.AddRange(
-                    permissions.Select(permission => new RolePermissionSetting
-                    {
-                        TenantId = _tenantId,
-                        Name = permission.Name,
-                        IsGranted = true,
-                        RoleId = centerPersonnelRole.Id
-                    })
-                );
-                _context.SaveChanges();
-            }
-
-            return centerPersonnelRole;
-        }
-
         private void CreateCenterPersonnelUser(Role centerPersonnelRole)
         {
             var centerPersonnelUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.CenterPersonnelUserName);
@@ -423,53 +482,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 _context.SaveChanges();
             }
         }
-
-        private Role CreateDonorRole()
-        {
-            var donorRole = _context.Roles.IgnoreQueryFilters().FirstOrDefault(r => r.TenantId == _tenantId && r.Name == StaticRoleNames.Tenants.Donor);
-            if (donorRole == null)
-            {
-                donorRole = _context.Roles.Add(new Role(_tenantId, StaticRoleNames.Tenants.Donor, StaticRoleNames.Tenants.Donor) { IsStatic = true }).Entity;
-                _context.SaveChanges();
-            }
-
-            // Grant all permissions to donor role
-
-            var grantedPermissions = _context.Permissions.IgnoreQueryFilters()
-                .OfType<RolePermissionSetting>()
-                .Where(p => p.TenantId == _tenantId && p.RoleId == donorRole.Id)
-                .Select(p => p.Name)
-                .ToList();
-
-            var permissions = PermissionFinder
-                .GetAllPermissions(new RedLifeAuthorizationProvider())
-                .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
-                            !grantedPermissions.Contains(p.Name) &&
-                            // write permission names here with || between them
-                            p.Name == PermissionNames.Appointments_Create ||
-                            p.Name == PermissionNames.Pages_Users ||
-                            p.Name == PermissionNames.Appointments_Get ||
-                            p.Name == PermissionNames.Appointments_Update ||
-                            p.Name == PermissionNames.Appointments_Delete)
-                .ToList();
-
-            if (permissions.Any())
-            {
-                _context.Permissions.AddRange(
-                    permissions.Select(permission => new RolePermissionSetting
-                    {
-                        TenantId = _tenantId,
-                        Name = permission.Name,
-                        IsGranted = true,
-                        RoleId = donorRole.Id
-                    })
-                );
-                _context.SaveChanges();
-            }
-
-            return donorRole;
-        }
-
+       
         private void CreateDonorUser(Role donorRole)
         {
             var donorUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.DonorUserName);
