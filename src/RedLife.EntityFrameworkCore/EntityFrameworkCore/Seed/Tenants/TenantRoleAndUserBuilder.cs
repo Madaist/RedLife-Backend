@@ -118,7 +118,14 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Appointments_SeeDonor ||
 
                             p.Name == PermissionNames.Users_GetCenters      ||
-                            p.Name == PermissionNames.Users_GetDonors
+                            p.Name == PermissionNames.Users_GetDonors       ||
+
+                            p.Name == PermissionNames.Donations_Get         ||
+                            p.Name == PermissionNames.Donations_Create      ||
+                            p.Name == PermissionNames.Donations_Update      ||
+                            p.Name == PermissionNames.Donations_Delete      ||
+                            p.Name == PermissionNames.Donations_SeeDonor    ||
+                            p.Name == PermissionNames.Donations_SeeCenter
                             )
                 .ToList();
 
@@ -161,7 +168,13 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
                             p.Name == PermissionNames.Appointments_Get ||
-                            p.Name == PermissionNames.Appointments_SeeDonor
+                            p.Name == PermissionNames.Appointments_SeeDonor ||
+
+                            p.Name == PermissionNames.Donations_Get ||
+                            p.Name == PermissionNames.Donations_Create ||
+                            p.Name == PermissionNames.Donations_Update ||
+                            p.Name == PermissionNames.Donations_Delete ||
+                            p.Name == PermissionNames.Donations_SeeDonor
                             )
                 .ToList();
 
@@ -287,7 +300,13 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
                             p.Name == PermissionNames.Appointments_SeeDonor ||
-                            p.Name == PermissionNames.Appointments_Get)
+                            p.Name == PermissionNames.Appointments_Get ||
+
+                            p.Name == PermissionNames.Donations_Get ||
+                            p.Name == PermissionNames.Donations_Create ||
+                            p.Name == PermissionNames.Donations_Update ||
+                            p.Name == PermissionNames.Donations_Delete ||
+                            p.Name == PermissionNames.Donations_SeeDonor)
                 .ToList();
 
             if (permissions.Any())
@@ -334,7 +353,10 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Appointments_Update ||
                             p.Name == PermissionNames.Appointments_Delete ||
 
-                            p.Name == PermissionNames.Users_GetCenters)
+                            p.Name == PermissionNames.Users_GetCenters ||
+
+                            p.Name == PermissionNames.Donations_Get ||
+                            p.Name == PermissionNames.Donations_SeeCenter)
                 .ToList();
 
             if (permissions.Any())

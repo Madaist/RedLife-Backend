@@ -32,6 +32,7 @@ namespace RedLife.EntityFrameworkCore.Seed
             new DefaultTenantBuilder(context).Create();
             new TenantRoleAndUserBuilder(context, 1).Create();
             new AppointmentCreator(context).Create();
+            new DonationCreator(context).Create();
 
         }
 

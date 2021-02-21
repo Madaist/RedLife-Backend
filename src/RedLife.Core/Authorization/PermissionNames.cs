@@ -15,5 +15,12 @@
 
         public const string Users_GetCenters = "Users.GetCenters";
         public const string Users_GetDonors = "Users.GetDonors";
+
+        public const string Donations_Get = "Donations.Get";
+        public const string Donations_Create = "Donations.Create";
+        public const string Donations_Update = "Donations.Update";
+        public const string Donations_Delete = "Donations.Delete";
+        public const string Donations_SeeDonor = "Donations.SeeDonor";
+        public const string Donations_SeeCenter = "Donations.SeeCenter";
     }
 }

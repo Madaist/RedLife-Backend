@@ -22,6 +22,13 @@ namespace RedLife.Authorization
             context.CreatePermission(PermissionNames.Users_GetCenters, L("UsersGetCenters"));
             context.CreatePermission(PermissionNames.Users_GetDonors, L("Users_GetDonors"));
 
+            context.CreatePermission(PermissionNames.Donations_Get, L("DonationsGet"));
+            context.CreatePermission(PermissionNames.Donations_Create, L("DonationsCreate"));
+            context.CreatePermission(PermissionNames.Donations_Update, L("DonationsUpdate"));
+            context.CreatePermission(PermissionNames.Donations_Delete, L("DonationsDelete"));
+            context.CreatePermission(PermissionNames.Donations_SeeDonor, L("DonationsSeeDonor"));
+            context.CreatePermission(PermissionNames.Donations_SeeCenter, L("DonationsSeeCenter"));
+
         }
 
         private static ILocalizableString L(string name)

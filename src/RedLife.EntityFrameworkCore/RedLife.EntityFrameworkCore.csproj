@@ -27,6 +27,8 @@
     <Compile Remove="Migrations\20201115155545_Last_User_Id.Designer.cs" />
     <Compile Remove="Migrations\20210217211903_add_appointment_create_permission.cs" />
     <Compile Remove="Migrations\20210217211903_add_appointment_create_permission.Designer.cs" />
+    <Compile Remove="Migrations\20210220204446_Added_Donations.cs" />
+    <Compile Remove="Migrations\20210220204446_Added_Donations.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
