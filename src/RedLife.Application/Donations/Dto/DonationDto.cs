@@ -5,7 +5,8 @@ namespace RedLife.Application.Donations.Dto
 {
     public class DonationDto : EntityDto<string>
     {
-        public string DonorName { get; set; }
+        public string DonorFirstName { get; set; }
+        public string DonorLastName { get; set; }
         public string CenterName { get; set; }
         public long DonorId { get; set; }
         public long CenterId { get; set; }

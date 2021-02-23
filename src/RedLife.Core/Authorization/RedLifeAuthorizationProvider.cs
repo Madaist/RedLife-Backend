@@ -8,6 +8,13 @@ namespace RedLife.Authorization
     {
         public override void SetPermissions(IPermissionDefinitionContext context)
         {
+            context.CreatePermission(PermissionNames.Admin, L("Admin"));
+            context.CreatePermission(PermissionNames.Donor, L("Donor"));
+            context.CreatePermission(PermissionNames.CenterAdmin, L("CenterAdmin"));
+            context.CreatePermission(PermissionNames.HospitalAdmin, L("HospitalAdmin"));
+            context.CreatePermission(PermissionNames.CenterPersonnel, L("CenterPersonnel"));
+            context.CreatePermission(PermissionNames.HospitalPersonnel, L("HospitalPersonnel"));
+
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
             context.CreatePermission(PermissionNames.Pages_Users, L("Users"));
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
@@ -16,8 +23,6 @@ namespace RedLife.Authorization
             context.CreatePermission(PermissionNames.Appointments_Create, L("AppointmentsCreate"));
             context.CreatePermission(PermissionNames.Appointments_Update, L("AppointmentsUpdate"));
             context.CreatePermission(PermissionNames.Appointments_Delete, L("AppointmentsDelete"));
-            context.CreatePermission(PermissionNames.Appointments_SeeDonor, L("AppointmentsSeeDonor"));
-            context.CreatePermission(PermissionNames.Appointments_None, L("AppointmentsNone"));
 
             context.CreatePermission(PermissionNames.Users_GetCenters, L("UsersGetCenters"));
             context.CreatePermission(PermissionNames.Users_GetDonors, L("Users_GetDonors"));
@@ -26,9 +31,6 @@ namespace RedLife.Authorization
             context.CreatePermission(PermissionNames.Donations_Create, L("DonationsCreate"));
             context.CreatePermission(PermissionNames.Donations_Update, L("DonationsUpdate"));
             context.CreatePermission(PermissionNames.Donations_Delete, L("DonationsDelete"));
-            context.CreatePermission(PermissionNames.Donations_SeeDonor, L("DonationsSeeDonor"));
-            context.CreatePermission(PermissionNames.Donations_SeeCenter, L("DonationsSeeCenter"));
-
         }
 
         private static ILocalizableString L(string name)

@@ -107,6 +107,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
+                            p.Name == PermissionNames.Admin                 ||
                             p.Name == PermissionNames.Pages_Users           ||
                             p.Name == PermissionNames.Pages_Tenants         ||
                             p.Name == PermissionNames.Pages_Roles           ||
@@ -115,7 +116,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Appointments_Create   ||
                             p.Name == PermissionNames.Appointments_Update   ||
                             p.Name == PermissionNames.Appointments_Delete   ||
-                            p.Name == PermissionNames.Appointments_SeeDonor ||
 
                             p.Name == PermissionNames.Users_GetCenters      ||
                             p.Name == PermissionNames.Users_GetDonors       ||
@@ -123,9 +123,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Donations_Get         ||
                             p.Name == PermissionNames.Donations_Create      ||
                             p.Name == PermissionNames.Donations_Update      ||
-                            p.Name == PermissionNames.Donations_Delete      ||
-                            p.Name == PermissionNames.Donations_SeeDonor    ||
-                            p.Name == PermissionNames.Donations_SeeCenter
+                            p.Name == PermissionNames.Donations_Delete
                             )
                 .ToList();
 
@@ -167,14 +165,13 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
+                            p.Name == PermissionNames.CenterAdmin ||
                             p.Name == PermissionNames.Appointments_Get ||
-                            p.Name == PermissionNames.Appointments_SeeDonor ||
 
                             p.Name == PermissionNames.Donations_Get ||
                             p.Name == PermissionNames.Donations_Create ||
                             p.Name == PermissionNames.Donations_Update ||
-                            p.Name == PermissionNames.Donations_Delete ||
-                            p.Name == PermissionNames.Donations_SeeDonor
+                            p.Name == PermissionNames.Donations_Delete
                             )
                 .ToList();
 
@@ -216,7 +213,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
-                            p.Name == PermissionNames.Appointments_None
+                            p.Name == PermissionNames.HospitalAdmin
                             )
                 .ToList();
 
@@ -258,7 +255,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
-                            p.Name == PermissionNames.Appointments_None)
+                            p.Name == PermissionNames.HospitalPersonnel)
                 .ToList();
 
             if (permissions.Any())
@@ -299,14 +296,13 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
-                            p.Name == PermissionNames.Appointments_SeeDonor ||
+                            p.Name == PermissionNames.CenterPersonnel ||
                             p.Name == PermissionNames.Appointments_Get ||
 
                             p.Name == PermissionNames.Donations_Get ||
                             p.Name == PermissionNames.Donations_Create ||
                             p.Name == PermissionNames.Donations_Update ||
-                            p.Name == PermissionNames.Donations_Delete ||
-                            p.Name == PermissionNames.Donations_SeeDonor)
+                            p.Name == PermissionNames.Donations_Delete)
                 .ToList();
 
             if (permissions.Any())
@@ -348,6 +344,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
                             // write permission names here with || between them
+                            p.Name == PermissionNames.Donor ||
                             p.Name == PermissionNames.Appointments_Get ||
                             p.Name == PermissionNames.Appointments_Create ||
                             p.Name == PermissionNames.Appointments_Update ||
@@ -355,8 +352,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                             p.Name == PermissionNames.Users_GetCenters ||
 
-                            p.Name == PermissionNames.Donations_Get ||
-                            p.Name == PermissionNames.Donations_SeeCenter)
+                            p.Name == PermissionNames.Donations_Get)
                 .ToList();
 
             if (permissions.Any())
@@ -510,17 +506,35 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var donorUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.DonorUserName);
             if (donorUser == null)
             {
-                donorUser = User.CreateTenantDonorUser(_tenantId, "donor@defaulttenant.com");
-                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
-                donorUser.IsEmailConfirmed = true;
-                donorUser.IsActive = true;
-                donorUser.Id = 2990407460021;
+                var donorUser1 = User.CreateTenantDonorUser(_tenantId, "donor1@defaulttenant.com");
+                donorUser1.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser1, "123qwe");
+                donorUser1.Surname = "Istrate";
+                donorUser1.Name = "Madalina";
+                donorUser1.IsEmailConfirmed = true;
+                donorUser1.IsActive = true;
+                donorUser1.Id = 2990407460021;
 
-                _context.Users.Add(donorUser);
+                _context.Users.Add(donorUser1);
                 _context.SaveChanges();
 
                 // Assign Personnel role to personnel user
-                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser1.Id, donorRole.Id));
+                _context.SaveChanges();
+
+
+                var donorUser2 = User.CreateTenantDonorUser(_tenantId, "donor2@defaulttenant.com");
+                donorUser2.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser2, "123qwe");
+                donorUser2.Surname = "Zota";
+                donorUser2.Name = "Alexandru";
+                donorUser2.IsEmailConfirmed = true;
+                donorUser2.IsActive = true;
+                donorUser2.Id = 6990407460021;
+
+                _context.Users.Add(donorUser2);
+                _context.SaveChanges();
+
+                // Assign Personnel role to personnel user
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser2.Id, donorRole.Id));
                 _context.SaveChanges();
             }
         }

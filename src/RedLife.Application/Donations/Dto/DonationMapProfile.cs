@@ -9,7 +9,8 @@ namespace RedLife.Application.Donations.Dto
         {
             CreateMap<Donation, DonationDto>()
                 .ForMember(u => u.CenterName, options => options.MapFrom(input => input.Center.InstitutionName))
-                .ForMember(u => u.DonorName, options => options.MapFrom(input => input.Donor.UserName))
+                .ForMember(u => u.DonorFirstName, options => options.MapFrom(input => input.Donor.Name))
+                .ForMember(u => u.DonorLastName, options => options.MapFrom(input => input.Donor.Surname))
                 .ForMember(u => u.Date, options => options.MapFrom(input => input.Date.ToLocalTime().ToString("yyyy-MM-dd")));
         }
     }
