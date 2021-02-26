@@ -104,7 +104,7 @@ namespace RedLife.Application.Appointments
 
             if ((roleName == "Admin") ||
                 (roleName == "Donor" && entity.DonorId == AbpSession.UserId) ||
-                (roleName == "CenterPersonnel" && entity.CenterId == currentUser.EmployerId))
+                (roleName == "CenterAdmin" && entity.CenterId == currentUser.EmployerId))
             {
                 return await base.UpdateAsync(input);
             }

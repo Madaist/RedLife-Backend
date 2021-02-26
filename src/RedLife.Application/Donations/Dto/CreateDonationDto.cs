@@ -1,7 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using RedLife.Core.Donations;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RedLife.Application.Donations.Dto

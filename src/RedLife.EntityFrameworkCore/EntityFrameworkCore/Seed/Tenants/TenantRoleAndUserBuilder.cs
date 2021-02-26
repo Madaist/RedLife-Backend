@@ -167,11 +167,15 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             !grantedPermissions.Contains(p.Name) &&
                             p.Name == PermissionNames.CenterAdmin ||
                             p.Name == PermissionNames.Appointments_Get ||
+                            p.Name == PermissionNames.Appointments_Update ||
+                            p.Name == PermissionNames.Appointments_Delete ||
 
                             p.Name == PermissionNames.Donations_Get ||
                             p.Name == PermissionNames.Donations_Create ||
                             p.Name == PermissionNames.Donations_Update ||
-                            p.Name == PermissionNames.Donations_Delete
+                            p.Name == PermissionNames.Donations_Delete ||
+
+                            p.Name == PermissionNames.Users_GetDonors
                             )
                 .ToList();
 
