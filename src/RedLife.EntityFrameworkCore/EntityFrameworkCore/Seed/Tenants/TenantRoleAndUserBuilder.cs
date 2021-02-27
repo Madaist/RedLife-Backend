@@ -119,6 +119,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                             p.Name == PermissionNames.Users_GetCenters      ||
                             p.Name == PermissionNames.Users_GetDonors       ||
+                            p.Name == PermissionNames.Users_GetById         ||
 
                             p.Name == PermissionNames.Donations_Get         ||
                             p.Name == PermissionNames.Donations_Create      ||
@@ -302,11 +303,15 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             !grantedPermissions.Contains(p.Name) &&
                             p.Name == PermissionNames.CenterPersonnel ||
                             p.Name == PermissionNames.Appointments_Get ||
+                            p.Name == PermissionNames.Appointments_Create ||
 
                             p.Name == PermissionNames.Donations_Get ||
                             p.Name == PermissionNames.Donations_Create ||
                             p.Name == PermissionNames.Donations_Update ||
-                            p.Name == PermissionNames.Donations_Delete)
+                            p.Name == PermissionNames.Donations_Delete ||
+                            
+                            p.Name == PermissionNames.Users_GetDonors ||
+                            p.Name == PermissionNames.Users_GetById)
                 .ToList();
 
             if (permissions.Any())
@@ -495,6 +500,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerPersonnelUser.IsEmailConfirmed = true;
                 centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = 3;
 
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();

@@ -121,6 +121,12 @@ namespace RedLife.Users
             return new ListResultDto<RoleDto>(ObjectMapper.Map<List<RoleDto>>(roles));
         }
 
+        [AbpAuthorize(PermissionNames.Users_GetById)]
+        public override Task<UserDto> GetAsync(EntityDto<long> input)
+        {
+            return base.GetAsync(input);
+        }
+
         [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task ChangeLanguage(ChangeUserLanguageDto input)
         {
@@ -164,7 +170,7 @@ namespace RedLife.Users
         }
 
 
-        [AbpAuthorize(PermissionNames.Pages_Users)]
+        [AbpAuthorize(PermissionNames.Users_GetById)]
         protected override async Task<User> GetEntityByIdAsync(long id)
         {
             var user = await Repository.GetAllIncluding(x => x.Roles).FirstOrDefaultAsync(x => x.Id == id);
@@ -183,10 +189,12 @@ namespace RedLife.Users
             return query.OrderBy(r => r.UserName);
         }
 
+
         protected virtual void CheckErrors(IdentityResult identityResult)
         {
             identityResult.CheckErrors(LocalizationManager);
         }
+
 
         [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task<bool> ChangePassword(ChangePasswordDto input)
@@ -210,6 +218,7 @@ namespace RedLife.Users
             CurrentUnitOfWork.SaveChanges();
             return true;
         }
+
 
         [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task<bool> ResetPassword(ResetPasswordDto input)
@@ -245,12 +254,14 @@ namespace RedLife.Users
             return true;
         }
 
+
         [AbpAuthorize(PermissionNames.Users_GetCenters)]
         public ListResultDto<UserDto> GetTransfusionCenters()
         {
             var transfusionCenters = _userManager.GetUsersInRoleAsync(Tenants.CenterAdmin).Result;
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(transfusionCenters));
         }
+
 
         [AbpAuthorize(PermissionNames.Users_GetDonors)]
         public ListResultDto<UserDto> GetDonors()

@@ -20,6 +20,7 @@
 
         public const string Users_GetCenters = "Users.GetCenters";
         public const string Users_GetDonors = "Users.GetDonors";
+        public const string Users_GetById = "Users.GetById";
 
         public const string Donations_Get = "Donations.Get";
         public const string Donations_Create = "Donations.Create";
