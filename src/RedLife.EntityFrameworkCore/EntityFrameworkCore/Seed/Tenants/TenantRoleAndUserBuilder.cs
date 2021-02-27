@@ -176,7 +176,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Donations_Update ||
                             p.Name == PermissionNames.Donations_Delete ||
 
-                            p.Name == PermissionNames.Users_GetDonors
+                            p.Name == PermissionNames.Users_GetDonors ||
+                            p.Name == PermissionNames.Users_GetById
                             )
                 .ToList();
 

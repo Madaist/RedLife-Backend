@@ -104,7 +104,8 @@ namespace RedLife.Application.Donations.Dto
 
             if ((roleName == "Admin") ||
                 (roleName == "Donor" && entity.DonorId == AbpSession.UserId) ||
-                (roleName == "CenterAdmin" && entity.CenterId == currentUser.EmployerId))
+                (roleName == "CenterAdmin" && entity.CenterId == currentUser.Id) ||
+                (roleName == "CenterPersonnel" && entity.CenterId == currentUser.EmployerId))
             {
                 return await base.UpdateAsync(input);
             }
@@ -130,10 +131,11 @@ namespace RedLife.Application.Donations.Dto
         protected override IQueryable<Donation> CreateFilteredQuery(PagedDonationResultRequestDto input)
         {
             return (IQueryable<Donation>)Repository.GetAll()
-                             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.UserName.Contains(input.Keyword)
-                                      || x.Center.InstitutionName.Contains(input.Keyword)
-                                      || x.Date.ToString().Contains(input.Keyword)
-                                      || x.DonorId.ToString().Contains(input.Keyword));
+                             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.Surname.Contains(input.Keyword)
+                                || x.Donor.Name.Contains(input.Keyword)
+                                || x.Center.InstitutionName.Contains(input.Keyword)
+                                || x.Date.ToString().Contains(input.Keyword)
+                                || x.DonorId.ToString().Contains(input.Keyword));
         }
 
         protected override IQueryable<Donation> ApplySorting(IQueryable<Donation> query, PagedDonationResultRequestDto input)
