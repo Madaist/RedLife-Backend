@@ -11,7 +11,10 @@
     <UserSecretsId>AbpCompanyName-RedLife-56C2EF2F-ABD6-4EFC-AAF2-2E81C34E8FB1</UserSecretsId>
     <RootNamespace>RedLife.Core</RootNamespace>
   </PropertyGroup>
- 
+	<ItemGroup>
+		<None Remove="Localization\JsonSourceFiles\RedLife-ro.json" />
+		<None Remove="Localization\JsonSourceFiles\RedLife.json" />
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.AutoMapper" Version="5.13.0" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="5.13.0" />

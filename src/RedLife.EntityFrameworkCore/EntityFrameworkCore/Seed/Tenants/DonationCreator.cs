@@ -58,6 +58,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                     Quantity = 0.4
                 };
                 _context.Donations.AddRange(new Donation[] { donation1, donation2, donation3 });
+                _context.SaveChanges();
             }
         }
     }

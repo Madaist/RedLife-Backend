@@ -1,14 +1,12 @@
-﻿using System;
-using System.Transactions;
-using Microsoft.EntityFrameworkCore;
-using Abp.Dependency;
+﻿using Abp.Dependency;
 using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
+using Microsoft.EntityFrameworkCore;
 using RedLife.EntityFrameworkCore.Seed.Host;
 using RedLife.EntityFrameworkCore.Seed.Tenants;
-using RedLife.Core.LastId;
-using Abp.Domain.Repositories;
+using System;
+using System.Transactions;
 
 namespace RedLife.EntityFrameworkCore.Seed
 {
@@ -31,8 +29,9 @@ namespace RedLife.EntityFrameworkCore.Seed
             // Default tenant seed (in host database).
             new DefaultTenantBuilder(context).Create();
             new TenantRoleAndUserBuilder(context, 1).Create();
-            new AppointmentCreator(context).Create();
             new DonationCreator(context).Create();
+            new AppointmentCreator(context).Create();
+            new TransfusionCreator(context).Create();
 
         }
 

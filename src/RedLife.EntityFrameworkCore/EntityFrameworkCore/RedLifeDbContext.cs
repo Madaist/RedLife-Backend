@@ -6,6 +6,7 @@ using RedLife.Authorization.Roles;
 using RedLife.Authorization.Users;
 using RedLife.MultiTenancy;
 using RedLife.Core.Donations;
+using RedLife.Core.Transfusions;
 
 namespace RedLife.EntityFrameworkCore
 {
@@ -15,6 +16,7 @@ namespace RedLife.EntityFrameworkCore
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<LastUserId> LastUserId { get; set; }
         public DbSet<Donation> Donations { get; set; }
+        public DbSet<Transfusion> Transfusions { get; set; }
         
         public RedLifeDbContext(DbContextOptions<RedLifeDbContext> options)
             : base(options)

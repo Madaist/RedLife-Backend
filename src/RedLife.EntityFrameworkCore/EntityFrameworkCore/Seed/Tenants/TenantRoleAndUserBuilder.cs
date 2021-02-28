@@ -124,7 +124,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Donations_Get         ||
                             p.Name == PermissionNames.Donations_Create      ||
                             p.Name == PermissionNames.Donations_Update      ||
-                            p.Name == PermissionNames.Donations_Delete
+                            p.Name == PermissionNames.Donations_Delete      ||
+
+                            p.Name == PermissionNames.Transfusions_Get      ||
+                            p.Name == PermissionNames.Transfusions_Create   ||
+                            p.Name == PermissionNames.Transfusions_Update   ||
+                            p.Name == PermissionNames.Transfusions_Delete
                             )
                 .ToList();
 
@@ -219,7 +224,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
-                            p.Name == PermissionNames.HospitalAdmin
+                            p.Name == PermissionNames.HospitalAdmin ||
+
+                            p.Name == PermissionNames.Transfusions_Get ||
+                            p.Name == PermissionNames.Transfusions_Create ||
+                            p.Name == PermissionNames.Transfusions_Update ||
+                            p.Name == PermissionNames.Transfusions_Delete
                             )
                 .ToList();
 
@@ -261,7 +271,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .GetAllPermissions(new RedLifeAuthorizationProvider())
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
-                            p.Name == PermissionNames.HospitalPersonnel)
+                            p.Name == PermissionNames.HospitalPersonnel ||
+
+                            p.Name == PermissionNames.Transfusions_Get ||
+                            p.Name == PermissionNames.Transfusions_Create ||
+                            p.Name == PermissionNames.Transfusions_Update ||
+                            p.Name == PermissionNames.Transfusions_Delete)
                 .ToList();
 
             if (permissions.Any())
@@ -361,8 +376,9 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Appointments_Delete ||
 
                             p.Name == PermissionNames.Users_GetCenters ||
-
-                            p.Name == PermissionNames.Donations_Get)
+                            p.Name == PermissionNames.Donations_Get ||
+                            p.Name == PermissionNames.Transfusions_Get
+                           )
                 .ToList();
 
             if (permissions.Any())

@@ -47,6 +47,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                     Date = DateTime.UtcNow.AddDays(3)
                 };
                 _context.Appointments.AddRange(new Appointment[] { appointment1, appointment2, appointment3 });
+                _context.SaveChanges();
             }
         }
     }

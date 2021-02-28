@@ -26,5 +26,12 @@
         public const string Donations_Create = "Donations.Create";
         public const string Donations_Update = "Donations.Update";
         public const string Donations_Delete = "Donations.Delete";
+
+        public const string Transfusions_Get = "Transfusions.Get";
+        public const string Transfusions_Create = "Transfusions.Create";
+        public const string Transfusions_Update = "Transfusions.Update";
+        public const string Transfusions_Delete = "Transfusions.Delete";
+
+
     }
 }

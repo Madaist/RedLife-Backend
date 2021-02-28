@@ -10,7 +10,7 @@ namespace RedLife.Application.Donations.Dto
         public string CenterName { get; set; }
         public long DonorId { get; set; }
         public long CenterId { get; set; }
-        public String Date { get; set; }
+        public string Date { get; set; }
         public bool IsBloodAccepted { get; set; }
         public double Quantity { get; set; }
         public string BloodType { get; set; }

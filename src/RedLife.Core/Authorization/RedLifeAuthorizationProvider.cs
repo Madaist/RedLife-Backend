@@ -32,6 +32,11 @@ namespace RedLife.Authorization
             context.CreatePermission(PermissionNames.Donations_Create, L("DonationsCreate"));
             context.CreatePermission(PermissionNames.Donations_Update, L("DonationsUpdate"));
             context.CreatePermission(PermissionNames.Donations_Delete, L("DonationsDelete"));
+
+            context.CreatePermission(PermissionNames.Transfusions_Get, L("TransfusionsGet"));
+            context.CreatePermission(PermissionNames.Transfusions_Create, L("TransfusionsCreate"));
+            context.CreatePermission(PermissionNames.Transfusions_Update, L("TransfusionsUpdate"));
+            context.CreatePermission(PermissionNames.Transfusions_Delete, L("TransfusionsDelete"));
         }
 
         private static ILocalizableString L(string name)
