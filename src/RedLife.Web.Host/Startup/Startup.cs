@@ -51,7 +51,8 @@ namespace RedLife.Web.Host.Startup
                 {
                     NamingStrategy = new CamelCaseNamingStrategy()
                 };
-            });
+            })
+            .AddDataAnnotationsLocalization();
 
 
             IdentityRegistrar.Register(services);

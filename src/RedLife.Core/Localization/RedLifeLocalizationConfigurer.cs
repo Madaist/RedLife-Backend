@@ -1,6 +1,6 @@
 ﻿using Abp.Configuration.Startup;
 using Abp.Localization.Dictionaries;
-using Abp.Localization.Dictionaries.Xml;
+using Abp.Localization.Dictionaries.Json;
 using Abp.Reflection.Extensions;
 
 namespace RedLife.Localization
@@ -10,10 +10,11 @@ namespace RedLife.Localization
         public static void Configure(ILocalizationConfiguration localizationConfiguration)
         {
             localizationConfiguration.Sources.Add(
-                new DictionaryBasedLocalizationSource(RedLifeConsts.LocalizationSourceName,
-                    new XmlEmbeddedFileLocalizationDictionaryProvider(
+                new DictionaryBasedLocalizationSource(
+                    RedLifeConsts.LocalizationSourceName,
+                    new JsonEmbeddedFileLocalizationDictionaryProvider(
                         typeof(RedLifeLocalizationConfigurer).GetAssembly(),
-                        "RedLife.Localization.SourceFiles"
+                        "RedLife.Localization.JsonSourceFiles"
                     )
                 )
             );

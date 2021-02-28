@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <VersionPrefix>1.0.0.0</VersionPrefix>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -11,13 +11,17 @@
     <UserSecretsId>AbpCompanyName-RedLife-56C2EF2F-ABD6-4EFC-AAF2-2E81C34E8FB1</UserSecretsId>
     <RootNamespace>RedLife.Core</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\SourceFiles\*.xml" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
-  </ItemGroup>
+ 
   <ItemGroup>
     <PackageReference Include="Abp.AutoMapper" Version="5.13.0" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="5.13.0" />
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.3.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.9" />
   </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Localization\JsonSourceFiles\RedLife-ro.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Localization\JsonSourceFiles\RedLife.json" />
+	</ItemGroup>
 </Project>
