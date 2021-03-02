@@ -269,6 +269,13 @@ namespace RedLife.Users
             var donors = _userManager.GetUsersInRoleAsync(Tenants.Donor).Result;
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(donors));
         }
+
+        [AbpAuthorize(PermissionNames.Users_GetHospitals)]
+        public ListResultDto<UserDto> GetHospitals()
+        {
+            var hospitals = _userManager.GetUsersInRoleAsync(Tenants.HospitalAdmin).Result;
+            return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(hospitals));
+        }
     }
 }
 

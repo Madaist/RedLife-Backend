@@ -119,6 +119,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                             p.Name == PermissionNames.Users_GetCenters      ||
                             p.Name == PermissionNames.Users_GetDonors       ||
+                            p.Name == PermissionNames.Users_GetHospitals    ||
                             p.Name == PermissionNames.Users_GetById         ||
 
                             p.Name == PermissionNames.Donations_Get         ||
@@ -225,6 +226,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
                             p.Name == PermissionNames.HospitalAdmin ||
+                            p.Name == PermissionNames.Users_GetById ||
 
                             p.Name == PermissionNames.Transfusions_Get ||
                             p.Name == PermissionNames.Transfusions_Create ||
@@ -272,6 +274,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 .Where(p => p.MultiTenancySides.HasFlag(MultiTenancySides.Tenant) &&
                             !grantedPermissions.Contains(p.Name) &&
                             p.Name == PermissionNames.HospitalPersonnel ||
+                            p.Name == PermissionNames.Users_GetById ||
 
                             p.Name == PermissionNames.Transfusions_Get ||
                             p.Name == PermissionNames.Transfusions_Create ||
@@ -477,6 +480,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 hospitalAdminUser.IsEmailConfirmed = true;
                 hospitalAdminUser.IsActive = true;
                 hospitalAdminUser.Id = GetAndUpdateLastUserId();
+                hospitalAdminUser.InstitutionName = "Victor Babes";
 
                 _context.Users.Add(hospitalAdminUser);
                 _context.SaveChanges();
@@ -497,6 +501,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 hospitalPersonnelUser.IsEmailConfirmed = true;
                 hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = 5;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();

@@ -11,7 +11,7 @@ namespace RedLife.Application.Transfusions.Dto
     {
         [Required]
         public string DonationId { get; set; }
-        [Required]
         public DateTime Date { get; set; }
+        public long HospitalId { get; set; }
     }
 }

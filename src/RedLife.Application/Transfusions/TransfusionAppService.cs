@@ -79,10 +79,10 @@ namespace RedLife.Application.Transfusions
                     TotalCount = transfusionDtoOutput.Count
                 };
             }
-            else if (roleName.Contains("Center"))
+            else if (roleName.Contains("Hospital"))
             {
                 var transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
-                                            .Where(x => x.Donation.CenterId == currentUser.EmployerId).ToList());
+                                            .Where(x => x.HospitalId == currentUser.EmployerId).ToList());
                 return new PagedResultDto<TransfusionDto>
                 {
                     Items = transfusionDtoOutput,
@@ -104,7 +104,7 @@ namespace RedLife.Application.Transfusions
 
             if ((roleName == "Admin") ||
                 (roleName == "Donor" && entity.Donation.DonorId == AbpSession.UserId) ||
-                (roleName == "CenterAdmin" && entity.Donation.CenterId == currentUser.EmployerId))
+                (roleName == "HospitalAdmin" && entity.HospitalId == currentUser.EmployerId))
             {
                 return await base.UpdateAsync(input);
             }
@@ -117,6 +117,7 @@ namespace RedLife.Application.Transfusions
         [AbpAuthorize(PermissionNames.Transfusions_Create)]
         public override async Task<TransfusionDto> CreateAsync(CreateTransfusionDto input)
         {
+            input.Id = Guid.NewGuid().ToString();
             return await base.CreateAsync(input);
         }
 

@@ -26,6 +26,7 @@ namespace RedLife.Authorization
 
             context.CreatePermission(PermissionNames.Users_GetCenters, L("UsersGetCenters"));
             context.CreatePermission(PermissionNames.Users_GetDonors, L("Users_GetDonors"));
+            context.CreatePermission(PermissionNames.Users_GetHospitals, L("Users_GetHospitals"));
             context.CreatePermission(PermissionNames.Users_GetById, L("UsersGetById"));
 
             context.CreatePermission(PermissionNames.Donations_Get, L("DonationsGet"));
