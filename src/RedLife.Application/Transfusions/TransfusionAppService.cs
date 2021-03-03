@@ -43,7 +43,8 @@ namespace RedLife.Application.Transfusions
 
             if ((roleName == Tenants.Donor && entity.Donation.DonorId == AbpSession.UserId) ||
                 (roleName == Tenants.Admin) ||
-                (roleName.Contains("Center") && entity.Donation.CenterId == currentUser.EmployerId))
+                (roleName == Tenants.HospitalAdmin && entity.HospitalId == currentUser.Id) ||
+                (roleName == Tenants.HospitalPersonnel && entity.HospitalId == currentUser.EmployerId))
             {
                 return await base.GetAsync(input);
             }
@@ -59,40 +60,32 @@ namespace RedLife.Application.Transfusions
             var filteredTransfusions = CreateFilteredQuery(input).ToList();
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
+            List<TransfusionDto> transfusionDtoOutput = new List<TransfusionDto>();
 
             if (roleName == Tenants.Donor)
             {
-                var transfusionDtoOutput = _objectMapper.Map<List<TransfusionDto>>(filteredTransfusions.
+                transfusionDtoOutput = _objectMapper.Map<List<TransfusionDto>>(filteredTransfusions.
                                            Where(x => x.Donation.DonorId == currentUser.Id).ToList());
-                return new PagedResultDto<TransfusionDto>
-                {
-                    Items = transfusionDtoOutput,
-                    TotalCount = transfusionDtoOutput.Count
-                };
             }
             else if (roleName == Tenants.Admin)
             {
-                var transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions).ToList();
-                return new PagedResultDto<TransfusionDto>
-                {
-                    Items = transfusionDtoOutput,
-                    TotalCount = transfusionDtoOutput.Count
-                };
+                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions).ToList();
             }
-            else if (roleName.Contains("Hospital"))
+            else if (roleName == Tenants.HospitalAdmin)
             {
-                var transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
+                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
+                                            .Where(x => x.HospitalId == currentUser.Id).ToList());
+            }
+            else if (roleName == Tenants.HospitalPersonnel)
+            {
+                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
                                             .Where(x => x.HospitalId == currentUser.EmployerId).ToList());
-                return new PagedResultDto<TransfusionDto>
-                {
-                    Items = transfusionDtoOutput,
-                    TotalCount = transfusionDtoOutput.Count
-                };
             }
-            else
+            return new PagedResultDto<TransfusionDto>
             {
-                return null;
-            }
+                Items = transfusionDtoOutput,
+                TotalCount = transfusionDtoOutput.Count
+            };
         }
 
         [AbpAuthorize(PermissionNames.Transfusions_Update)]
@@ -102,15 +95,16 @@ namespace RedLife.Application.Transfusions
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
-            if ((roleName == "Admin") ||
-                (roleName == "Donor" && entity.Donation.DonorId == AbpSession.UserId) ||
-                (roleName == "HospitalAdmin" && entity.HospitalId == currentUser.EmployerId))
+            if ((roleName == Tenants.Admin) ||
+                (roleName == Tenants.Donor && entity.Donation.DonorId == AbpSession.UserId) ||
+                (roleName == Tenants.HospitalAdmin && entity.HospitalId == currentUser.Id) ||
+                (roleName == Tenants.HospitalPersonnel && entity.HospitalId == currentUser.EmployerId))
             {
                 return await base.UpdateAsync(input);
             }
             else
             {
-                throw new Exception("Not authorized");
+                throw new Exception("User not authorized to update the transfusion");
             }
         }
 

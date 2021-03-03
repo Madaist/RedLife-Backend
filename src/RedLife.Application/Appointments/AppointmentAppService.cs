@@ -43,7 +43,8 @@ namespace RedLife.Application.Appointments
 
             if ((roleName == Tenants.Donor && entity.DonorId == AbpSession.UserId) ||
                 (roleName == Tenants.Admin) ||
-                (roleName.Contains("Center") && entity.CenterId == currentUser.EmployerId))
+                (roleName == Tenants.CenterPersonnel && entity.CenterId == currentUser.EmployerId) ||
+                (roleName == Tenants.CenterAdmin && entity.CenterId == currentUser.Id))
             {
                 return await base.GetAsync(input);
             }
@@ -60,39 +61,32 @@ namespace RedLife.Application.Appointments
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName =  _userManager.GetCurrentUserRoleAsync(currentUser);
 
+            List<AppointmentDto> appointmentDtoOutput = new List<AppointmentDto>();
+
             if (roleName == Tenants.Donor)
             {
-                var appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.
+                appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.
                                            Where(x => x.DonorId == currentUser.Id).ToList());
-                return new PagedResultDto<AppointmentDto>
-                {
-                    Items = appointmentDtoOutput,
-                    TotalCount = appointmentDtoOutput.Count
-                };
             }
             else if (roleName == Tenants.Admin)
             {
-                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments).ToList();
-                return new PagedResultDto<AppointmentDto>
-                {
-                    Items = appointmentDtoOutput,
-                    TotalCount = appointmentDtoOutput.Count
-                };
+                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments).ToList();
             }
-            else if (roleName.Contains("Center"))
+            else if (roleName == Tenants.CenterPersonnel)
             {
-                var appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
+                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
                                             .Where(x => x.CenterId == currentUser.EmployerId).ToList());
-                return new PagedResultDto<AppointmentDto>
-                {
-                    Items = appointmentDtoOutput,
-                    TotalCount = appointmentDtoOutput.Count
-                };
             }
-            else
+            else if (roleName == Tenants.CenterAdmin)
             {
-                return null;
+                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
+                                            .Where(x => x.CenterId == currentUser.Id).ToList());
             }
+            return new PagedResultDto<AppointmentDto>
+            {
+                Items = appointmentDtoOutput,
+                TotalCount = appointmentDtoOutput.Count
+            };
         }
 
         [AbpAuthorize(PermissionNames.Appointments_Update)]
@@ -102,15 +96,15 @@ namespace RedLife.Application.Appointments
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
-            if ((roleName == "Admin") ||
-                (roleName == "Donor" && entity.DonorId == AbpSession.UserId) ||
-                (roleName == "CenterAdmin" && entity.CenterId == currentUser.EmployerId))
+            if ((roleName == Tenants.Admin) ||
+                (roleName == Tenants.Donor && entity.DonorId == AbpSession.UserId) ||
+                (roleName == Tenants.CenterPersonnel && entity.CenterId == currentUser.EmployerId))
             {
                 return await base.UpdateAsync(input);
             }
             else
             {
-                throw new Exception("Not authorized");
+                throw new Exception("User not authorized to update the appointment");
             }
         }
 

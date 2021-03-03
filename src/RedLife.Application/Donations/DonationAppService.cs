@@ -42,7 +42,8 @@ namespace RedLife.Application.Donations.Dto
 
             if ((roleName == Tenants.Donor && entity.DonorId == AbpSession.UserId) ||
                 (roleName == Tenants.Admin) ||
-                (roleName.Contains("Center") && entity.CenterId == currentUser.EmployerId))
+                (roleName == Tenants.CenterPersonnel && entity.CenterId == currentUser.EmployerId) ||
+                (roleName == Tenants.CenterAdmin && entity.CenterId == currentUser.Id))
             {
                 return await base.GetAsync(input);
             }
@@ -60,39 +61,32 @@ namespace RedLife.Application.Donations.Dto
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
+            List<DonationDto> donationDtoOutput = new List<DonationDto>();
+
             if (roleName == Tenants.Donor)
             {
-                var donationDtoOutput = _objectMapper.Map<List<DonationDto>>(filteredDonations.
+                donationDtoOutput = _objectMapper.Map<List<DonationDto>>(filteredDonations.
                                            Where(x => x.DonorId == currentUser.Id).ToList());
-                return new PagedResultDto<DonationDto>
-                {
-                    Items = donationDtoOutput,
-                    TotalCount = donationDtoOutput.Count
-                };
             }
             else if (roleName == Tenants.Admin)
             {
-                var donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations).ToList();
-                return new PagedResultDto<DonationDto>
-                {
-                    Items = donationDtoOutput,
-                    TotalCount = donationDtoOutput.Count
-                };
+                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations).ToList();
             }
-            else if (roleName.Contains("Center"))
+            else if (roleName == Tenants.CenterPersonnel)
             {
-                var donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
+                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
                                             .Where(x => x.CenterId == currentUser.EmployerId).ToList());
-                return new PagedResultDto<DonationDto>
-                {
-                    Items = donationDtoOutput,
-                    TotalCount = donationDtoOutput.Count
-                };
             }
-            else
+            else if (roleName == Tenants.CenterAdmin)
             {
-                throw new Exception("Not authorized");
+                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
+                                            .Where(x => x.CenterId == currentUser.Id).ToList());
             }
+            return new PagedResultDto<DonationDto>
+            {
+                Items = donationDtoOutput,
+                TotalCount = donationDtoOutput.Count
+            };
         }
 
         [AbpAuthorize(PermissionNames.Donations_Update)]
@@ -102,16 +96,16 @@ namespace RedLife.Application.Donations.Dto
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
-            if ((roleName == "Admin") ||
-                (roleName == "Donor" && entity.DonorId == AbpSession.UserId) ||
-                (roleName == "CenterAdmin" && entity.CenterId == currentUser.Id) ||
-                (roleName == "CenterPersonnel" && entity.CenterId == currentUser.EmployerId))
+            if ((roleName == Tenants.Admin) ||
+                (roleName == Tenants.Donor && entity.DonorId == AbpSession.UserId) ||
+                (roleName == Tenants.CenterAdmin && entity.CenterId == currentUser.Id) ||
+                (roleName == Tenants.CenterPersonnel && entity.CenterId == currentUser.EmployerId))
             {
                 return await base.UpdateAsync(input);
             }
             else
             {
-                throw new Exception("Not authorized");
+                throw new Exception("User not authorized to edit the donation");
             }
         }
 
