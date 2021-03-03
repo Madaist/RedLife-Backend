@@ -17,5 +17,6 @@ namespace RedLife.Application.Donations.Dto
         public bool IsBloodAccepted { get; set; }
         public double Quantity { get; set; }
         public string BloodType { get; set; }
+        public string Type { get; set; }
     }
 }

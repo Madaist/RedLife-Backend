@@ -33,9 +33,10 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                     DonorId = donorUser.Id,
                     Date = DateTime.UtcNow.AddDays(1),
                     IsBloodAccepted = true,
-                    BloodType = "A",
+                    BloodType = BloodTypes.APositive,
                     Id = donorUser.Id.ToString() + "20210301",
-                    Quantity = 0.4
+                    Quantity = 0.4,
+                    Type = DonationTypes.OrdinaryDonation
                 };
                 var donation2 = new Donation
                 {
@@ -43,9 +44,10 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                     DonorId = donorUser.Id,
                     Date = DateTime.UtcNow.AddDays(2),
                     IsBloodAccepted = false,
-                    BloodType = "A",
+                    BloodType = BloodTypes.APositive,
                     Id = donorUser.Id.ToString() + "20210401",
-                    Quantity = 0.4
+                    Quantity = 0.4,
+                    Type = DonationTypes.SpecialDonation
                 };
                 var donation3 = new Donation
                 {
@@ -53,9 +55,10 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                     DonorId = donorUser.Id,
                     Date = DateTime.UtcNow.AddDays(3),
                     IsBloodAccepted = true,
-                    BloodType = "A",
+                    BloodType = BloodTypes.APositive,
                     Id = donorUser.Id.ToString() + "20210201",
-                    Quantity = 0.4
+                    Quantity = 0.4,
+                    Type = DonationTypes.CovidPlasmaDonation
                 };
                 _context.Donations.AddRange(new Donation[] { donation1, donation2, donation3 });
                 _context.SaveChanges();
