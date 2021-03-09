@@ -4,15 +4,17 @@ using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
+using Abp.Net.Mail;
 using Abp.ObjectMapping;
 using RedLife.Application.Transfusions.Dto;
 using RedLife.Authorization;
 using RedLife.Authorization.Users;
+using RedLife.Core.Donations;
+using RedLife.Core.EmailSender;
 using RedLife.Core.Transfusions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static RedLife.Authorization.Roles.StaticRoleNames;
 
@@ -23,15 +25,20 @@ namespace RedLife.Application.Transfusions
     {
         private readonly IRepository<Transfusion, string> _transfusionRepository;
         private readonly IRepository<User, long> _userRepository;
+        private readonly IRepository<Donation, string> _donationRepository;
         private readonly UserManager _userManager;
         private readonly IObjectMapper _objectMapper;
+        private readonly IEmailManager _emailManager;
 
-        public TransfusionAppService(IRepository<Transfusion, string> transfusionRepository, IRepository<User, long> userRepository, UserManager userManager, IObjectMapper objectMapper) : base(transfusionRepository)
+        public TransfusionAppService(IRepository<Transfusion, string> transfusionRepository, IRepository<User, long> userRepository, IRepository<Donation, string> donationRepository, UserManager userManager, IObjectMapper objectMapper, IEmailManager emailManager) : base(transfusionRepository)
         {
             _transfusionRepository = transfusionRepository;
             _userRepository = userRepository;
+            _donationRepository = donationRepository;
             _userManager = userManager;
             _objectMapper = objectMapper;
+            _emailManager = emailManager;
+            
         }
 
         [AbpAuthorize(PermissionNames.Transfusions_Get)]
@@ -112,6 +119,12 @@ namespace RedLife.Application.Transfusions
         public override async Task<TransfusionDto> CreateAsync(CreateTransfusionDto input)
         {
             input.Id = Guid.NewGuid().ToString();
+           
+            var donation = _donationRepository.Get(input.DonationId);
+            var bloodDonor = _userRepository.Get(donation.DonorId);
+
+            _emailManager.SendMailToBloodDonor(bloodDonor, donation);
+
             return await base.CreateAsync(input);
         }
 

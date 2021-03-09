@@ -98,7 +98,8 @@ namespace RedLife.Application.Appointments
 
             if ((roleName == Tenants.Admin) ||
                 (roleName == Tenants.Donor && entity.DonorId == AbpSession.UserId) ||
-                (roleName == Tenants.CenterPersonnel && entity.CenterId == currentUser.EmployerId))
+                (roleName == Tenants.CenterPersonnel && entity.CenterId == currentUser.EmployerId) ||
+                (roleName == Tenants.CenterAdmin && entity.CenterId == currentUser.Id))
             {
                 return await base.UpdateAsync(input);
             }

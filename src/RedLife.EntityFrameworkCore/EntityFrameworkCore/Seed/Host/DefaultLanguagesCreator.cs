@@ -18,7 +18,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Host
             return new List<ApplicationLanguage>
             {
                 new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags us"),
-                new ApplicationLanguage(tenantId, "ro", "Română", "famfamfam-flags ro")
             };
         }
 
