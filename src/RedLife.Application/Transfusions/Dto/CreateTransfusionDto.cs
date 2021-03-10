@@ -15,5 +15,6 @@ namespace RedLife.Application.Transfusions.Dto
         public DateTime Date { get; set; }
         [Required]
         public long HospitalId { get; set; }
+        public double Quantity { get; set; }
     }
 }

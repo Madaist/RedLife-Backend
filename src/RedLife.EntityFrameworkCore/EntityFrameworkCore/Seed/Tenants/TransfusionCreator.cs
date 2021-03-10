@@ -32,21 +32,24 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                     Id = Guid.NewGuid().ToString(),
                     DonationId = donation.Id,
                     Date = DateTime.UtcNow.AddDays(1),
-                    HospitalId = hospitalUser.Id
+                    HospitalId = hospitalUser.Id,
+                    Quantity = 0.5
                 };
                 var transfusion2 = new Transfusion
                 {
                     Id = Guid.NewGuid().ToString(),
                     DonationId = donation.Id,
                     Date = DateTime.UtcNow.AddDays(2),
-                    HospitalId = hospitalUser.Id
+                    HospitalId = hospitalUser.Id,
+                    Quantity = 0.2
                 };
                 var transfusion3 = new Transfusion
                 {
                     Id = Guid.NewGuid().ToString(),
                     DonationId = donation.Id,
                     Date = DateTime.UtcNow.AddDays(3),
-                    HospitalId = hospitalUser.Id
+                    HospitalId = hospitalUser.Id,
+                    Quantity = 0.4
                 };
                 _context.Transfusions.AddRange(new Transfusion[] { transfusion1, transfusion2, transfusion3 });
                 _context.SaveChanges();

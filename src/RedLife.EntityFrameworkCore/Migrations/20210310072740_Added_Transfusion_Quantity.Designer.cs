@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedLife.EntityFrameworkCore;
 
 namespace RedLife.Migrations
 {
     [DbContext(typeof(RedLifeDbContext))]
-    partial class RedLifeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210310072740_Added_Transfusion_Quantity")]
+    partial class Added_Transfusion_Quantity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

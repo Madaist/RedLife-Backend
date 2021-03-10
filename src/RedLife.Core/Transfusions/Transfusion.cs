@@ -10,6 +10,7 @@ namespace RedLife.Core.Transfusions
         public string DonationId { get; set; }
         public DateTime Date { get; set; }
         public long HospitalId { get; set; }
+        public double Quantity { get; set; }
 
         public virtual Donation Donation { get; set; }
         public virtual User Hospital { get; set; }

@@ -8,6 +8,7 @@ namespace RedLife.Application.Transfusions.Dto
         public string Date { get; set; }
         public long HospitalId { get; set; }
         public string HospitalName { get; set; }
+        public double Quantity { get; set; }
 
     }
 }
