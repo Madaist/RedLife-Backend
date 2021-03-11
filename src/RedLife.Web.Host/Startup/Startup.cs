@@ -19,6 +19,7 @@ using Abp.Json;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using RedLife.Core.LastId;
+using RedLife.Core.Statistics.DonorStatistics;
 
 namespace RedLife.Web.Host.Startup
 {
@@ -54,6 +55,7 @@ namespace RedLife.Web.Host.Startup
             })
             .AddDataAnnotationsLocalization();
 
+            services.AddSingleton<IDonorStatisticsManager, DonorStatisticsManager>();
 
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
