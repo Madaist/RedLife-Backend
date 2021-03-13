@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RedLife.Core.Statistics.DonorStatistics
 {
@@ -13,7 +10,6 @@ namespace RedLife.Core.Statistics.DonorStatistics
         public double GetTransfusionsQuantity(long donorId);
         public List<int> GetDonationTypes(long donorId);
         public List<int> GetTransfusionsPerMonth(long donorId);
-       
         public int GetNrOfTotalAppTransfusions();
 
     }

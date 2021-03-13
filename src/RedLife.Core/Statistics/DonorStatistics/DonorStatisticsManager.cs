@@ -1,30 +1,23 @@
-﻿using Abp.Dependency;
-using Abp.Domain.Repositories;
-using Abp.Domain.Uow;
-using RedLife.Authorization.Users;
+﻿using Abp.Domain.Repositories;
 using RedLife.Core.Donations;
 using RedLife.Core.Transfusions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static RedLife.Authorization.Roles.StaticRoleNames;
 
 
 namespace RedLife.Core.Statistics.DonorStatistics
 {
     public class DonorStatisticsManager : IDonorStatisticsManager
     {
-        private readonly UserManager _userManager;
         private readonly IRepository<Donation, string> _donationRepository;
         private readonly IRepository<Transfusion, string> _transfusionRepository;
 
-        public DonorStatisticsManager(UserManager userManager, IRepository<Donation, string> donationRepository, IRepository<Transfusion, string> transfusionRepository)
+        public DonorStatisticsManager(IRepository<Donation, string> donationRepository, IRepository<Transfusion, string> transfusionRepository)
         {
-            _userManager = userManager;
             _donationRepository = donationRepository;
             _transfusionRepository = transfusionRepository;
         }
-
 
 
         public int GetNrOfDonations(long donorId)
@@ -83,9 +76,13 @@ namespace RedLife.Core.Statistics.DonorStatistics
             var userTransfusions = _transfusionRepository.GetAll()
               .Where(x => x.Donation.DonorId == donorId);
 
+            var currentYear = DateTime.Now.Year;
+
             for (int i = 1; i <= 12; i++)
             {
-                var monthTrasfusions = userTransfusions.Where(x => x.Date.Month == i).Count();
+                var monthTrasfusions = userTransfusions
+                    .Where(x => x.Date.Month == i && x.Date.Year == currentYear)
+                    .Count();
                 transfusionsPerMonth.Add(monthTrasfusions);
             }
 
