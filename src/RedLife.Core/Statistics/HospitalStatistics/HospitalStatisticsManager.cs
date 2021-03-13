@@ -7,14 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RedLife.Core.Statistics.HospitalAdminStatistics
+namespace RedLife.Core.Statistics.HospitalStatistics
 {
-    public class HospitalAdminStatisticsManager : IHospitalAdminStatisticsManager, ISingletonDependency
+    public class HospitalStatisticsManager : IHospitalStatisticsManager, ISingletonDependency
     {
         private readonly IRepository<Transfusion, string> _transfusionRepository;
         private readonly IRepository<User, long> _userRepository;
 
-        public HospitalAdminStatisticsManager(IRepository<Transfusion, string> transfusionRepository,
+        public HospitalStatisticsManager(IRepository<Transfusion, string> transfusionRepository,
                                               IRepository<User, long> userRepository)
         {
             _transfusionRepository = transfusionRepository;
@@ -36,11 +36,11 @@ namespace RedLife.Core.Statistics.HospitalAdminStatistics
 
         public double GetTransfusionTotalQuantity(long hospitalId)
         {
-            return _transfusionRepository
+            return Math.Round(_transfusionRepository
                 .GetAll()
                 .Where(x => x.HospitalId == hospitalId)
                 .Select(x => x.Quantity)
-                .Sum();
+                .Sum(), 2);
         }
 
         public int GetCovidTransfusionCount(long hospitalId)

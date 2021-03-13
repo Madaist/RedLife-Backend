@@ -4,9 +4,9 @@ using RedLife.Application.Statistics.Dto;
 using RedLife.Authorization;
 using RedLife.Authorization.Users;
 using RedLife.Core.Statistics.AdminStatistics;
+using RedLife.Core.Statistics.CenterStatistics;
 using RedLife.Core.Statistics.DonorStatistics;
-using RedLife.Core.Statistics.HospitalAdminStatistics;
-using RedLife.Core.Statistics.HospitalPersonnelStatistics;
+using RedLife.Core.Statistics.HospitalStatistics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,26 +14,27 @@ using static RedLife.Authorization.Roles.StaticRoleNames;
 
 namespace RedLife.Application.Statistics
 {
+    [AbpAuthorize]
     public class StatisticsAppService : IStatisticsAppService
     {
 
         private readonly IDonorStatisticsManager _donorStatisticsManager;
         private readonly IAdminStatisticsManager _adminStatisticsManager;
-        private readonly IHospitalAdminStatisticsManager _hospitalAdminStatisticsManager;
-        private readonly IHospitalPersonnelStatisticsManager _hospitalPersonnelStatisticsManager;
+        private readonly IHospitalStatisticsManager _hospitalStatisticsManager;
+        private readonly ICenterStatisticsManager _centerStatisticsManager;
         private readonly UserManager _userManager;
         public IAbpSession AbpSession { get; set; }
 
         public StatisticsAppService(IDonorStatisticsManager donorStatisticsManager,
                                     IAdminStatisticsManager adminStatisticsManager,
-                                    IHospitalAdminStatisticsManager hospitalAdminStatisticsManager,
-                                    IHospitalPersonnelStatisticsManager hospitalPersonnelStatisticsManager,
+                                    IHospitalStatisticsManager hospitalAdminStatisticsManager,
+                                    ICenterStatisticsManager centerStatisticsManager,
                                     UserManager userManager)
         {
             _donorStatisticsManager = donorStatisticsManager;
             _adminStatisticsManager = adminStatisticsManager;
-            _hospitalAdminStatisticsManager = hospitalAdminStatisticsManager;
-            _hospitalPersonnelStatisticsManager = hospitalPersonnelStatisticsManager;
+            _hospitalStatisticsManager = hospitalAdminStatisticsManager;
+            _centerStatisticsManager = centerStatisticsManager;
             _userManager = userManager;
 
             AbpSession = NullAbpSession.Instance;
@@ -63,11 +64,11 @@ namespace RedLife.Application.Statistics
             HospitalStatisticsDto statistics;
             if (userRole == Tenants.HospitalAdmin)
             {
-                statistics = ComputeHospitalAdminStatistics(userId);
+                statistics = ComputeHospitalStatistics(userId);
             }
             else if (userRole == Tenants.HospitalPersonnel)
             {
-                statistics = ComputeHospitalPersonnelStatistics(userId);
+                statistics = ComputeHospitalStatistics(user.EmployerId ?? 0);
             }
             else
             {
@@ -77,42 +78,67 @@ namespace RedLife.Application.Statistics
             return statistics;
         }
 
-        private HospitalStatisticsDto ComputeHospitalPersonnelStatistics(long userId)
+        public CenterStatisticsDto GetCenterStatistics()
         {
-            User hospitalPersonnel = _userManager.GetUserById(userId);
-            return new HospitalStatisticsDto
+            long userId = AbpSession.UserId ?? 0;
+            User user = _userManager.GetUserById(userId);
+            var userRole = _userManager.GetRolesAsync(user).Result.FirstOrDefault();
+
+            CenterStatisticsDto statistics;
+            if (userRole == Tenants.CenterAdmin)
+            {
+                statistics = ComputeCenterStatistics(userId);
+            }
+            else if (userRole == Tenants.CenterPersonnel)
+            {
+                statistics = ComputeCenterStatistics(user.EmployerId ?? 0);
+            }
+            else
+            {
+                throw new Exception("User not authorized to access center statistics");
+            }
+
+            return statistics;
+        }
+
+
+        private CenterStatisticsDto ComputeCenterStatistics(long userId)
+        {
+            return new CenterStatisticsDto
             {
                 DonorCount = _userManager.GetUsersInRoleAsync(Tenants.Donor).Result.Count(),
                 HospitalCount = _userManager.GetUsersInRoleAsync(Tenants.HospitalAdmin).Result.Count(),
                 CenterCount = _userManager.GetUsersInRoleAsync(Tenants.CenterAdmin).Result.Count(),
-                TotalTransfusionCount = _hospitalPersonnelStatisticsManager.GetTotalTransfusionCount(),
 
-                TransfusionCount = _hospitalPersonnelStatisticsManager.GetTransfusionCount(hospitalPersonnel),
-                TransfusionTotalQuantity = _hospitalPersonnelStatisticsManager.GetTransfusionTotalQuantity(hospitalPersonnel),
-                CovidTransfusionCount = _hospitalPersonnelStatisticsManager.GetCovidTransfusionCount(hospitalPersonnel),
-                EmployeesCount = _hospitalPersonnelStatisticsManager.GetEmployeesCount(hospitalPersonnel),
+                DonationCount = _centerStatisticsManager.GetDonationCount(userId),
+                AppointmentCount = _centerStatisticsManager.GetAppointmentCount(userId),
+                DonationTotalQuantity = _centerStatisticsManager.GetDonationTotalQuantity(userId),
 
-                BloodTypesUsedCount = _hospitalPersonnelStatisticsManager.GetBloodTypesUsedCount(hospitalPersonnel),
-                TransfusionsPerMonth = _hospitalPersonnelStatisticsManager.GetTransfusionsPerMonth(hospitalPersonnel)
+                DonationsPerMonth = _centerStatisticsManager.GetDonationsPerMonth(userId),
+                BloodTypesUsedCount = _centerStatisticsManager.GetBloodTypesUsedCount(userId),
+                TotalDonationCount = _centerStatisticsManager.GetTotalDonationCount(),
+                EmployeesCount = _centerStatisticsManager.GetEmployeesCount(userId)
+
             };
         }
 
-        private HospitalStatisticsDto ComputeHospitalAdminStatistics(long userId)
+
+        private HospitalStatisticsDto ComputeHospitalStatistics(long userId)
         {
             return new HospitalStatisticsDto
             {
                 DonorCount = _userManager.GetUsersInRoleAsync(Tenants.Donor).Result.Count(),
                 HospitalCount = _userManager.GetUsersInRoleAsync(Tenants.HospitalAdmin).Result.Count(),
                 CenterCount = _userManager.GetUsersInRoleAsync(Tenants.CenterAdmin).Result.Count(),
-                TotalTransfusionCount = _hospitalAdminStatisticsManager.GetTotalTransfusionCount(),
+                TotalTransfusionCount = _hospitalStatisticsManager.GetTotalTransfusionCount(),
 
-                TransfusionCount = _hospitalAdminStatisticsManager.GetTransfusionCount(userId),
-                TransfusionTotalQuantity = _hospitalAdminStatisticsManager.GetTransfusionTotalQuantity(userId),
-                CovidTransfusionCount = _hospitalAdminStatisticsManager.GetCovidTransfusionCount(userId),
-                EmployeesCount = _hospitalAdminStatisticsManager.GetEmployeesCount(userId),
+                TransfusionCount = _hospitalStatisticsManager.GetTransfusionCount(userId),
+                TransfusionTotalQuantity = _hospitalStatisticsManager.GetTransfusionTotalQuantity(userId),
+                CovidTransfusionCount = _hospitalStatisticsManager.GetCovidTransfusionCount(userId),
+                EmployeesCount = _hospitalStatisticsManager.GetEmployeesCount(userId),
 
-                BloodTypesUsedCount = _hospitalAdminStatisticsManager.GetBloodTypesUsedCount(userId),
-                TransfusionsPerMonth = _hospitalAdminStatisticsManager.GetTransfusionsPerMonth(userId)
+                BloodTypesUsedCount = _hospitalStatisticsManager.GetBloodTypesUsedCount(userId),
+                TransfusionsPerMonth = _hospitalStatisticsManager.GetTransfusionsPerMonth(userId)
             };
         }
 

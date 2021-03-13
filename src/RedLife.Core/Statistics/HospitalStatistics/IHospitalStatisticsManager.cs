@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace RedLife.Core.Statistics.HospitalAdminStatistics
+namespace RedLife.Core.Statistics.HospitalStatistics
 {
-    public interface IHospitalAdminStatisticsManager
+    public interface IHospitalStatisticsManager
     {
         public int GetTotalTransfusionCount();
         public int GetTransfusionCount(long hospitalId);
