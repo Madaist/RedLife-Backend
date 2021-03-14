@@ -37,7 +37,7 @@ namespace RedLife.Authorization.Users
             AbpSession = NullAbpSession.Instance;
         }
 
-        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed)
+        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed, long socialSecurityNumber)
         {
             CheckForTenant();
 
@@ -45,6 +45,7 @@ namespace RedLife.Authorization.Users
 
             var user = new User
             {
+                Id = socialSecurityNumber,
                 TenantId = tenant.Id,
                 Name = name,
                 Surname = surname,
@@ -52,6 +53,7 @@ namespace RedLife.Authorization.Users
                 IsActive = true,
                 UserName = userName,
                 IsEmailConfirmed = isEmailConfirmed,
+
                 Roles = new List<UserRole>()
             };
 

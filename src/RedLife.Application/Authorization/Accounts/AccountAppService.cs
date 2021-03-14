@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Configuration;
 using Abp.Zero.Configuration;
 using RedLife.Authorization.Accounts.Dto;
 using RedLife.Authorization.Users;
+using static RedLife.Authorization.Roles.StaticRoleNames;
 
 namespace RedLife.Authorization.Accounts
 {
@@ -12,11 +14,14 @@ namespace RedLife.Authorization.Accounts
         public const string PasswordRegex = "(?=^.{8,}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s)[0-9a-zA-Z!@#$%^&*()]*$";
 
         private readonly UserRegistrationManager _userRegistrationManager;
+        private readonly UserManager _userManager;
 
         public AccountAppService(
-            UserRegistrationManager userRegistrationManager)
+            UserRegistrationManager userRegistrationManager,
+            UserManager userManager)
         {
             _userRegistrationManager = userRegistrationManager;
+            _userManager = userManager;
         }
 
         public async Task<IsTenantAvailableOutput> IsTenantAvailable(IsTenantAvailableInput input)
@@ -43,8 +48,12 @@ namespace RedLife.Authorization.Accounts
                 input.EmailAddress,
                 input.UserName,
                 input.Password,
-                true // Assumed email address is always confirmed. Change this if you want to implement email confirmation.
+                true, // Assumed email address is always confirmed. Change this if you want to implement email confirmation.
+                input.SocialSecurityNumber
             );
+
+
+            CheckErrors(await _userManager.SetRolesAsync(user, new[] { Tenants.Donor }));
 
             var isEmailConfirmationRequiredForLogin = await SettingManager.GetSettingValueAsync<bool>(AbpZeroSettingNames.UserManagement.IsEmailConfirmationRequiredForLogin);
 

@@ -27,8 +27,6 @@ namespace RedLife.Users.Dto
         [StringLength(AbpUserBase.MaxEmailAddressLength)]
         public string EmailAddress { get; set; }
 
-        public long? SocialSecurityNumber { get; set; }
-
         public bool IsActive { get; set; }
 
         public string[] RoleNames { get; set; }
@@ -37,6 +35,17 @@ namespace RedLife.Users.Dto
         [StringLength(AbpUserBase.MaxPlainPasswordLength)]
         [DisableAuditing]
         public string Password { get; set; }
+
+
+        public long? SocialSecurityNumber { get; set; }
+        public string InstitutionName { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string County { get; set; }
+        public string Number { get; set; }
+        public string Street { get; set; }
+        public long? EmployerId { get; set; }
+
 
         public void Normalize()
         {

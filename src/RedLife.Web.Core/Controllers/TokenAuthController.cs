@@ -141,7 +141,9 @@ namespace RedLife.Controllers
                 externalUser.EmailAddress,
                 externalUser.EmailAddress,
                 Authorization.Users.User.CreateRandomPassword(),
-                true
+                true,
+                0
+                
             );
 
             user.Logins = new List<UserLogin>

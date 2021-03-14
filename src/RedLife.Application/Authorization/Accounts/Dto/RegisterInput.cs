@@ -22,6 +22,9 @@ namespace RedLife.Authorization.Accounts.Dto
         public string UserName { get; set; }
 
         [Required]
+        public long SocialSecurityNumber { get; set; }
+
+        [Required]
         [EmailAddress]
         [StringLength(AbpUserBase.MaxEmailAddressLength)]
         public string EmailAddress { get; set; }

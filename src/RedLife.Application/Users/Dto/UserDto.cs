@@ -42,7 +42,7 @@ namespace RedLife.Users.Dto
         public string City { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
-        public DateTime BirthDate { get; set; }
+        //public DateTime BirthDate { get; set; }
         public string InstitutionName { get; set; }
         public long EmployerId { get; set; }
     }

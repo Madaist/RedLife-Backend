@@ -91,7 +91,7 @@ namespace RedLife.Core.Statistics.DonorStatistics
 
         public int GetNrOfTotalAppTransfusions()
         {
-            return _transfusionRepository.GetAll().Count();
+            return _transfusionRepository.Count();
         }
     }
 }
