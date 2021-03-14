@@ -10,34 +10,34 @@ namespace RedLife.Authorization
         {
             context.CreatePermission(PermissionNames.Admin, L("Admin"));
             context.CreatePermission(PermissionNames.Donor, L("Donor"));
-            context.CreatePermission(PermissionNames.CenterAdmin, L("CenterAdmin"));
-            context.CreatePermission(PermissionNames.HospitalAdmin, L("HospitalAdmin"));
-            context.CreatePermission(PermissionNames.CenterPersonnel, L("CenterPersonnel"));
-            context.CreatePermission(PermissionNames.HospitalPersonnel, L("HospitalPersonnel"));
+            context.CreatePermission(PermissionNames.CenterAdmin, L("Center Admin"));
+            context.CreatePermission(PermissionNames.HospitalAdmin, L("Hospital Admin"));
+            context.CreatePermission(PermissionNames.CenterPersonnel, L("Center Personnel"));
+            context.CreatePermission(PermissionNames.HospitalPersonnel, L("Hospital Personnel"));
 
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
             context.CreatePermission(PermissionNames.Pages_Users, L("Users"));
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
 
-            context.CreatePermission(PermissionNames.Appointments_Get, L("AppointmentsGet"));
-            context.CreatePermission(PermissionNames.Appointments_Create, L("AppointmentsCreate"));
-            context.CreatePermission(PermissionNames.Appointments_Update, L("AppointmentsUpdate"));
-            context.CreatePermission(PermissionNames.Appointments_Delete, L("AppointmentsDelete"));
+            context.CreatePermission(PermissionNames.Appointments_Get, L("Appointments Get"));
+            context.CreatePermission(PermissionNames.Appointments_Create, L("Appointments Create"));
+            context.CreatePermission(PermissionNames.Appointments_Update, L("Appointments Update"));
+            context.CreatePermission(PermissionNames.Appointments_Delete, L("Appointments Delete"));
 
-            context.CreatePermission(PermissionNames.Users_GetCenters, L("UsersGetCenters"));
-            context.CreatePermission(PermissionNames.Users_GetDonors, L("Users_GetDonors"));
-            context.CreatePermission(PermissionNames.Users_GetHospitals, L("Users_GetHospitals"));
-            context.CreatePermission(PermissionNames.Users_GetById, L("UsersGetById"));
+            context.CreatePermission(PermissionNames.Users_GetCenters, L("Get Centers"));
+            context.CreatePermission(PermissionNames.Users_GetDonors, L("Get Donors"));
+            context.CreatePermission(PermissionNames.Users_GetHospitals, L("Get Hospitals"));
+            context.CreatePermission(PermissionNames.Users_GetById, L("Get User By Id"));
 
-            context.CreatePermission(PermissionNames.Donations_Get, L("DonationsGet"));
-            context.CreatePermission(PermissionNames.Donations_Create, L("DonationsCreate"));
-            context.CreatePermission(PermissionNames.Donations_Update, L("DonationsUpdate"));
-            context.CreatePermission(PermissionNames.Donations_Delete, L("DonationsDelete"));
+            context.CreatePermission(PermissionNames.Donations_Get, L("Donations Get"));
+            context.CreatePermission(PermissionNames.Donations_Create, L("Donations Create"));
+            context.CreatePermission(PermissionNames.Donations_Update, L("Donations Update"));
+            context.CreatePermission(PermissionNames.Donations_Delete, L("Donations Delete"));
 
-            context.CreatePermission(PermissionNames.Transfusions_Get, L("TransfusionsGet"));
-            context.CreatePermission(PermissionNames.Transfusions_Create, L("TransfusionsCreate"));
-            context.CreatePermission(PermissionNames.Transfusions_Update, L("TransfusionsUpdate"));
-            context.CreatePermission(PermissionNames.Transfusions_Delete, L("TransfusionsDelete"));
+            context.CreatePermission(PermissionNames.Transfusions_Get, L("Transfusions Get"));
+            context.CreatePermission(PermissionNames.Transfusions_Create, L("Transfusions Create"));
+            context.CreatePermission(PermissionNames.Transfusions_Update, L("Transfusions Update"));
+            context.CreatePermission(PermissionNames.Transfusions_Delete, L("Transfusions Delete"));
         }
 
         private static ILocalizableString L(string name)

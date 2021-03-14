@@ -69,15 +69,19 @@ namespace RedLife.Users
             {
                 return await base.GetAllAsync(input);
             }
-            else if (userRole == Tenants.CenterAdmin)
+            else
             {
-                userDtoOutput = GetCenterPersonnelUsers(currentUser.Id);
+                var filteredUsers = CreateFilteredQuery(input);
 
+                if (userRole == Tenants.CenterAdmin)
+                {
+                    userDtoOutput = GetCenterPersonnelUsers(currentUser.Id, filteredUsers);
+                }
+                else if (userRole == Tenants.HospitalAdmin)
+                {
+                    userDtoOutput = GetHospitalPersonnelUsers(currentUser.Id, filteredUsers);
+                };
             }
-            else if (userRole == Tenants.HospitalAdmin)
-            {
-                userDtoOutput = GetHospitalPersonnelUsers(currentUser.Id);
-            };
 
             return new PagedResultDto<UserDto>
             {
@@ -117,6 +121,7 @@ namespace RedLife.Users
             return MapToEntityDto(user);
         }
 
+
         [AbpAuthorize(PermissionNames.Pages_Users)]
         public override async Task<UserDto> UpdateAsync(UserDto input)
         {
@@ -125,7 +130,7 @@ namespace RedLife.Users
             var user = await _userManager.GetUserByIdAsync(input.Id);
             //if we don't have this, for users that don't have an employer, employerId will come as 0
             //as we don't have any userId equal to 0, we will get an error from the database
-            if(input.EmployerId == 0)
+            if (input.EmployerId == 0)
             {
                 input.EmployerId = 1;
             }
@@ -158,11 +163,13 @@ namespace RedLife.Users
             return new ListResultDto<RoleDto>(ObjectMapper.Map<List<RoleDto>>(roles));
         }
 
+
         [AbpAuthorize(PermissionNames.Users_GetById)]
         public override Task<UserDto> GetAsync(EntityDto<long> input)
         {
             return base.GetAsync(input);
         }
+
 
         [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task ChangeLanguage(ChangeUserLanguageDto input)
@@ -174,6 +181,7 @@ namespace RedLife.Users
             );
         }
 
+
         protected override User MapToEntity(CreateUserDto createInput)
         {
             var user = ObjectMapper.Map<User>(createInput);
@@ -181,11 +189,13 @@ namespace RedLife.Users
             return user;
         }
 
+
         protected override void MapToEntity(UserDto input, User user)
         {
             ObjectMapper.Map(input, user);
             user.SetNormalizedNames();
         }
+
 
         protected override UserDto MapToEntityDto(User user)
         {
@@ -198,6 +208,7 @@ namespace RedLife.Users
 
             return userDto;
         }
+
 
         protected override IQueryable<User> CreateFilteredQuery(PagedUserResultRequestDto input)
         {
@@ -307,6 +318,7 @@ namespace RedLife.Users
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(donors));
         }
 
+
         [AbpAuthorize(PermissionNames.Users_GetHospitals)]
         public ListResultDto<UserDto> GetHospitals()
         {
@@ -314,21 +326,19 @@ namespace RedLife.Users
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(hospitals));
         }
 
-        private List<UserDto> GetCenterPersonnelUsers(long centerAdminId)
+
+        private List<UserDto> GetCenterPersonnelUsers(long centerAdminId, IQueryable<User> users)
         {
-            var centerPersonnelUsers = _userManager
-                    .GetUsersInRoleAsync(Tenants.CenterPersonnel)
-                    .Result
+            var centerPersonnelUsers = users
                     .Where(x => x.EmployerId == centerAdminId)
                     .ToList();
             return new List<UserDto>(ObjectMapper.Map<List<UserDto>>(centerPersonnelUsers));
         }
 
-        private List<UserDto> GetHospitalPersonnelUsers(long hospitalAdminId)
+
+        private List<UserDto> GetHospitalPersonnelUsers(long hospitalAdminId, IQueryable<User> users)
         {
-            var hospitalPersonnelUsers = _userManager
-                    .GetUsersInRoleAsync(Tenants.HospitalPersonnel)
-                    .Result
+            var hospitalPersonnelUsers = users
                     .Where(x => x.EmployerId == hospitalAdminId)
                     .ToList();
             return new List<UserDto>(ObjectMapper.Map<List<UserDto>>(hospitalPersonnelUsers));

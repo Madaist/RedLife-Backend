@@ -1,10 +1,9 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
-using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
-using Abp.Net.Mail;
+using Abp.Linq.Extensions;
 using Abp.ObjectMapping;
 using RedLife.Application.Transfusions.Dto;
 using RedLife.Authorization;
@@ -38,7 +37,7 @@ namespace RedLife.Application.Transfusions
             _userManager = userManager;
             _objectMapper = objectMapper;
             _emailManager = emailManager;
-            
+
         }
 
         [AbpAuthorize(PermissionNames.Transfusions_Get)]
@@ -64,30 +63,34 @@ namespace RedLife.Application.Transfusions
         [AbpAuthorize(PermissionNames.Transfusions_Get)]
         public override async Task<PagedResultDto<TransfusionDto>> GetAllAsync(PagedTransfusionResultRequestDto input)
         {
-            var filteredTransfusions = CreateFilteredQuery(input).ToList();
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
             List<TransfusionDto> transfusionDtoOutput = new List<TransfusionDto>();
 
-            if (roleName == Tenants.Donor)
+            if (roleName == Tenants.Admin)
             {
-                transfusionDtoOutput = _objectMapper.Map<List<TransfusionDto>>(filteredTransfusions.
-                                           Where(x => x.Donation.DonorId == currentUser.Id).ToList());
+                return await base.GetAllAsync(input);
             }
-            else if (roleName == Tenants.Admin)
+            else
             {
-                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions).ToList();
+                var filteredTransfusions = CreateFilteredQuery(input).ToList();
+                if (roleName == Tenants.Donor)
+                {
+                    transfusionDtoOutput = _objectMapper.Map<List<TransfusionDto>>(filteredTransfusions.
+                                               Where(x => x.Donation.DonorId == currentUser.Id).ToList());
+                }
+                else if (roleName == Tenants.HospitalAdmin)
+                {
+                    transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
+                                                .Where(x => x.HospitalId == currentUser.Id).ToList());
+                }
+                else if (roleName == Tenants.HospitalPersonnel)
+                {
+                    transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
+                                                .Where(x => x.HospitalId == currentUser.EmployerId).ToList());
+                }
             }
-            else if (roleName == Tenants.HospitalAdmin)
-            {
-                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
-                                            .Where(x => x.HospitalId == currentUser.Id).ToList());
-            }
-            else if (roleName == Tenants.HospitalPersonnel)
-            {
-                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
-                                            .Where(x => x.HospitalId == currentUser.EmployerId).ToList());
-            }
+
             return new PagedResultDto<TransfusionDto>
             {
                 Items = transfusionDtoOutput,
@@ -119,7 +122,7 @@ namespace RedLife.Application.Transfusions
         public override async Task<TransfusionDto> CreateAsync(CreateTransfusionDto input)
         {
             input.Id = Guid.NewGuid().ToString();
-           
+
             var donation = _donationRepository.Get(input.DonationId);
             var bloodDonor = _userRepository.Get(donation.DonorId);
 
@@ -136,10 +139,10 @@ namespace RedLife.Application.Transfusions
 
         protected override IQueryable<Transfusion> CreateFilteredQuery(PagedTransfusionResultRequestDto input)
         {
-            return (IQueryable<Transfusion>)Repository.GetAll()
+            return Repository.GetAll()
                              .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donation.Donor.Surname.Contains(input.Keyword)
                                       || x.Donation.Donor.Name.Contains(input.Keyword)
-                                      || x.Donation.Center.InstitutionName.Contains(input.Keyword)
+                                      || x.Hospital.InstitutionName.Contains(input.Keyword)
                                       || x.Donation.DonorId.ToString().Contains(input.Keyword)
                                       || x.Date.ToString().Contains(input.Keyword));
         }

@@ -57,31 +57,35 @@ namespace RedLife.Application.Donations.Dto
         [AbpAuthorize(PermissionNames.Donations_Get)]
         public override async Task<PagedResultDto<DonationDto>> GetAllAsync(PagedDonationResultRequestDto input)
         {
-            var filteredDonations = CreateFilteredQuery(input).ToList();
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
             List<DonationDto> donationDtoOutput = new List<DonationDto>();
 
-            if (roleName == Tenants.Donor)
+            if (roleName == Tenants.Admin)
             {
-                donationDtoOutput = _objectMapper.Map<List<DonationDto>>(filteredDonations.
-                                           Where(x => x.DonorId == currentUser.Id).ToList());
+                return await base.GetAllAsync(input);
             }
-            else if (roleName == Tenants.Admin)
+            else
             {
-                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations).ToList();
+                var filteredDonations = CreateFilteredQuery(input).ToList();
+                if (roleName == Tenants.Donor)
+                {
+                    donationDtoOutput = _objectMapper.Map<List<DonationDto>>(filteredDonations.
+                                               Where(x => x.DonorId == currentUser.Id).ToList());
+                }
+                else if (roleName == Tenants.CenterPersonnel)
+                {
+                    donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
+                                                .Where(x => x.CenterId == currentUser.EmployerId).ToList());
+                }
+                else if (roleName == Tenants.CenterAdmin)
+                {
+                    donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
+                                                .Where(x => x.CenterId == currentUser.Id).ToList());
+                }
             }
-            else if (roleName == Tenants.CenterPersonnel)
-            {
-                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
-                                            .Where(x => x.CenterId == currentUser.EmployerId).ToList());
-            }
-            else if (roleName == Tenants.CenterAdmin)
-            {
-                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
-                                            .Where(x => x.CenterId == currentUser.Id).ToList());
-            }
+
             return new PagedResultDto<DonationDto>
             {
                 Items = donationDtoOutput,
@@ -124,7 +128,7 @@ namespace RedLife.Application.Donations.Dto
 
         protected override IQueryable<Donation> CreateFilteredQuery(PagedDonationResultRequestDto input)
         {
-            return (IQueryable<Donation>)Repository.GetAll()
+            return Repository.GetAll()
                              .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.Surname.Contains(input.Keyword)
                                 || x.Donor.Name.Contains(input.Keyword)
                                 || x.Center.InstitutionName.Contains(input.Keyword)

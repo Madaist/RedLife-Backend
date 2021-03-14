@@ -57,31 +57,37 @@ namespace RedLife.Application.Appointments
         [AbpAuthorize(PermissionNames.Appointments_Get)]
         public override async Task<PagedResultDto<AppointmentDto>> GetAllAsync(PagedAppointmentResultRequestDto input)
         {
-            var filteredAppointments = CreateFilteredQuery(input).ToList();
+
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
-            var roleName =  _userManager.GetCurrentUserRoleAsync(currentUser);
+            var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
             List<AppointmentDto> appointmentDtoOutput = new List<AppointmentDto>();
 
-            if (roleName == Tenants.Donor)
+            if (roleName == Tenants.Admin)
             {
-                appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.
-                                           Where(x => x.DonorId == currentUser.Id).ToList());
+                return await base.GetAllAsync(input);
             }
-            else if (roleName == Tenants.Admin)
+            else
             {
-                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments).ToList();
+                var filteredAppointments = CreateFilteredQuery(input).ToList();
+
+                if (roleName == Tenants.Donor)
+                {
+                    appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.
+                                               Where(x => x.DonorId == currentUser.Id).ToList());
+                }
+                else if (roleName == Tenants.CenterPersonnel)
+                {
+                    appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
+                                                .Where(x => x.CenterId == currentUser.EmployerId).ToList());
+                }
+                else if (roleName == Tenants.CenterAdmin)
+                {
+                    appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
+                                                .Where(x => x.CenterId == currentUser.Id).ToList());
+                }
             }
-            else if (roleName == Tenants.CenterPersonnel)
-            {
-                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
-                                            .Where(x => x.CenterId == currentUser.EmployerId).ToList());
-            }
-            else if (roleName == Tenants.CenterAdmin)
-            {
-                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
-                                            .Where(x => x.CenterId == currentUser.Id).ToList());
-            }
+
             return new PagedResultDto<AppointmentDto>
             {
                 Items = appointmentDtoOutput,
