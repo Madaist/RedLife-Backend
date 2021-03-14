@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RedLife.Core.LastId;
 using static RedLife.Authorization.Roles.StaticRoleNames;
+using System;
 
 namespace RedLife.Users
 {
@@ -57,6 +58,36 @@ namespace RedLife.Users
         }
 
         [AbpAuthorize(PermissionNames.Pages_Users)]
+        public override async Task<PagedResultDto<UserDto>> GetAllAsync(PagedUserResultRequestDto input)
+        {
+            var currentUser = _userManager.GetUserById(_abpSession.UserId ?? 0);
+            var userRole = _userManager.GetRolesAsync(currentUser).Result.FirstOrDefault();
+
+            List<UserDto> userDtoOutput = new List<UserDto>();
+
+            if (userRole == Tenants.Admin)
+            {
+                return await base.GetAllAsync(input);
+            }
+            else if (userRole == Tenants.CenterAdmin)
+            {
+                userDtoOutput = GetCenterPersonnelUsers(currentUser.Id);
+
+            }
+            else if (userRole == Tenants.HospitalAdmin)
+            {
+                userDtoOutput = GetHospitalPersonnelUsers(currentUser.Id);
+            };
+
+            return new PagedResultDto<UserDto>
+            {
+                Items = userDtoOutput,
+                TotalCount = userDtoOutput.Count
+            };
+
+        }
+
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public override async Task<UserDto> CreateAsync(CreateUserDto input)
         {
             CheckCreatePermission();
@@ -71,7 +102,7 @@ namespace RedLife.Users
             {
                 if (input.RoleNames.Contains(Tenants.Donor))
                 {
-                    user.Id = (long) input.SocialSecurityNumber;
+                    user.Id = (long)input.SocialSecurityNumber;
                 }
                 else
                 {
@@ -92,6 +123,12 @@ namespace RedLife.Users
             CheckUpdatePermission();
 
             var user = await _userManager.GetUserByIdAsync(input.Id);
+            //if we don't have this, for users that don't have an employer, employerId will come as 0
+            //as we don't have any userId equal to 0, we will get an error from the database
+            if(input.EmployerId == 0)
+            {
+                input.EmployerId = 1;
+            }
 
             MapToEntity(input, user);
 
@@ -158,7 +195,7 @@ namespace RedLife.Users
 
             var userDto = base.MapToEntityDto(user);
             userDto.RoleNames = roles.ToArray();
-           
+
             return userDto;
         }
 
@@ -239,7 +276,7 @@ namespace RedLife.Users
                 return false;
             }
             var roles = await _userManager.GetRolesAsync(currentUser);
-            if (!roles.Contains(StaticRoleNames.Tenants.Admin))
+            if (!roles.Contains(Tenants.Admin) && !roles.Contains(Tenants.HospitalAdmin) && !roles.Contains(Tenants.CenterAdmin))
             {
                 throw new UserFriendlyException("Only administrators may reset passwords.");
             }
@@ -276,6 +313,27 @@ namespace RedLife.Users
             var hospitals = _userManager.GetUsersInRoleAsync(Tenants.HospitalAdmin).Result;
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(hospitals));
         }
+
+        private List<UserDto> GetCenterPersonnelUsers(long centerAdminId)
+        {
+            var centerPersonnelUsers = _userManager
+                    .GetUsersInRoleAsync(Tenants.CenterPersonnel)
+                    .Result
+                    .Where(x => x.EmployerId == centerAdminId)
+                    .ToList();
+            return new List<UserDto>(ObjectMapper.Map<List<UserDto>>(centerPersonnelUsers));
+        }
+
+        private List<UserDto> GetHospitalPersonnelUsers(long hospitalAdminId)
+        {
+            var hospitalPersonnelUsers = _userManager
+                    .GetUsersInRoleAsync(Tenants.HospitalPersonnel)
+                    .Result
+                    .Where(x => x.EmployerId == hospitalAdminId)
+                    .ToList();
+            return new List<UserDto>(ObjectMapper.Map<List<UserDto>>(hospitalPersonnelUsers));
+        }
+
     }
 }
 

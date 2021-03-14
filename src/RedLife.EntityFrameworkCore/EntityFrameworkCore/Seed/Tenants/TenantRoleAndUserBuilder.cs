@@ -183,7 +183,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Donations_Delete ||
 
                             p.Name == PermissionNames.Users_GetDonors ||
-                            p.Name == PermissionNames.Users_GetById
+                            p.Name == PermissionNames.Users_GetById ||
+                            p.Name == PermissionNames.Pages_Users
                             )
                 .ToList();
 
@@ -227,11 +228,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             !grantedPermissions.Contains(p.Name) &&
                             p.Name == PermissionNames.HospitalAdmin ||
                             p.Name == PermissionNames.Users_GetById ||
+                            p.Name == PermissionNames.Pages_Users ||
 
                             p.Name == PermissionNames.Transfusions_Get ||
                             p.Name == PermissionNames.Transfusions_Create ||
                             p.Name == PermissionNames.Transfusions_Update ||
-                            p.Name == PermissionNames.Transfusions_Delete
+                            p.Name == PermissionNames.Transfusions_Delete 
                             )
                 .ToList();
 
