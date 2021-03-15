@@ -130,6 +130,7 @@ namespace RedLife.Application.Donations.Dto
         {
             return Repository.GetAll()
                              .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.Surname.Contains(input.Keyword)
+                                || x.Id.Contains(input.Keyword)
                                 || x.Donor.Name.Contains(input.Keyword)
                                 || x.Center.InstitutionName.Contains(input.Keyword)
                                 || x.Date.ToString().Contains(input.Keyword)
