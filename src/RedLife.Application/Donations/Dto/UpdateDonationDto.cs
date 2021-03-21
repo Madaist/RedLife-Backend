@@ -15,5 +15,6 @@ namespace RedLife.Application.Donations.Dto
         public double Quantity { get; set; }
         public string BloodType { get; set; }
         public string Type { get; set; }
+        public string MedicalTestsResult { get; set; }
     }
 }

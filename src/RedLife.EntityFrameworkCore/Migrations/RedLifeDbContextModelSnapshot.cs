@@ -1581,6 +1581,9 @@ namespace RedLife.Migrations
                     b.Property<bool>("IsBloodAccepted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("MedicalTestsResult")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Quantity")
                         .HasColumnType("float");
 

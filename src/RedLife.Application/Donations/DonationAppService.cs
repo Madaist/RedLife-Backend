@@ -8,6 +8,7 @@ using Abp.ObjectMapping;
 using RedLife.Authorization;
 using RedLife.Authorization.Users;
 using RedLife.Core.Donations;
+using RedLife.Core.PdfHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,6 +106,10 @@ namespace RedLife.Application.Donations.Dto
                 (roleName == Tenants.CenterAdmin && entity.CenterId == currentUser.Id) ||
                 (roleName == Tenants.CenterPersonnel && entity.CenterId == currentUser.EmployerId))
             {
+                if (input.MedicalTestsResult != null)
+                {
+                    PDFUtils.ConvertToPdf(input.MedicalTestsResult, input.Id);
+                }
                 return await base.UpdateAsync(input);
             }
             else
@@ -117,6 +122,10 @@ namespace RedLife.Application.Donations.Dto
         public override async Task<DonationDto> CreateAsync(CreateDonationDto input)
         {
             input.Id = input.DonorId + input.Date.Replace("-", "");
+            if (input.MedicalTestsResult != null)
+            {
+                PDFUtils.ConvertToPdf(input.MedicalTestsResult, input.Id);
+            }
             return await base.CreateAsync(input);
         }
 
@@ -141,6 +150,8 @@ namespace RedLife.Application.Donations.Dto
         {
             return query.OrderByDescending(r => r.Date);
         }
+
+        
 
     }
 }

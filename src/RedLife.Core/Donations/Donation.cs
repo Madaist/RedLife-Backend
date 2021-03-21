@@ -13,6 +13,7 @@ namespace RedLife.Core.Donations
         public double Quantity { get; set; }
         public string BloodType { get; set; }
         public string Type { get; set; }
+        public string MedicalTestsResult { get; set; }
 
         public virtual User Donor { get; set; }
         public virtual User Center { get; set; }
