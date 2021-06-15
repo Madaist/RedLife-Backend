@@ -11,5 +11,6 @@ namespace RedLife.Application.Appointments.Dto
         public long DonorId { get; set; }
         public long CenterId { get; set; }
         public String Date { get; set; }
+        public String CenterAddress { get; set; }
     }
 }

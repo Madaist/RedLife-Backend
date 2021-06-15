@@ -45,5 +45,6 @@ namespace RedLife.Users.Dto
         //public DateTime BirthDate { get; set; }
         public string InstitutionName { get; set; }
         public long EmployerId { get; set; }
+        public string BloodType { get; set; }
     }
 }

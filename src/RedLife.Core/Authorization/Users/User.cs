@@ -18,6 +18,7 @@ namespace RedLife.Authorization.Users
         public string Number { get; set; }
         public DateTime? BirthDate { get; set; }
         public string InstitutionName { get; set; }
+        public string BloodType { get; set; }
 
         [InverseProperty("Center")]
         public virtual ICollection<Appointment> CenterAppointments { get; set; }
@@ -37,7 +38,6 @@ namespace RedLife.Authorization.Users
         public const string CenterPersonnelUserName = "CenterPersonnel";
 
         public const string DonorUserName = "Donor";
-
 
         public static string CreateRandomPassword()
         {

@@ -34,17 +34,17 @@ namespace RedLife.Tests.Users
             await _userAppService.CreateAsync(
                 new CreateUserDto
                 {
-                    EmailAddress = "john@volosoft.com",
+                    EmailAddress = "redlife@yahoo.com",
                     IsActive = true,
-                    Name = "John",
-                    Surname = "Nash",
+                    Name = "Red",
+                    Surname = "Life",
                     Password = "123qwe",
-                    UserName = "john.nash"
+                    UserName = "red.life"
                 });
 
             await UsingDbContextAsync(async context =>
             {
-                var johnNashUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == "john.nash");
+                var johnNashUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == "red.life");
                 johnNashUser.ShouldNotBeNull();
             });
         }

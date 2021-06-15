@@ -24,6 +24,7 @@ using Microsoft.EntityFrameworkCore;
 using RedLife.Core.LastId;
 using static RedLife.Authorization.Roles.StaticRoleNames;
 using System;
+using RedLife.Core.Donations;
 
 namespace RedLife.Users
 {
@@ -36,6 +37,7 @@ namespace RedLife.Users
         private readonly IAbpSession _abpSession;
         private readonly LogInManager _logInManager;
         private readonly LastUserIdManager _lastUserIdManager;
+        private readonly IRepository<Donation, string> _donationRepository;
 
         public UserAppService(
             IRepository<User, long> repository,
@@ -45,7 +47,8 @@ namespace RedLife.Users
             IPasswordHasher<User> passwordHasher,
             IAbpSession abpSession,
             LogInManager logInManager,
-            LastUserIdManager lastUserIdManager)
+            LastUserIdManager lastUserIdManager,
+            IRepository<Donation, string> donationRepository)
             : base(repository)
         {
             _userManager = userManager;
@@ -55,6 +58,7 @@ namespace RedLife.Users
             _abpSession = abpSession;
             _logInManager = logInManager;
             _lastUserIdManager = lastUserIdManager;
+            _donationRepository = donationRepository;
         }
 
         [AbpAuthorize(PermissionNames.Pages_Users)]
@@ -104,7 +108,7 @@ namespace RedLife.Users
 
             if (input.RoleNames != null)
             {
-                if (input.RoleNames.Contains(Tenants.Donor))
+                if (input.RoleNames.Contains("DONOR"))
                 {
                     user.Id = (long)input.SocialSecurityNumber;
                 }
@@ -133,6 +137,16 @@ namespace RedLife.Users
             if (input.EmployerId == 0)
             {
                 input.EmployerId = 1;
+            }
+
+            if(input.RoleNames.Contains("DONOR") && input.BloodType != user.BloodType)
+            {
+                var userDonations = _donationRepository.GetAll().Where(x => x.DonorId == user.Id);
+                foreach(Donation donation in userDonations)
+                {
+                    donation.BloodType = input.BloodType;
+                    _donationRepository.Update(donation);
+                }
             }
 
             MapToEntity(input, user);
@@ -213,7 +227,9 @@ namespace RedLife.Users
         protected override IQueryable<User> CreateFilteredQuery(PagedUserResultRequestDto input)
         {
             return Repository.GetAllIncluding(x => x.Roles)
-                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) || x.Name.Contains(input.Keyword) || x.EmailAddress.Contains(input.Keyword))
+                .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) 
+                    || x.Name.Contains(input.Keyword) 
+                    || x.EmailAddress.Contains(input.Keyword))
                 .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
         }
 

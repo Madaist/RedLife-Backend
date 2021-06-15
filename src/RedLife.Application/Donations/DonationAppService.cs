@@ -122,6 +122,14 @@ namespace RedLife.Application.Donations.Dto
         public override async Task<DonationDto> CreateAsync(CreateDonationDto input)
         {
             input.Id = input.DonorId + input.Date.Replace("-", "");
+        
+            var donor = _userRepository.Get(input.DonorId);
+            if(donor.BloodType == null)
+            {
+                donor.BloodType = input.BloodType;
+                _userRepository.Update(donor);
+            }
+
             if (input.MedicalTestsResult != null)
             {
                 PDFUtils.ConvertToPdf(input.MedicalTestsResult, input.Id);

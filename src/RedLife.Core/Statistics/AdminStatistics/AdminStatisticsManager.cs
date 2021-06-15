@@ -1,6 +1,5 @@
 ﻿using Abp.Dependency;
 using Abp.Domain.Repositories;
-using RedLife.Authorization.Roles;
 using RedLife.Authorization.Users;
 using RedLife.Core.Appointments;
 using RedLife.Core.Donations;
@@ -8,8 +7,6 @@ using RedLife.Core.Transfusions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using static RedLife.Authorization.Roles.StaticRoleNames;
 
 namespace RedLife.Core.Statistics.AdminStatistics
 {
