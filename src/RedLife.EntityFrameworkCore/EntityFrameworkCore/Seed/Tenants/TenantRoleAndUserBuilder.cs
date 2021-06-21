@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using RedLife.Authorization;
 using RedLife.Authorization.Roles;
 using RedLife.Authorization.Users;
+using RedLife.Core.Donations;
 using System.Linq;
 
 namespace RedLife.EntityFrameworkCore.Seed.Tenants
@@ -413,6 +414,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminUser.IsEmailConfirmed = true;
                 adminUser.IsActive = true;
                 adminUser.Id = GetAndUpdateLastUserId();
+                adminUser.Surname = "Admin";
+                adminUser.Name = "Red Life";
 
                 _context.Users.Add(adminUser);
                 _context.SaveChanges();
@@ -425,48 +428,207 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
         private void CreateCenterAdminUser(Role centerAdminRole)
         {
-            var centerAdminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.CenterAdminUserName);
-            if (centerAdminUser == null)
+            var centerAdminReginaMaria = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.CenterAdminUserName);
+            if (centerAdminReginaMaria == null)
             {
-                centerAdminUser = User.CreateTenantCenterAdminUser(_tenantId, "centerAdmin@defaulttenant.com");
-                centerAdminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminUser, "123qwe");
-                centerAdminUser.IsEmailConfirmed = true;
-                centerAdminUser.IsActive = true;
-                centerAdminUser.Id = GetAndUpdateLastUserId();
-                centerAdminUser.InstitutionName = "Regina Maria";
-                centerAdminUser.EmployerId = centerAdminUser.Id;
-                centerAdminUser.Country = "Romania";
-                centerAdminUser.City = "Bucharest";
-                centerAdminUser.County = "Bucharest";
-                centerAdminUser.Number = "15";
-                centerAdminUser.Street = "Brancusi";
+                centerAdminReginaMaria = User.CreateTenantCenterAdminUser(_tenantId, "admin@reginamaria.com");
+                centerAdminReginaMaria.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminReginaMaria, "123qwe");
+                centerAdminReginaMaria.IsEmailConfirmed = true;
+                centerAdminReginaMaria.IsActive = true;
+                centerAdminReginaMaria.Id = GetAndUpdateLastUserId();
+                centerAdminReginaMaria.InstitutionName = "Regina Maria";
+                centerAdminReginaMaria.EmployerId = centerAdminReginaMaria.Id;
+                centerAdminReginaMaria.Country = "Romania";
+                centerAdminReginaMaria.City = "Bucharest";
+                centerAdminReginaMaria.County = "Bucharest";
+                centerAdminReginaMaria.Number = "15";
+                centerAdminReginaMaria.Street = "Brancusi";
+                centerAdminReginaMaria.UserName = "adminReginaMaria";
+                centerAdminReginaMaria.CreationTime = new System.DateTime(2021, 1, 12);
+                centerAdminReginaMaria.Surname = "Maria";
+                centerAdminReginaMaria.Name = "Regina";
 
-                _context.Users.Add(centerAdminUser);
+
+                _context.Users.Add(centerAdminReginaMaria);
                 _context.SaveChanges();
 
-                // Assign Admin role to admin user
-                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminUser.Id, centerAdminRole.Id));
+                // Assign Center Admin role to center admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminReginaMaria.Id, centerAdminRole.Id));
                 _context.SaveChanges();
 
                 // transfusion center 2
-                var centerAdminUser2 = User.CreateTenantCenterAdminUser(_tenantId, "centerAdmin2@defaulttenant.com");
-                centerAdminUser2.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminUser2, "123qwe");
-                centerAdminUser2.IsEmailConfirmed = true;
-                centerAdminUser2.IsActive = true;
-                centerAdminUser2.Id = GetAndUpdateLastUserId();
-                centerAdminUser2.InstitutionName = "Sinevo";
-                centerAdminUser2.EmployerId = centerAdminUser2.Id;
-                centerAdminUser2.Country = "Romania";
-                centerAdminUser2.City = "Bucharest";
-                centerAdminUser2.County = "Bucharest";
-                centerAdminUser2.Number = "7";
-                centerAdminUser2.Street = "Veteranilor";
+                var centerAdminSinevo = User.CreateTenantCenterAdminUser(_tenantId, "admin@sinevo.com");
+                centerAdminSinevo.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminSinevo, "123qwe");
+                centerAdminSinevo.IsEmailConfirmed = true;
+                centerAdminSinevo.IsActive = true;
+                centerAdminSinevo.Id = GetAndUpdateLastUserId();
+                centerAdminSinevo.InstitutionName = "Sinevo";
+                centerAdminSinevo.EmployerId = centerAdminSinevo.Id;
+                centerAdminSinevo.Country = "Romania";
+                centerAdminSinevo.City = "Bucharest";
+                centerAdminSinevo.County = "Bucharest";
+                centerAdminSinevo.Number = "7";
+                centerAdminSinevo.Street = "Veteranilor";
+                centerAdminSinevo.UserName = "adminSinevo";
+                centerAdminSinevo.CreationTime = new System.DateTime(2021, 1, 12);
+                centerAdminSinevo.Surname = "Center";
+                centerAdminSinevo.Name = "Sinevo";
 
-                _context.Users.Add(centerAdminUser2);
+                _context.Users.Add(centerAdminSinevo);
                 _context.SaveChanges();
 
                 // Assign Admin role to admin user
-                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminUser2.Id, centerAdminRole.Id));
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminSinevo.Id, centerAdminRole.Id));
+                _context.SaveChanges();
+
+                // transfusion center 3
+                var centerAdminCTS = User.CreateTenantCenterAdminUser(_tenantId, "admin@cts.com");
+                centerAdminCTS.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTS, "123qwe");
+                centerAdminCTS.IsEmailConfirmed = true;
+                centerAdminCTS.IsActive = true;
+                centerAdminCTS.Id = GetAndUpdateLastUserId();
+                centerAdminCTS.InstitutionName = "CTS";
+                centerAdminCTS.EmployerId = centerAdminCTS.Id;
+                centerAdminCTS.Country = "Romania";
+                centerAdminCTS.City = "Bucharest";
+                centerAdminCTS.County = "Bucharest";
+                centerAdminCTS.Number = "2";
+                centerAdminCTS.Street = "Doctor Constantin Caracaș";
+                centerAdminCTS.UserName = "adminCTS";
+                centerAdminCTS.CreationTime = new System.DateTime(2021, 2, 5);
+                centerAdminCTS.Surname = "Center";
+                centerAdminCTS.Name = "Transfusion";
+
+                _context.Users.Add(centerAdminCTS);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminCTS.Id, centerAdminRole.Id));
+                _context.SaveChanges();
+
+                // transfusion center 4
+                var centerAdminCTSBacau = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctsbacau.com");
+                centerAdminCTSBacau.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSBacau, "123qwe");
+                centerAdminCTSBacau.IsEmailConfirmed = true;
+                centerAdminCTSBacau.IsActive = true;
+                centerAdminCTSBacau.Id = GetAndUpdateLastUserId();
+                centerAdminCTSBacau.InstitutionName = "CTS Bacau";
+                centerAdminCTSBacau.EmployerId = centerAdminCTSBacau.Id;
+                centerAdminCTSBacau.Country = "Romania";
+                centerAdminCTSBacau.City = "Bacau";
+                centerAdminCTSBacau.County = "Bacau";
+                centerAdminCTSBacau.Number = "22";
+                centerAdminCTSBacau.Street = "Marasesti";
+                centerAdminCTSBacau.UserName = "adminCTSBacau";
+                centerAdminCTSBacau.CreationTime = new System.DateTime(2021, 3, 20);
+                centerAdminCTSBacau.Surname = "Center";
+                centerAdminCTSBacau.Name = "Transfusion";
+
+                _context.Users.Add(centerAdminCTSBacau);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminCTSBacau.Id, centerAdminRole.Id));
+                _context.SaveChanges();
+
+
+                // transfusion center 5
+                var centerAdminCTSTimisoara = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctstimisoara.com");
+                centerAdminCTSTimisoara.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSTimisoara, "123qwe");
+                centerAdminCTSTimisoara.IsEmailConfirmed = true;
+                centerAdminCTSTimisoara.IsActive = true;
+                centerAdminCTSTimisoara.Id = GetAndUpdateLastUserId();
+                centerAdminCTSTimisoara.InstitutionName = "CTS Timisoara";
+                centerAdminCTSTimisoara.EmployerId = centerAdminCTSTimisoara.Id;
+                centerAdminCTSTimisoara.Country = "Romania";
+                centerAdminCTSTimisoara.City = "Timisoara";
+                centerAdminCTSTimisoara.County = "Timis";
+                centerAdminCTSTimisoara.Number = "1";
+                centerAdminCTSTimisoara.Street = "Martir Marius Ciopec";
+                centerAdminCTSTimisoara.CreationTime = new System.DateTime(2021, 3, 20);
+                centerAdminCTSTimisoara.Surname = "Center";
+                centerAdminCTSTimisoara.Name = "Transfusion";
+
+                _context.Users.Add(centerAdminCTSTimisoara);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminCTSTimisoara.Id, centerAdminRole.Id));
+                _context.SaveChanges();
+
+                // transfusion center 6
+                var centerAdminCTSCluj = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctscluj.com");
+                centerAdminCTSCluj.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSCluj, "123qwe");
+                centerAdminCTSCluj.IsEmailConfirmed = true;
+                centerAdminCTSCluj.IsActive = true;
+                centerAdminCTSCluj.Id = GetAndUpdateLastUserId();
+                centerAdminCTSCluj.InstitutionName = "CTS Cluj";
+                centerAdminCTSCluj.EmployerId = centerAdminCTSCluj.Id;
+                centerAdminCTSCluj.Country = "Romania";
+                centerAdminCTSCluj.City = "Cluj-Napoca";
+                centerAdminCTSCluj.County = "Cluj";
+                centerAdminCTSCluj.Number = "18";
+                centerAdminCTSCluj.Street = "N. Balcescu";
+                centerAdminCTSCluj.UserName = "adminCTSCluj";
+                centerAdminCTSCluj.CreationTime = new System.DateTime(2021, 5, 20);
+                centerAdminCTSCluj.Surname = "Center";
+                centerAdminCTSCluj.Name = "Transfusion";
+
+                _context.Users.Add(centerAdminCTSCluj);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminCTSCluj.Id, centerAdminRole.Id));
+                _context.SaveChanges();
+
+                // transfusion center 7
+                var centerAdminCTSOradea = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctsoradea.com");
+                centerAdminCTSOradea.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSOradea, "123qwe");
+                centerAdminCTSOradea.IsEmailConfirmed = true;
+                centerAdminCTSOradea.IsActive = true;
+                centerAdminCTSOradea.Id = GetAndUpdateLastUserId();
+                centerAdminCTSOradea.InstitutionName = "CTS Oradea";
+                centerAdminCTSOradea.EmployerId = centerAdminCTSOradea.Id;
+                centerAdminCTSOradea.Country = "Romania";
+                centerAdminCTSOradea.City = "Oradea";
+                centerAdminCTSOradea.County = "Bihor";
+                centerAdminCTSOradea.Number = "30";
+                centerAdminCTSOradea.Street = "Louis Pasteur";
+                centerAdminCTSOradea.UserName = "adminCTSOradea";
+                centerAdminCTSOradea.CreationTime = new System.DateTime(2021, 6, 20);
+                centerAdminCTSOradea.Surname = "Center";
+                centerAdminCTSOradea.Name = "Transfusion";
+
+                _context.Users.Add(centerAdminCTSOradea);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminCTSOradea.Id, centerAdminRole.Id));
+                _context.SaveChanges();
+
+                // transfusion center 8
+                var centerAdminCTSArad = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctsarad.com");
+                centerAdminCTSArad.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSArad, "123qwe");
+                centerAdminCTSArad.IsEmailConfirmed = true;
+                centerAdminCTSArad.IsActive = true;
+                centerAdminCTSArad.Id = GetAndUpdateLastUserId();
+                centerAdminCTSArad.InstitutionName = "CTS Arad";
+                centerAdminCTSArad.EmployerId = centerAdminCTSArad.Id;
+                centerAdminCTSArad.Country = "Romania";
+                centerAdminCTSArad.City = "Arad";
+                centerAdminCTSArad.County = "Arad";
+                centerAdminCTSArad.Number = "4";
+                centerAdminCTSArad.Street = "Andrenyi Karoly";
+                centerAdminCTSArad.UserName = "adminCTSArad";
+                centerAdminCTSArad.CreationTime = new System.DateTime(2021, 6, 15);
+                centerAdminCTSArad.Surname = "Center";
+                centerAdminCTSArad.Name = "Transfusion";
+
+                _context.Users.Add(centerAdminCTSArad);
+                _context.SaveChanges();
+
+                // Assign Admin role to admin user
+                _context.UserRoles.Add(new UserRole(_tenantId, centerAdminCTSArad.Id, centerAdminRole.Id));
                 _context.SaveChanges();
 
             }
@@ -474,21 +636,211 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
         private void CreateHospitalAdminUser(Role hospitalAdminRole)
         {
-            var hospitalAdminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.HospitalAdminUserName);
-            if (hospitalAdminUser == null)
+            var adminVBabes = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.HospitalAdminUserName);
+            if (adminVBabes == null)
             {
-                hospitalAdminUser = User.CreateTenantHospitalAdminUser(_tenantId, "hospitalAdmin@defaulttenant.com");
-                hospitalAdminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalAdminUser, "123qwe");
-                hospitalAdminUser.IsEmailConfirmed = true;
-                hospitalAdminUser.IsActive = true;
-                hospitalAdminUser.Id = GetAndUpdateLastUserId();
-                hospitalAdminUser.InstitutionName = "Victor Babes";
+                adminVBabes = User.CreateTenantHospitalAdminUser(_tenantId, "admin@victorbabes.com");
+                adminVBabes.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminVBabes, "123qwe");
+                adminVBabes.IsEmailConfirmed = true;
+                adminVBabes.IsActive = true;
+                adminVBabes.Id = GetAndUpdateLastUserId();
+                adminVBabes.InstitutionName = "Victor Babes";
+                adminVBabes.EmployerId = adminVBabes.Id;
+                adminVBabes.Country = "Romania";
+                adminVBabes.City = "Bucharest";
+                adminVBabes.County = "Bucharest";
+                adminVBabes.Number = "281";
+                adminVBabes.Street = "Mihai Bravu";
+                adminVBabes.UserName = "adminBabes";
+                adminVBabes.CreationTime = new System.DateTime(2021, 1, 15);
+                adminVBabes.Surname = "Babes";
+                adminVBabes.Name = "Victor";
 
-                _context.Users.Add(hospitalAdminUser);
+                _context.Users.Add(adminVBabes);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminVBabes.Id, hospitalAdminRole.Id));
                 _context.SaveChanges();
 
-                // Assign Admin role to admin user
-                _context.UserRoles.Add(new UserRole(_tenantId, hospitalAdminUser.Id, hospitalAdminRole.Id));
+
+                var adminMilitar = User.CreateTenantHospitalAdminUser(_tenantId, "admin@spitalmilitar.com");
+                adminMilitar.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminMilitar, "123qwe");
+                adminMilitar.IsEmailConfirmed = true;
+                adminMilitar.IsActive = true;
+                adminMilitar.Id = GetAndUpdateLastUserId();
+                adminMilitar.InstitutionName = "Military Hospital";
+                adminMilitar.EmployerId = adminMilitar.Id;
+                adminMilitar.Country = "Romania";
+                adminMilitar.City = "Bucharest";
+                adminMilitar.County = "Bucharest";
+                adminMilitar.Number = "281";
+                adminMilitar.Street = "Mihai Bravu";
+                adminMilitar.CreationTime = new System.DateTime(2021, 2, 15);
+                adminMilitar.Surname = "Hospital";
+                adminMilitar.Name = "Military";
+
+                _context.Users.Add(adminMilitar);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminMilitar.Id, hospitalAdminRole.Id));
+                _context.SaveChanges();
+
+                var adminInfectioaseCluj = User.CreateTenantHospitalAdminUser(_tenantId, "admin@boliinfectioasecluj.com");
+                adminInfectioaseCluj.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminInfectioaseCluj, "123qwe");
+                adminInfectioaseCluj.IsEmailConfirmed = true;
+                adminInfectioaseCluj.IsActive = true;
+                adminInfectioaseCluj.Id = GetAndUpdateLastUserId();
+                adminInfectioaseCluj.InstitutionName = "Clinical Hospital for Infectious Diseases";
+                adminInfectioaseCluj.EmployerId = adminInfectioaseCluj.Id;
+                adminInfectioaseCluj.Country = "Romania";
+                adminInfectioaseCluj.City = "Cluj";
+                adminInfectioaseCluj.County = "Cluj-Napoca";
+                adminInfectioaseCluj.Number = "23";
+                adminInfectioaseCluj.Street = "Iuliu Moldovan";
+                adminInfectioaseCluj.UserName = "adminBoliInfectioaseCluj";
+                adminInfectioaseCluj.CreationTime = new System.DateTime(2021, 2, 15);
+                adminInfectioaseCluj.Surname = "Hospital";
+                adminInfectioaseCluj.Surname = "Cluj Infectious Diseases";
+
+
+                _context.Users.Add(adminInfectioaseCluj);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminInfectioaseCluj.Id, hospitalAdminRole.Id));
+                _context.SaveChanges();
+
+                var adminMavromati = User.CreateTenantHospitalAdminUser(_tenantId, "admin@mavromati.com");
+                adminMavromati.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminMavromati, "123qwe");
+                adminMavromati.IsEmailConfirmed = true;
+                adminMavromati.IsActive = true;
+                adminMavromati.Id = GetAndUpdateLastUserId();
+                adminMavromati.InstitutionName = "Mavromati Emergency Hospital";
+                adminMavromati.EmployerId = adminMavromati.Id;
+                adminMavromati.Country = "Romania";
+                adminMavromati.City = "Botosani";
+                adminMavromati.County = "Botosani";
+                adminMavromati.Number = "11";
+                adminMavromati.Street = "Arhimandrit Marchian";
+                adminMavromati.UserName = "adminMavromati";
+                adminMavromati.CreationTime = new System.DateTime(2021, 3, 15);
+                adminMavromati.Surname = "Hospital";
+                adminMavromati.Name = "Mavromati";
+
+                _context.Users.Add(adminMavromati);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminMavromati.Id, hospitalAdminRole.Id));
+                _context.SaveChanges();
+
+                var adminUrgentaBrasov = User.CreateTenantHospitalAdminUser(_tenantId, "admin@urgentabrasov.com");
+                adminUrgentaBrasov.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminUrgentaBrasov, "123qwe");
+                adminUrgentaBrasov.IsEmailConfirmed = true;
+                adminUrgentaBrasov.IsActive = true;
+                adminUrgentaBrasov.Id = GetAndUpdateLastUserId();
+                adminUrgentaBrasov.InstitutionName = "Emergency Clinical Hospital";
+                adminUrgentaBrasov.EmployerId = adminUrgentaBrasov.Id;
+                adminUrgentaBrasov.Country = "Romania";
+                adminUrgentaBrasov.City = "Brasov";
+                adminUrgentaBrasov.County = "Brasov";
+                adminUrgentaBrasov.Number = "25";
+                adminUrgentaBrasov.Street = "Calea București";
+                adminUrgentaBrasov.UserName = "adminUrgentaBrasvov";
+                adminUrgentaBrasov.CreationTime = new System.DateTime(2021, 3, 15);
+                adminUrgentaBrasov.Surname = "Hospital";
+                adminUrgentaBrasov.Name = "Emergency";
+
+                _context.Users.Add(adminUrgentaBrasov);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminUrgentaBrasov.Id, hospitalAdminRole.Id));
+                _context.SaveChanges();
+
+                var adminUrgentaCluj = User.CreateTenantHospitalAdminUser(_tenantId, "admin@urgentacluj.com");
+                adminUrgentaCluj.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
+                    .HashPassword(adminUrgentaCluj, "123qwe");
+                adminUrgentaCluj.IsEmailConfirmed = true;
+                adminUrgentaCluj.IsActive = true;
+                adminUrgentaCluj.Id = GetAndUpdateLastUserId();
+                adminUrgentaCluj.InstitutionName = "Emergency Clinical Hospital";
+                adminUrgentaCluj.EmployerId = adminUrgentaCluj.Id;
+                adminUrgentaCluj.Country = "Romania";
+                adminUrgentaCluj.City = "Cluj";
+                adminUrgentaCluj.County = "Cluj Napoca";
+                adminUrgentaCluj.Number = "3";
+                adminUrgentaCluj.Street = "Clinicilor";
+                adminUrgentaCluj.UserName = "adminUrgentaCluj";
+                adminUrgentaCluj.CreationTime = new System.DateTime(2021, 4, 15);
+                adminUrgentaCluj.Surname = "Hospital";
+                adminUrgentaCluj.Name = "Emergency";
+
+                _context.Users.Add(adminUrgentaCluj);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminUrgentaCluj.Id, hospitalAdminRole.Id));
+                _context.SaveChanges();
+
+                var adminUrgentaConstanta = User.CreateTenantHospitalAdminUser(_tenantId, "admin@urgentaconstanta.com");
+                adminUrgentaConstanta.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
+                    .HashPassword(adminUrgentaConstanta, "123qwe");
+                adminUrgentaConstanta.IsEmailConfirmed = true;
+                adminUrgentaConstanta.IsActive = true;
+                adminUrgentaConstanta.Id = GetAndUpdateLastUserId();
+                adminUrgentaConstanta.InstitutionName = "County Emergency Hospital";
+                adminUrgentaConstanta.EmployerId = adminUrgentaConstanta.Id;
+                adminUrgentaConstanta.Country = "Romania";
+                adminUrgentaConstanta.City = "Constanta";
+                adminUrgentaConstanta.County = "Constanta";
+                adminUrgentaConstanta.Number = "145";
+                adminUrgentaConstanta.Street = "Tomis";
+                adminUrgentaConstanta.UserName = "adminUrgentaConstanta";
+                adminUrgentaConstanta.CreationTime = new System.DateTime(2021, 4, 15);
+                adminUrgentaConstanta.Surname = "Hospital";
+                adminUrgentaConstanta.Name = "Emergency";
+
+                _context.Users.Add(adminUrgentaConstanta);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminUrgentaConstanta.Id, hospitalAdminRole.Id));
+                _context.SaveChanges();
+
+                var adminColtea = User.CreateTenantHospitalAdminUser(_tenantId, "admin@coltea.com");
+                adminColtea.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
+                    .HashPassword(adminColtea, "123qwe");
+                adminColtea.IsEmailConfirmed = true;
+                adminColtea.IsActive = true;
+                adminColtea.Id = GetAndUpdateLastUserId();
+                adminColtea.InstitutionName = "Colțea Clinical Hospital";
+                adminColtea.EmployerId = adminColtea.Id;
+                adminColtea.Country = "Romania";
+                adminColtea.City = "Bucharest";
+                adminColtea.County = "Bucharest";
+                adminColtea.Number = "1";
+                adminColtea.Street = "Ion C. Brătianu";
+                adminColtea.UserName = "adminColtea";
+                adminColtea.CreationTime = new System.DateTime(2021, 5, 15);
+                adminColtea.Surname = "Hospital";
+                adminColtea.Name = "Coltea";
+
+                _context.Users.Add(adminColtea);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminColtea.Id, hospitalAdminRole.Id));
+                _context.SaveChanges();
+
+
+                var adminElias = User.CreateTenantHospitalAdminUser(_tenantId, "admin@elias.com");
+                adminElias.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
+                    .HashPassword(adminElias, "123qwe");
+                adminElias.IsEmailConfirmed = true;
+                adminElias.IsActive = true;
+                adminElias.Id = GetAndUpdateLastUserId();
+                adminElias.InstitutionName = "Elias University Emergency Hospital";
+                adminElias.EmployerId = adminElias.Id;
+                adminElias.Country = "Romania";
+                adminElias.City = "Bucharest";
+                adminElias.County = "Bucharest";
+                adminElias.Number = "17";
+                adminElias.Street = "Mărăști ";
+                adminElias.UserName = "adminElias";
+                adminElias.CreationTime = new System.DateTime(2021, 6, 15);
+                adminElias.Surname = "Hospital";
+                adminElias.Name = "Elias";
+
+                _context.Users.Add(adminElias);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, adminElias.Id, hospitalAdminRole.Id));
                 _context.SaveChanges();
             }
         }
@@ -498,17 +850,130 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var hospitalPersonnelUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.HospitalPersonnelUserName);
             if (hospitalPersonnelUser == null)
             {
-                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "hospitalPersonnel@defaulttenant.com");
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@victorbabes.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
                 hospitalPersonnelUser.IsEmailConfirmed = true;
                 hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
-                hospitalPersonnelUser.EmployerId = 5;
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBabes").Id;
+                hospitalPersonnelUser.UserName = "personnel1_babes";
+                hospitalPersonnelUser.Surname = "Personnel 1";
+                hospitalPersonnelUser.Name = "Victor Babes";
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
 
-                // Assign Personnel role to personnel user
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel2@victorbabes.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.IsEmailConfirmed = true;
+                hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBabes").Id;
+                hospitalPersonnelUser.UserName = "personnel2_babes";
+                hospitalPersonnelUser.Surname = "Personnel 2";
+                hospitalPersonnelUser.Name = "Victor Babes";
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel3@victorbabes.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.IsEmailConfirmed = true;
+                hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBabes").Id;
+                hospitalPersonnelUser.UserName = "personnel3_babes";
+                hospitalPersonnelUser.Surname = "Personnel 3";
+                hospitalPersonnelUser.Name = "Victor Babes";
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@spitalmilitar.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.IsEmailConfirmed = true;
+                hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == User.HospitalAdminUserName).Id;
+                hospitalPersonnelUser.UserName = "personnel1_militar";
+                hospitalPersonnelUser.Surname = "Personnel 1";
+                hospitalPersonnelUser.Name = "Militar";
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@boliinfectioasecluj.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.IsEmailConfirmed = true;
+                hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBoliInfectioaseCluj").Id;
+                hospitalPersonnelUser.UserName = "personnel1_boliinfectioasecluj";
+                hospitalPersonnelUser.Surname = "Personnel 1";
+                hospitalPersonnelUser.Name = "Infectioase Cluj";
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@mavromati.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.IsEmailConfirmed = true;
+                hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminMavromati").Id;
+                hospitalPersonnelUser.UserName = "personnel1_mavromati";
+                hospitalPersonnelUser.Surname = "Personnel 1";
+                hospitalPersonnelUser.Name = "Mavromati";
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@urgentabrasov.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.IsEmailConfirmed = true;
+                hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminUrgentaBrasvov").Id;
+                hospitalPersonnelUser.UserName = "personnel1_urgentabrasov";
+                hospitalPersonnelUser.Surname = "Personnel 1";
+                hospitalPersonnelUser.Name = "Urgente Brasov";
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@urgentacluj.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.IsEmailConfirmed = true;
+                hospitalPersonnelUser.IsActive = true;
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminUrgentaCluj").Id;
+                hospitalPersonnelUser.UserName = "personnel1_urgentacluj";
+                hospitalPersonnelUser.Surname = "Personnel 1";
+                hospitalPersonnelUser.Name = "Urgente Cluj";
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
                 _context.SaveChanges();
             }
@@ -519,17 +984,121 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var centerPersonnelUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.CenterPersonnelUserName);
             if (centerPersonnelUser == null)
             {
-                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "centerPersonnel@defaulttenant.com");
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@reginamaria.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
                 centerPersonnelUser.IsEmailConfirmed = true;
                 centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
-                centerPersonnelUser.EmployerId = 3;
-
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminReginaMaria").Id;
+                centerPersonnelUser.UserName = "personnel1_reginamaria";
+                centerPersonnelUser.Surname = "Personnel 1";
+                centerPersonnelUser.Name = "Regina Maria";
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
+                _context.SaveChanges();
 
-                // Assign Personnel role to personnel user
+
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel2@reginamaria.com");
+                centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
+                centerPersonnelUser.IsEmailConfirmed = true;
+                centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminReginaMaria").Id;
+                centerPersonnelUser.UserName = "personnel2_reginamaria";
+                centerPersonnelUser.Surname = "Personnel 2";
+                centerPersonnelUser.Name = "Regina Maria";
+                _context.Users.Add(centerPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@sinevo.com");
+                centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
+                centerPersonnelUser.IsEmailConfirmed = true;
+                centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminSinevo").Id;
+                centerPersonnelUser.UserName = "personnel1_sinevo";
+                centerPersonnelUser.Surname = "Personnel 1";
+                centerPersonnelUser.Name = "Sinevo";
+                _context.Users.Add(centerPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@cts.com");
+                centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
+                centerPersonnelUser.IsEmailConfirmed = true;
+                centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTS").Id;
+                centerPersonnelUser.UserName = "personnel1_cts";
+                centerPersonnelUser.Surname = "Personnel 1";
+                centerPersonnelUser.Name = "CTS";
+                _context.Users.Add(centerPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel2@cts.com");
+                centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
+                centerPersonnelUser.IsEmailConfirmed = true;
+                centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTS").Id;
+                centerPersonnelUser.UserName = "personnel2_cts";
+                centerPersonnelUser.Surname = "Personnel 2";
+                centerPersonnelUser.Name = "CTS";
+                _context.Users.Add(centerPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel3@cts.com");
+                centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
+                centerPersonnelUser.IsEmailConfirmed = true;
+                centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTS").Id;
+                centerPersonnelUser.UserName = "personnel3_cts";
+                centerPersonnelUser.Surname = "Personnel 3";
+                centerPersonnelUser.Name = "CTS";
+                _context.Users.Add(centerPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@ctsbacau.com");
+                centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
+                centerPersonnelUser.IsEmailConfirmed = true;
+                centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTSBacau").Id;
+                centerPersonnelUser.UserName = "personnel1_ctsbacau";
+                centerPersonnelUser.Surname = "Personnel 1";
+                centerPersonnelUser.Name = "CTS Bacau";
+                _context.Users.Add(centerPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
+                _context.SaveChanges();
+
+
+                centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@ctstimisoara.com");
+                centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
+                centerPersonnelUser.IsEmailConfirmed = true;
+                centerPersonnelUser.IsActive = true;
+                centerPersonnelUser.Id = GetAndUpdateLastUserId();
+                centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == User.HospitalAdminUserName).Id;
+                centerPersonnelUser.Surname = "Personnel 1";
+                centerPersonnelUser.Name = "CTS Timisoara";
+                _context.Users.Add(centerPersonnelUser);
+                _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
                 _context.SaveChanges();
             }
@@ -540,35 +1109,128 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
             var donorUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.DonorUserName);
             if (donorUser == null)
             {
-                var donorUser1 = User.CreateTenantDonorUser(_tenantId, "donor1@defaulttenant.com");
-                donorUser1.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser1, "123qwe");
-                donorUser1.Surname = "Istrate";
-                donorUser1.Name = "Madalina";
-                donorUser1.IsEmailConfirmed = true;
-                donorUser1.IsActive = true;
-                donorUser1.Id = 2990407460021;
+                donorUser = User.CreateTenantDonorUser(_tenantId, "zotaandrei@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Zota";
+                donorUser.Name = "Andrei";
+                donorUser.IsEmailConfirmed = true;
+                donorUser.IsActive = true;
+                donorUser.Id = 1990305329641;
+                donorUser.UserName = "andreiz";
+                donorUser.CreationTime = new System.DateTime(2021, 1, 2);
+                donorUser.BloodType = BloodTypes.BNegative;
 
-                _context.Users.Add(donorUser1);
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
                 _context.SaveChanges();
 
-                // Assign Personnel role to personnel user
-                _context.UserRoles.Add(new UserRole(_tenantId, donorUser1.Id, donorRole.Id));
+
+                donorUser = User.CreateTenantDonorUser(_tenantId, "istratemadalinav@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Istrate";
+                donorUser.Name = "Madalina";
+                donorUser.Id = 2990407460021;
+                donorUser.CreationTime = new System.DateTime(2021, 1, 2);
+                donorUser.BloodType = BloodTypes.ANegative;
+                donorUser.UserName = "madaist";
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
                 _context.SaveChanges();
 
 
-                var donorUser2 = User.CreateTenantDonorUser(_tenantId, "donor2@defaulttenant.com");
-                donorUser2.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser2, "123qwe");
-                donorUser2.Surname = "Zota";
-                donorUser2.Name = "Alexandru";
-                donorUser2.IsEmailConfirmed = true;
-                donorUser2.IsActive = true;
-                donorUser2.Id = 6990407460021;
-
-                _context.Users.Add(donorUser2);
+                donorUser = User.CreateTenantDonorUser(_tenantId, "popescumaria@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Popescu";
+                donorUser.Name = "Maria";
+                donorUser.Id = 2991230465121;
+                donorUser.CreationTime = new System.DateTime(2021, 1, 2);
+                donorUser.UserName = "popescumaria";
+                donorUser.BloodType = BloodTypes.CPositive;
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
                 _context.SaveChanges();
 
-                // Assign Personnel role to personnel user
-                _context.UserRoles.Add(new UserRole(_tenantId, donorUser2.Id, donorRole.Id));
+
+                donorUser = User.CreateTenantDonorUser(_tenantId, "iongheorghe@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Ion";
+                donorUser.Name = "Gheorghe";
+                donorUser.Id = 1991207165828;
+                donorUser.CreationTime = new System.DateTime(2021, 2, 2);
+                donorUser.UserName = "ion.g";
+                donorUser.BloodType = BloodTypes.ABNegative;
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
+                _context.SaveChanges();
+
+
+                donorUser = User.CreateTenantDonorUser(_tenantId, "mihaialina@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Mihai";
+                donorUser.Name = "Alina";
+                donorUser.Id = 2951208165828;
+                donorUser.CreationTime = new System.DateTime(2021, 3, 2);
+                donorUser.UserName = "alinam";
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
+                _context.SaveChanges();
+
+
+                donorUser = User.CreateTenantDonorUser(_tenantId, "musatgabriela@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Musat";
+                donorUser.Name = "Gabriela";
+                donorUser.Id = 2961202115227;
+                donorUser.CreationTime = new System.DateTime(2021, 4, 2);
+                donorUser.UserName = "gabimusat";
+                donorUser.BloodType = BloodTypes.APositive;
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
+                _context.SaveChanges();
+
+
+                donorUser = User.CreateTenantDonorUser(_tenantId, "dinuionuta@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Dinu";
+                donorUser.Name = "Ionut";
+                donorUser.Id = 1981205115227;
+                donorUser.CreationTime = new System.DateTime(2021, 4, 2);
+                donorUser.UserName = "ionutdinu";
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
+                _context.SaveChanges();
+
+
+                donorUser = User.CreateTenantDonorUser(_tenantId, "mironadrian@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Miron";
+                donorUser.Name = "Adrian";
+                donorUser.Id = 1930419125887;
+                donorUser.CreationTime = new System.DateTime(2021, 5, 2);
+                donorUser.UserName = "adrianmiron";
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
+                _context.SaveChanges();
+
+
+                donorUser = User.CreateTenantDonorUser(_tenantId, "neagumaria@gmail.com");
+                donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
+                donorUser.Surname = "Neagu";
+                donorUser.Name = "Maria";
+                donorUser.Id = 2970421258871;
+                donorUser.CreationTime = new System.DateTime(2021, 6, 2);
+       
+                _context.Users.Add(donorUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
                 _context.SaveChanges();
             }
         }

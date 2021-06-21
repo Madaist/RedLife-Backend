@@ -19,7 +19,8 @@ namespace RedLife.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     IsBloodAccepted = table.Column<bool>(nullable: false),
                     Quantity = table.Column<double>(nullable: false),
-                    BloodType = table.Column<string>(nullable: true)
+                    BloodType = table.Column<string>(nullable: true),
+                    MedicalTestsResult = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

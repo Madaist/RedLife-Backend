@@ -322,7 +322,10 @@ namespace RedLife.Users
         [AbpAuthorize(PermissionNames.Users_GetCenters)]
         public ListResultDto<UserDto> GetTransfusionCenters()
         {
-            var transfusionCenters = _userManager.GetUsersInRoleAsync(Tenants.CenterAdmin).Result;
+            var transfusionCenters = _userManager
+                .GetUsersInRoleAsync(Tenants.CenterAdmin)
+                .Result
+                .OrderBy(t => t.InstitutionName);
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(transfusionCenters));
         }
 
@@ -330,7 +333,11 @@ namespace RedLife.Users
         [AbpAuthorize(PermissionNames.Users_GetDonors)]
         public ListResultDto<UserDto> GetDonors()
         {
-            var donors = _userManager.GetUsersInRoleAsync(Tenants.Donor).Result;
+            var donors = _userManager
+                .GetUsersInRoleAsync(Tenants.Donor)
+                .Result
+                .OrderBy(d => d.Name)
+                .ThenBy(d => d.Surname);
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(donors));
         }
 
@@ -338,7 +345,10 @@ namespace RedLife.Users
         [AbpAuthorize(PermissionNames.Users_GetHospitals)]
         public ListResultDto<UserDto> GetHospitals()
         {
-            var hospitals = _userManager.GetUsersInRoleAsync(Tenants.HospitalAdmin).Result;
+            var hospitals = _userManager
+                .GetUsersInRoleAsync(Tenants.HospitalAdmin)
+                .Result
+                .OrderBy(h => h.InstitutionName);
             return new ListResultDto<UserDto>(ObjectMapper.Map<List<UserDto>>(hospitals));
         }
 

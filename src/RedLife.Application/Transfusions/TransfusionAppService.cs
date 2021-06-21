@@ -66,34 +66,32 @@ namespace RedLife.Application.Transfusions
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
             List<TransfusionDto> transfusionDtoOutput = new List<TransfusionDto>();
+            var filteredTransfusions = CreateFilteredQuery(input).ToList();
 
             if (roleName == Tenants.Admin)
             {
-                return await base.GetAllAsync(input);
+                transfusionDtoOutput = _objectMapper.Map<List<TransfusionDto>>(filteredTransfusions.ToList());
             }
-            else
+            else if (roleName == Tenants.Donor)
             {
-                var filteredTransfusions = CreateFilteredQuery(input).ToList();
-                if (roleName == Tenants.Donor)
-                {
-                    transfusionDtoOutput = _objectMapper.Map<List<TransfusionDto>>(filteredTransfusions.
-                                               Where(x => x.Donation.DonorId == currentUser.Id).ToList());
-                }
-                else if (roleName == Tenants.HospitalAdmin)
-                {
-                    transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
-                                                .Where(x => x.HospitalId == currentUser.Id).ToList());
-                }
-                else if (roleName == Tenants.HospitalPersonnel)
-                {
-                    transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
-                                                .Where(x => x.HospitalId == currentUser.EmployerId).ToList());
-                }
+                transfusionDtoOutput = _objectMapper.Map<List<TransfusionDto>>(filteredTransfusions.
+                                            Where(x => x.Donation.DonorId == currentUser.Id).ToList());
             }
+            else if (roleName == Tenants.HospitalAdmin)
+            {
+                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
+                                            .Where(x => x.HospitalId == currentUser.Id).ToList());
+            }
+            else if (roleName == Tenants.HospitalPersonnel)
+            {
+                transfusionDtoOutput = ObjectMapper.Map<List<TransfusionDto>>(filteredTransfusions
+                                            .Where(x => x.HospitalId == currentUser.EmployerId).ToList());
+            }
+            
 
             return new PagedResultDto<TransfusionDto>
             {
-                Items = transfusionDtoOutput,
+                Items = transfusionDtoOutput.OrderByDescending(transfusion => transfusion.Date).ToList(),
                 TotalCount = transfusionDtoOutput.Count
             };
         }

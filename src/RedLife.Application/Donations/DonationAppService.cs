@@ -62,34 +62,32 @@ namespace RedLife.Application.Donations.Dto
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
             List<DonationDto> donationDtoOutput = new List<DonationDto>();
+            var filteredDonations = CreateFilteredQuery(input).ToList();
 
             if (roleName == Tenants.Admin)
             {
-                return await base.GetAllAsync(input);
+                donationDtoOutput = _objectMapper.Map<List<DonationDto>>(filteredDonations.ToList());
             }
-            else
+            else if (roleName == Tenants.Donor)
             {
-                var filteredDonations = CreateFilteredQuery(input).ToList();
-                if (roleName == Tenants.Donor)
-                {
-                    donationDtoOutput = _objectMapper.Map<List<DonationDto>>(filteredDonations.
-                                               Where(x => x.DonorId == currentUser.Id).ToList());
-                }
-                else if (roleName == Tenants.CenterPersonnel)
-                {
-                    donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
-                                                .Where(x => x.CenterId == currentUser.EmployerId).ToList());
-                }
-                else if (roleName == Tenants.CenterAdmin)
-                {
-                    donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
-                                                .Where(x => x.CenterId == currentUser.Id).ToList());
-                }
+                donationDtoOutput = _objectMapper.Map<List<DonationDto>>(filteredDonations.
+                                            Where(x => x.DonorId == currentUser.Id).ToList());
             }
+            else if (roleName == Tenants.CenterPersonnel)
+            {
+                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
+                                            .Where(x => x.CenterId == currentUser.EmployerId).ToList());
+            }
+            else if (roleName == Tenants.CenterAdmin)
+            {
+                donationDtoOutput = ObjectMapper.Map<List<DonationDto>>(filteredDonations
+                                            .Where(x => x.CenterId == currentUser.Id).ToList());
+            }
+            
 
             return new PagedResultDto<DonationDto>
             {
-                Items = donationDtoOutput,
+                Items = donationDtoOutput.OrderByDescending(donation => donation.Date).ToList(),
                 TotalCount = donationDtoOutput.Count
             };
         }

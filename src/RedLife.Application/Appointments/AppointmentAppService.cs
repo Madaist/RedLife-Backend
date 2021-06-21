@@ -62,35 +62,30 @@ namespace RedLife.Application.Appointments
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
 
             List<AppointmentDto> appointmentDtoOutput = new List<AppointmentDto>();
-
-            if (roleName == Tenants.Admin)
+            var filteredAppointments = CreateFilteredQuery(input).ToList();
+            if(roleName == Tenants.Admin)
             {
-                return await base.GetAllAsync(input);
+                appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.ToList());
             }
-            else
+            else if (roleName == Tenants.Donor)
             {
-                var filteredAppointments = CreateFilteredQuery(input).ToList();
-
-                if (roleName == Tenants.Donor)
-                {
-                    appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.
-                                               Where(x => x.DonorId == currentUser.Id).ToList());
-                }
-                else if (roleName == Tenants.CenterPersonnel)
-                {
-                    appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
-                                                .Where(x => x.CenterId == currentUser.EmployerId).ToList());
-                }
-                else if (roleName == Tenants.CenterAdmin)
-                {
-                    appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
-                                                .Where(x => x.CenterId == currentUser.Id).ToList());
-                }
+                appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.
+                                            Where(x => x.DonorId == currentUser.Id).ToList());
+            }
+            else if (roleName == Tenants.CenterPersonnel)
+            {
+                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
+                                            .Where(x => x.CenterId == currentUser.EmployerId).ToList());
+            }
+            else if (roleName == Tenants.CenterAdmin)
+            {
+                appointmentDtoOutput = ObjectMapper.Map<List<AppointmentDto>>(filteredAppointments
+                                            .Where(x => x.CenterId == currentUser.Id).ToList());
             }
 
             return new PagedResultDto<AppointmentDto>
             {
-                Items = appointmentDtoOutput,
+                Items = appointmentDtoOutput.OrderByDescending(appointment => appointment.Date).ToList(),
                 TotalCount = appointmentDtoOutput.Count
             };
         }
