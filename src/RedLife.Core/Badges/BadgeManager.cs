@@ -32,7 +32,8 @@ namespace RedLife.Core.Badges
             var userDonations = _donationRepository
                .GetAll()
                .Where(x => x.DonorId == user.Id)
-               .OrderByDescending(x => x.Date);
+               .OrderByDescending(x => x.Date)
+               .ToList();
 
             CheckFirstDonationBadge(user, alreadyAssignedBadges, userDonations);
             CheckDonationAfterLongTimeBadge(user, alreadyAssignedBadges, userDonations);
@@ -43,7 +44,7 @@ namespace RedLife.Core.Badges
             Check3DonationsIn9MonthsBadge(user, alreadyAssignedBadges, userDonations);
         }
 
-        public bool Check3DonationsIn9MonthsBadge(User user, ICollection<string> assignedBadges, IOrderedQueryable<Donation> userDonations)
+        public bool Check3DonationsIn9MonthsBadge(User user, ICollection<string> assignedBadges, List<Donation> userDonations)
         {
             if (!assignedBadges.Contains(BadgeTypes.ThreeDonationsIn9Months) && userDonations != null && userDonations.Count() >= 3)
             {
@@ -65,7 +66,7 @@ namespace RedLife.Core.Badges
             return false;
         }
 
-        public bool CheckFirstSpecialDonationBadge(User user, ICollection<string> assignedBadges, IOrderedQueryable<Donation> userDonations)
+        public bool CheckFirstSpecialDonationBadge(User user, ICollection<string> assignedBadges, List<Donation> userDonations)
         {
             if (!assignedBadges.Contains(BadgeTypes.FirstSpecialDonation))
             {
@@ -82,7 +83,7 @@ namespace RedLife.Core.Badges
             return false;
         }
 
-        public bool CheckCovidPlasmaDonationBadge(User user, ICollection<string> assignedBadges, IOrderedQueryable<Donation> userDonations)
+        public bool CheckCovidPlasmaDonationBadge(User user, ICollection<string> assignedBadges, List<Donation> userDonations)
         {
             if (!assignedBadges.Contains(BadgeTypes.CovidPlasmaDonation))
             {
@@ -99,7 +100,7 @@ namespace RedLife.Core.Badges
             return false;
         }
 
-        public bool CheckHolidayDonationBadge(User user, ICollection<string> assignedBadges, IOrderedQueryable<Donation> userDonations)
+        public bool CheckHolidayDonationBadge(User user, ICollection<string> assignedBadges, List<Donation> userDonations)
         {
             if (!assignedBadges.Contains(BadgeTypes.HolidayDonation))
             {
@@ -116,7 +117,7 @@ namespace RedLife.Core.Badges
             return false;
         }
 
-        public bool CheckDonationAfter3MonthsBadge(User user, ICollection<string> assignedBadges, IOrderedQueryable<Donation> userDonations)
+        public bool CheckDonationAfter3MonthsBadge(User user, ICollection<string> assignedBadges, List<Donation> userDonations)
         {
             if (!assignedBadges.Contains(BadgeTypes.DonationAfter3Months) && userDonations != null && userDonations.Count() >= 2)
             {
@@ -135,7 +136,7 @@ namespace RedLife.Core.Badges
             return false;
         }
 
-        public bool CheckDonationAfterLongTimeBadge(User user, ICollection<string> assignedBadges, IOrderedQueryable<Donation> userDonations)
+        public bool CheckDonationAfterLongTimeBadge(User user, ICollection<string> assignedBadges, List<Donation> userDonations)
         {
             if (!assignedBadges.Contains(BadgeTypes.DonationAfterLongTime) && userDonations != null && userDonations.Count() >= 2)
             {
@@ -154,7 +155,7 @@ namespace RedLife.Core.Badges
             return false;
         }
 
-        public bool CheckFirstDonationBadge(User user, ICollection<string> assignedBadges, IOrderedQueryable<Donation> userDonations)
+        public bool CheckFirstDonationBadge(User user, ICollection<string> assignedBadges, List<Donation> userDonations)
         {
             if (!assignedBadges.Contains(BadgeTypes.FirstDonationBadge))
             {

@@ -12,20 +12,26 @@ namespace RedLife.Core.Achievements
     public class AchievementsManager : IAchievementsManager, ISingletonDependency
     {
         private readonly IRepository<Donation, string> _donationRepository;
+        private readonly IRepository<User, long> _userRepository;
         private readonly IRepository<DonationInfo, string> _donationInfoRepository;
         private readonly IRepository<Badge> _badgeRepository;
         private readonly IRepository<UserBadge> _userBadgesRepository;
+        private readonly IBadgeManager _badgeManager;
 
         public AchievementsManager(IRepository<Donation, string> donationRepository,
             IRepository<DonationInfo, string> donationInfoRepository,
             IRepository<Badge> badgeRepository,
-            IRepository<UserBadge> userBadgesRepository
+            IRepository<UserBadge> userBadgesRepository,
+            IRepository<User, long> userRepository,
+            IBadgeManager badgeManager
             )
         {
             _donationRepository = donationRepository;
             _donationInfoRepository = donationInfoRepository;
             _badgeRepository = badgeRepository;
             _userBadgesRepository = userBadgesRepository;
+            _userRepository = userRepository;
+            _badgeManager = badgeManager;
         }
 
         public int GetPeopleHelped(long donorId)
@@ -69,6 +75,22 @@ namespace RedLife.Core.Achievements
                 }
             }
             return assignedBadges;
+        }
+
+        public void UpdateLeagueandBadges(User user)
+        {
+            _badgeManager.AssignBadges(user);
+            if (user.Points >= 0 && user.Points <= 35) user.LeagueId = 1;
+            else if (user.Points > 35 && user.Points <= 70) user.LeagueId = 2;
+            else if (user.Points > 70 && user.Points <= 120) user.LeagueId = 3;
+            else if (user.Points > 120 && user.Points <= 160) user.LeagueId = 4;
+            else if (user.Points > 160 && user.Points <= 200) user.LeagueId = 5;
+            else if (user.Points > 200 && user.Points <= 250) user.LeagueId = 6;
+            else if (user.Points > 250 && user.Points <= 290) user.LeagueId = 7;
+            else if (user.Points > 290 && user.Points <= 400) user.LeagueId = 8;
+            else if (user.Points > 400) user.LeagueId = 9;
+
+            _userRepository.Update(user);
         }
 
     }

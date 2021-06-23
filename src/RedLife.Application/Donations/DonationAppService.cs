@@ -7,6 +7,7 @@ using Abp.Linq.Extensions;
 using Abp.ObjectMapping;
 using RedLife.Authorization;
 using RedLife.Authorization.Users;
+using RedLife.Core.Achievements;
 using RedLife.Core.Donations;
 using RedLife.Core.PdfHelper;
 using System;
@@ -22,16 +23,27 @@ namespace RedLife.Application.Donations.Dto
                                          IDonationAppService
     {
         private readonly IRepository<Donation, string> _donationRepository;
+        private readonly IRepository<DonationInfo, string> _donationInfoRepository;
         private readonly IObjectMapper _objectMapper;
         private readonly IRepository<User, long> _userRepository;
         private readonly UserManager _userManager;
+        IAchievementsManager _achievementsManager;
 
-        public DonationAppService(IRepository<Donation, string> donationRepository, IRepository<User, long> userRepository, UserManager userManager, IObjectMapper objectMapper) : base(donationRepository)
+        public DonationAppService(
+            IRepository<Donation, string> donationRepository, 
+            IRepository<User, long> userRepository, 
+            UserManager userManager, 
+            IObjectMapper objectMapper,
+            IRepository<DonationInfo, string> donationInfoRepository,
+            IAchievementsManager achievementsManager
+            ) : base(donationRepository)
         {
             _donationRepository = donationRepository;
             _userRepository = userRepository;
             _userManager = userManager;
             _objectMapper = objectMapper;
+            _donationInfoRepository = donationInfoRepository;
+            _achievementsManager = achievementsManager;
         }
 
         [AbpAuthorize(PermissionNames.Donations_Get)]
@@ -132,7 +144,15 @@ namespace RedLife.Application.Donations.Dto
             {
                 PDFUtils.ConvertToPdf(input.MedicalTestsResult, input.Id);
             }
-            return await base.CreateAsync(input);
+            var creationResult =  base.CreateAsync(input).Result;
+
+            var donationType = input.Type;
+            var donationPoints = _donationInfoRepository.Get(donationType).Points;
+            donor.Points += donationPoints;
+            _userRepository.Update(donor);
+            _achievementsManager.UpdateLeagueandBadges(donor);
+            
+            return creationResult;
         }
 
         [AbpAuthorize(PermissionNames.Donations_Delete)]
