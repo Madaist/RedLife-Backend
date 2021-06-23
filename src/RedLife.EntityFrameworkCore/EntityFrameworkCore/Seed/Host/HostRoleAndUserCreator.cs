@@ -93,7 +93,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Host
                     IsEmailConfirmed = true,
                     IsActive = true,
                     EmployerId = null,
-                    Id = GetAndUpdateLastUserId()
+                    Id = GetAndUpdateLastUserId(),
+                    LeagueId = _context.Leagues.FirstOrDefault(league => league.Name == "Bronze").Id
                 };
 
                 user.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(user, "123qwe");

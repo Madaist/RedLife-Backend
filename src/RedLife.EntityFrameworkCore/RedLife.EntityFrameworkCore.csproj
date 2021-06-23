@@ -31,6 +31,28 @@
     <Compile Remove="Migrations\20210220204446_Added_Donations.Designer.cs" />
     <Compile Remove="Migrations\20210619190751_Added_TestResults.cs" />
     <Compile Remove="Migrations\20210619190751_Added_TestResults.Designer.cs" />
+    <Compile Remove="Migrations\20210622161120_Added_Achievements.cs" />
+    <Compile Remove="Migrations\20210622161120_Added_Achievements.Designer.cs" />
+    <Compile Remove="Migrations\20210622161521_Added_Achievements.cs" />
+    <Compile Remove="Migrations\20210622161521_Added_Achievements.Designer.cs" />
+    <Compile Remove="Migrations\20210622163906_Added_Achievements.cs" />
+    <Compile Remove="Migrations\20210622163906_Added_Achievements.Designer.cs" />
+    <Compile Remove="Migrations\20210622164953_Added_Achievements.cs" />
+    <Compile Remove="Migrations\20210622164953_Added_Achievements.Designer.cs" />
+    <Compile Remove="Migrations\20210622165128_Added_Achievements.cs" />
+    <Compile Remove="Migrations\20210622165128_Added_Achievements.Designer.cs" />
+    <Compile Remove="Migrations\20210622165609_Added_Achievements.cs" />
+    <Compile Remove="Migrations\20210622165609_Added_Achievements.Designer.cs" />
+    <Compile Remove="Migrations\20210622165705_Added_Achievements.cs" />
+    <Compile Remove="Migrations\20210622165705_Added_Achievements.Designer.cs" />
+    <Compile Remove="Migrations\20210622210523_Added_RedLifeDB.cs" />
+    <Compile Remove="Migrations\20210622210523_Added_RedLifeDB.Designer.cs" />
+    <Compile Remove="Migrations\20210622210643_Added_RedLifeDB.cs" />
+    <Compile Remove="Migrations\20210622210643_Added_RedLifeDB.Designer.cs" />
+    <Compile Remove="Migrations\20210622210908_Changed_DonationInfo.cs" />
+    <Compile Remove="Migrations\20210622210908_Changed_DonationInfo.Designer.cs" />
+    <Compile Remove="Migrations\20210622211113_Changed_DonationInfo.cs" />
+    <Compile Remove="Migrations\20210622211113_Changed_DonationInfo.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />

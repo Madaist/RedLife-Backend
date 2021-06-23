@@ -407,15 +407,16 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         private void CreateAdminUser(Role adminRole)
         {
             var adminUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == AbpUserBase.AdminUserName);
+            var leagueId = _context.Leagues.FirstOrDefault(league => league.Name == "Bronze").Id;
+
             if (adminUser == null)
             {
                 adminUser = User.CreateTenantAdminUser(_tenantId, "admin@defaulttenant.com");
                 adminUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminUser, "123qwe");
-                adminUser.IsEmailConfirmed = true;
-                adminUser.IsActive = true;
                 adminUser.Id = GetAndUpdateLastUserId();
                 adminUser.Surname = "Admin";
                 adminUser.Name = "Red Life";
+                adminUser.LeagueId = leagueId;
 
                 _context.Users.Add(adminUser);
                 _context.SaveChanges();
@@ -429,12 +430,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         private void CreateCenterAdminUser(Role centerAdminRole)
         {
             var centerAdminReginaMaria = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.CenterAdminUserName);
+            var leagueId = _context.Leagues.FirstOrDefault(league => league.Name == "Bronze").Id;
+
             if (centerAdminReginaMaria == null)
             {
                 centerAdminReginaMaria = User.CreateTenantCenterAdminUser(_tenantId, "admin@reginamaria.com");
                 centerAdminReginaMaria.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminReginaMaria, "123qwe");
-                centerAdminReginaMaria.IsEmailConfirmed = true;
-                centerAdminReginaMaria.IsActive = true;
                 centerAdminReginaMaria.Id = GetAndUpdateLastUserId();
                 centerAdminReginaMaria.InstitutionName = "Regina Maria";
                 centerAdminReginaMaria.EmployerId = centerAdminReginaMaria.Id;
@@ -447,6 +448,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminReginaMaria.CreationTime = new System.DateTime(2021, 1, 12);
                 centerAdminReginaMaria.Surname = "Maria";
                 centerAdminReginaMaria.Name = "Regina";
+                centerAdminReginaMaria.LeagueId = leagueId;
 
 
                 _context.Users.Add(centerAdminReginaMaria);
@@ -459,8 +461,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // transfusion center 2
                 var centerAdminSinevo = User.CreateTenantCenterAdminUser(_tenantId, "admin@sinevo.com");
                 centerAdminSinevo.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminSinevo, "123qwe");
-                centerAdminSinevo.IsEmailConfirmed = true;
-                centerAdminSinevo.IsActive = true;
                 centerAdminSinevo.Id = GetAndUpdateLastUserId();
                 centerAdminSinevo.InstitutionName = "Sinevo";
                 centerAdminSinevo.EmployerId = centerAdminSinevo.Id;
@@ -473,6 +473,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminSinevo.CreationTime = new System.DateTime(2021, 1, 12);
                 centerAdminSinevo.Surname = "Center";
                 centerAdminSinevo.Name = "Sinevo";
+                centerAdminSinevo.LeagueId = leagueId;
 
                 _context.Users.Add(centerAdminSinevo);
                 _context.SaveChanges();
@@ -484,8 +485,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // transfusion center 3
                 var centerAdminCTS = User.CreateTenantCenterAdminUser(_tenantId, "admin@cts.com");
                 centerAdminCTS.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTS, "123qwe");
-                centerAdminCTS.IsEmailConfirmed = true;
-                centerAdminCTS.IsActive = true;
                 centerAdminCTS.Id = GetAndUpdateLastUserId();
                 centerAdminCTS.InstitutionName = "CTS";
                 centerAdminCTS.EmployerId = centerAdminCTS.Id;
@@ -498,6 +497,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminCTS.CreationTime = new System.DateTime(2021, 2, 5);
                 centerAdminCTS.Surname = "Center";
                 centerAdminCTS.Name = "Transfusion";
+                centerAdminCTS.LeagueId = leagueId;
 
                 _context.Users.Add(centerAdminCTS);
                 _context.SaveChanges();
@@ -509,8 +509,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // transfusion center 4
                 var centerAdminCTSBacau = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctsbacau.com");
                 centerAdminCTSBacau.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSBacau, "123qwe");
-                centerAdminCTSBacau.IsEmailConfirmed = true;
-                centerAdminCTSBacau.IsActive = true;
                 centerAdminCTSBacau.Id = GetAndUpdateLastUserId();
                 centerAdminCTSBacau.InstitutionName = "CTS Bacau";
                 centerAdminCTSBacau.EmployerId = centerAdminCTSBacau.Id;
@@ -523,6 +521,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminCTSBacau.CreationTime = new System.DateTime(2021, 3, 20);
                 centerAdminCTSBacau.Surname = "Center";
                 centerAdminCTSBacau.Name = "Transfusion";
+                centerAdminCTSBacau.LeagueId = leagueId;
 
                 _context.Users.Add(centerAdminCTSBacau);
                 _context.SaveChanges();
@@ -535,8 +534,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // transfusion center 5
                 var centerAdminCTSTimisoara = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctstimisoara.com");
                 centerAdminCTSTimisoara.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSTimisoara, "123qwe");
-                centerAdminCTSTimisoara.IsEmailConfirmed = true;
-                centerAdminCTSTimisoara.IsActive = true;
                 centerAdminCTSTimisoara.Id = GetAndUpdateLastUserId();
                 centerAdminCTSTimisoara.InstitutionName = "CTS Timisoara";
                 centerAdminCTSTimisoara.EmployerId = centerAdminCTSTimisoara.Id;
@@ -548,6 +545,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminCTSTimisoara.CreationTime = new System.DateTime(2021, 3, 20);
                 centerAdminCTSTimisoara.Surname = "Center";
                 centerAdminCTSTimisoara.Name = "Transfusion";
+                centerAdminCTSTimisoara.LeagueId = leagueId;
 
                 _context.Users.Add(centerAdminCTSTimisoara);
                 _context.SaveChanges();
@@ -559,8 +557,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // transfusion center 6
                 var centerAdminCTSCluj = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctscluj.com");
                 centerAdminCTSCluj.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSCluj, "123qwe");
-                centerAdminCTSCluj.IsEmailConfirmed = true;
-                centerAdminCTSCluj.IsActive = true;
                 centerAdminCTSCluj.Id = GetAndUpdateLastUserId();
                 centerAdminCTSCluj.InstitutionName = "CTS Cluj";
                 centerAdminCTSCluj.EmployerId = centerAdminCTSCluj.Id;
@@ -573,6 +569,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminCTSCluj.CreationTime = new System.DateTime(2021, 5, 20);
                 centerAdminCTSCluj.Surname = "Center";
                 centerAdminCTSCluj.Name = "Transfusion";
+                centerAdminCTSCluj.LeagueId = leagueId;
 
                 _context.Users.Add(centerAdminCTSCluj);
                 _context.SaveChanges();
@@ -584,8 +581,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // transfusion center 7
                 var centerAdminCTSOradea = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctsoradea.com");
                 centerAdminCTSOradea.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSOradea, "123qwe");
-                centerAdminCTSOradea.IsEmailConfirmed = true;
-                centerAdminCTSOradea.IsActive = true;
                 centerAdminCTSOradea.Id = GetAndUpdateLastUserId();
                 centerAdminCTSOradea.InstitutionName = "CTS Oradea";
                 centerAdminCTSOradea.EmployerId = centerAdminCTSOradea.Id;
@@ -598,6 +593,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminCTSOradea.CreationTime = new System.DateTime(2021, 6, 20);
                 centerAdminCTSOradea.Surname = "Center";
                 centerAdminCTSOradea.Name = "Transfusion";
+                centerAdminCTSOradea.LeagueId = leagueId;
 
                 _context.Users.Add(centerAdminCTSOradea);
                 _context.SaveChanges();
@@ -609,8 +605,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 // transfusion center 8
                 var centerAdminCTSArad = User.CreateTenantCenterAdminUser(_tenantId, "admin@ctsarad.com");
                 centerAdminCTSArad.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerAdminCTSArad, "123qwe");
-                centerAdminCTSArad.IsEmailConfirmed = true;
-                centerAdminCTSArad.IsActive = true;
                 centerAdminCTSArad.Id = GetAndUpdateLastUserId();
                 centerAdminCTSArad.InstitutionName = "CTS Arad";
                 centerAdminCTSArad.EmployerId = centerAdminCTSArad.Id;
@@ -623,6 +617,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerAdminCTSArad.CreationTime = new System.DateTime(2021, 6, 15);
                 centerAdminCTSArad.Surname = "Center";
                 centerAdminCTSArad.Name = "Transfusion";
+                centerAdminCTSArad.LeagueId = leagueId;
 
                 _context.Users.Add(centerAdminCTSArad);
                 _context.SaveChanges();
@@ -637,12 +632,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         private void CreateHospitalAdminUser(Role hospitalAdminRole)
         {
             var adminVBabes = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.HospitalAdminUserName);
+            var leagueId = _context.Leagues.FirstOrDefault(league => league.Name == "Bronze").Id;
+
             if (adminVBabes == null)
             {
                 adminVBabes = User.CreateTenantHospitalAdminUser(_tenantId, "admin@victorbabes.com");
                 adminVBabes.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminVBabes, "123qwe");
-                adminVBabes.IsEmailConfirmed = true;
-                adminVBabes.IsActive = true;
                 adminVBabes.Id = GetAndUpdateLastUserId();
                 adminVBabes.InstitutionName = "Victor Babes";
                 adminVBabes.EmployerId = adminVBabes.Id;
@@ -655,6 +650,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminVBabes.CreationTime = new System.DateTime(2021, 1, 15);
                 adminVBabes.Surname = "Babes";
                 adminVBabes.Name = "Victor";
+                adminVBabes.LeagueId = leagueId;
 
                 _context.Users.Add(adminVBabes);
                 _context.SaveChanges();
@@ -664,8 +660,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 var adminMilitar = User.CreateTenantHospitalAdminUser(_tenantId, "admin@spitalmilitar.com");
                 adminMilitar.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminMilitar, "123qwe");
-                adminMilitar.IsEmailConfirmed = true;
-                adminMilitar.IsActive = true;
                 adminMilitar.Id = GetAndUpdateLastUserId();
                 adminMilitar.InstitutionName = "Military Hospital";
                 adminMilitar.EmployerId = adminMilitar.Id;
@@ -677,6 +671,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminMilitar.CreationTime = new System.DateTime(2021, 2, 15);
                 adminMilitar.Surname = "Hospital";
                 adminMilitar.Name = "Military";
+                adminMilitar.LeagueId = leagueId;
 
                 _context.Users.Add(adminMilitar);
                 _context.SaveChanges();
@@ -685,8 +680,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 var adminInfectioaseCluj = User.CreateTenantHospitalAdminUser(_tenantId, "admin@boliinfectioasecluj.com");
                 adminInfectioaseCluj.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminInfectioaseCluj, "123qwe");
-                adminInfectioaseCluj.IsEmailConfirmed = true;
-                adminInfectioaseCluj.IsActive = true;
                 adminInfectioaseCluj.Id = GetAndUpdateLastUserId();
                 adminInfectioaseCluj.InstitutionName = "Clinical Hospital for Infectious Diseases";
                 adminInfectioaseCluj.EmployerId = adminInfectioaseCluj.Id;
@@ -699,6 +692,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminInfectioaseCluj.CreationTime = new System.DateTime(2021, 2, 15);
                 adminInfectioaseCluj.Surname = "Hospital";
                 adminInfectioaseCluj.Surname = "Cluj Infectious Diseases";
+                adminInfectioaseCluj.LeagueId = leagueId;
 
 
                 _context.Users.Add(adminInfectioaseCluj);
@@ -708,8 +702,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 var adminMavromati = User.CreateTenantHospitalAdminUser(_tenantId, "admin@mavromati.com");
                 adminMavromati.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminMavromati, "123qwe");
-                adminMavromati.IsEmailConfirmed = true;
-                adminMavromati.IsActive = true;
                 adminMavromati.Id = GetAndUpdateLastUserId();
                 adminMavromati.InstitutionName = "Mavromati Emergency Hospital";
                 adminMavromati.EmployerId = adminMavromati.Id;
@@ -722,6 +714,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminMavromati.CreationTime = new System.DateTime(2021, 3, 15);
                 adminMavromati.Surname = "Hospital";
                 adminMavromati.Name = "Mavromati";
+                adminMavromati.LeagueId = leagueId;
 
                 _context.Users.Add(adminMavromati);
                 _context.SaveChanges();
@@ -730,8 +723,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 var adminUrgentaBrasov = User.CreateTenantHospitalAdminUser(_tenantId, "admin@urgentabrasov.com");
                 adminUrgentaBrasov.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(adminUrgentaBrasov, "123qwe");
-                adminUrgentaBrasov.IsEmailConfirmed = true;
-                adminUrgentaBrasov.IsActive = true;
                 adminUrgentaBrasov.Id = GetAndUpdateLastUserId();
                 adminUrgentaBrasov.InstitutionName = "Emergency Clinical Hospital";
                 adminUrgentaBrasov.EmployerId = adminUrgentaBrasov.Id;
@@ -744,6 +735,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminUrgentaBrasov.CreationTime = new System.DateTime(2021, 3, 15);
                 adminUrgentaBrasov.Surname = "Hospital";
                 adminUrgentaBrasov.Name = "Emergency";
+                adminUrgentaBrasov.LeagueId = leagueId;
 
                 _context.Users.Add(adminUrgentaBrasov);
                 _context.SaveChanges();
@@ -753,8 +745,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 var adminUrgentaCluj = User.CreateTenantHospitalAdminUser(_tenantId, "admin@urgentacluj.com");
                 adminUrgentaCluj.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
                     .HashPassword(adminUrgentaCluj, "123qwe");
-                adminUrgentaCluj.IsEmailConfirmed = true;
-                adminUrgentaCluj.IsActive = true;
                 adminUrgentaCluj.Id = GetAndUpdateLastUserId();
                 adminUrgentaCluj.InstitutionName = "Emergency Clinical Hospital";
                 adminUrgentaCluj.EmployerId = adminUrgentaCluj.Id;
@@ -767,6 +757,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminUrgentaCluj.CreationTime = new System.DateTime(2021, 4, 15);
                 adminUrgentaCluj.Surname = "Hospital";
                 adminUrgentaCluj.Name = "Emergency";
+                adminUrgentaCluj.LeagueId = leagueId;
 
                 _context.Users.Add(adminUrgentaCluj);
                 _context.SaveChanges();
@@ -776,8 +767,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 var adminUrgentaConstanta = User.CreateTenantHospitalAdminUser(_tenantId, "admin@urgentaconstanta.com");
                 adminUrgentaConstanta.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
                     .HashPassword(adminUrgentaConstanta, "123qwe");
-                adminUrgentaConstanta.IsEmailConfirmed = true;
-                adminUrgentaConstanta.IsActive = true;
                 adminUrgentaConstanta.Id = GetAndUpdateLastUserId();
                 adminUrgentaConstanta.InstitutionName = "County Emergency Hospital";
                 adminUrgentaConstanta.EmployerId = adminUrgentaConstanta.Id;
@@ -790,6 +779,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminUrgentaConstanta.CreationTime = new System.DateTime(2021, 4, 15);
                 adminUrgentaConstanta.Surname = "Hospital";
                 adminUrgentaConstanta.Name = "Emergency";
+                adminUrgentaConstanta.LeagueId = leagueId;
 
                 _context.Users.Add(adminUrgentaConstanta);
                 _context.SaveChanges();
@@ -799,8 +789,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 var adminColtea = User.CreateTenantHospitalAdminUser(_tenantId, "admin@coltea.com");
                 adminColtea.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
                     .HashPassword(adminColtea, "123qwe");
-                adminColtea.IsEmailConfirmed = true;
-                adminColtea.IsActive = true;
                 adminColtea.Id = GetAndUpdateLastUserId();
                 adminColtea.InstitutionName = "Colțea Clinical Hospital";
                 adminColtea.EmployerId = adminColtea.Id;
@@ -813,6 +801,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminColtea.CreationTime = new System.DateTime(2021, 5, 15);
                 adminColtea.Surname = "Hospital";
                 adminColtea.Name = "Coltea";
+                adminColtea.LeagueId = leagueId;
 
                 _context.Users.Add(adminColtea);
                 _context.SaveChanges();
@@ -823,8 +812,6 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 var adminElias = User.CreateTenantHospitalAdminUser(_tenantId, "admin@elias.com");
                 adminElias.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions()))
                     .HashPassword(adminElias, "123qwe");
-                adminElias.IsEmailConfirmed = true;
-                adminElias.IsActive = true;
                 adminElias.Id = GetAndUpdateLastUserId();
                 adminElias.InstitutionName = "Elias University Emergency Hospital";
                 adminElias.EmployerId = adminElias.Id;
@@ -837,6 +824,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 adminElias.CreationTime = new System.DateTime(2021, 6, 15);
                 adminElias.Surname = "Hospital";
                 adminElias.Name = "Elias";
+                adminElias.LeagueId = leagueId;
 
                 _context.Users.Add(adminElias);
                 _context.SaveChanges();
@@ -848,17 +836,18 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         private void CreateHospitalPersonnelUser(Role hospitalPersonnelRole)
         {
             var hospitalPersonnelUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.HospitalPersonnelUserName);
+            var leagueId = _context.Leagues.FirstOrDefault(league => league.Name == "Bronze").Id;
+
             if (hospitalPersonnelUser == null)
             {
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@victorbabes.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBabes").Id;
                 hospitalPersonnelUser.UserName = "personnel1_babes";
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Victor Babes";
+                hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -868,13 +857,13 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel2@victorbabes.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBabes").Id;
                 hospitalPersonnelUser.UserName = "personnel2_babes";
                 hospitalPersonnelUser.Surname = "Personnel 2";
                 hospitalPersonnelUser.Name = "Victor Babes";
+                hospitalPersonnelUser.LeagueId = leagueId;
+
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -884,13 +873,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel3@victorbabes.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBabes").Id;
                 hospitalPersonnelUser.UserName = "personnel3_babes";
                 hospitalPersonnelUser.Surname = "Personnel 3";
                 hospitalPersonnelUser.Name = "Victor Babes";
+                hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -900,13 +888,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@spitalmilitar.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == User.HospitalAdminUserName).Id;
                 hospitalPersonnelUser.UserName = "personnel1_militar";
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Militar";
+                hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -916,13 +903,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@boliinfectioasecluj.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminBoliInfectioaseCluj").Id;
                 hospitalPersonnelUser.UserName = "personnel1_boliinfectioasecluj";
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Infectioase Cluj";
+                hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -932,13 +918,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@mavromati.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminMavromati").Id;
                 hospitalPersonnelUser.UserName = "personnel1_mavromati";
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Mavromati";
+                hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -948,13 +933,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@urgentabrasov.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminUrgentaBrasvov").Id;
                 hospitalPersonnelUser.UserName = "personnel1_urgentabrasov";
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Urgente Brasov";
+                hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -964,13 +948,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@urgentacluj.com");
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
-                hospitalPersonnelUser.IsEmailConfirmed = true;
-                hospitalPersonnelUser.IsActive = true;
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminUrgentaCluj").Id;
                 hospitalPersonnelUser.UserName = "personnel1_urgentacluj";
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Urgente Cluj";
+                hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);
                 _context.SaveChanges();
@@ -982,17 +965,18 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         private void CreateCenterPersonnelUser(Role centerPersonnelRole)
         {
             var centerPersonnelUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.CenterPersonnelUserName);
+            var leagueId = _context.Leagues.FirstOrDefault(league => league.Name == "Bronze").Id;
+
             if (centerPersonnelUser == null)
             {
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@reginamaria.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminReginaMaria").Id;
                 centerPersonnelUser.UserName = "personnel1_reginamaria";
                 centerPersonnelUser.Surname = "Personnel 1";
                 centerPersonnelUser.Name = "Regina Maria";
+                centerPersonnelUser.LeagueId = leagueId;
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1001,13 +985,13 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel2@reginamaria.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminReginaMaria").Id;
                 centerPersonnelUser.UserName = "personnel2_reginamaria";
                 centerPersonnelUser.Surname = "Personnel 2";
                 centerPersonnelUser.Name = "Regina Maria";
+                centerPersonnelUser.LeagueId = leagueId;
+      
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1016,13 +1000,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@sinevo.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminSinevo").Id;
                 centerPersonnelUser.UserName = "personnel1_sinevo";
                 centerPersonnelUser.Surname = "Personnel 1";
                 centerPersonnelUser.Name = "Sinevo";
+                centerPersonnelUser.LeagueId = leagueId;
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1031,13 +1014,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@cts.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTS").Id;
                 centerPersonnelUser.UserName = "personnel1_cts";
                 centerPersonnelUser.Surname = "Personnel 1";
                 centerPersonnelUser.Name = "CTS";
+                centerPersonnelUser.LeagueId = leagueId;
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1046,13 +1028,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel2@cts.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTS").Id;
                 centerPersonnelUser.UserName = "personnel2_cts";
                 centerPersonnelUser.Surname = "Personnel 2";
                 centerPersonnelUser.Name = "CTS";
+                centerPersonnelUser.LeagueId = leagueId;
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1061,13 +1042,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel3@cts.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTS").Id;
                 centerPersonnelUser.UserName = "personnel3_cts";
                 centerPersonnelUser.Surname = "Personnel 3";
                 centerPersonnelUser.Name = "CTS";
+                centerPersonnelUser.LeagueId = leagueId;
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1076,13 +1056,12 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@ctsbacau.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTSBacau").Id;
                 centerPersonnelUser.UserName = "personnel1_ctsbacau";
                 centerPersonnelUser.Surname = "Personnel 1";
                 centerPersonnelUser.Name = "CTS Bacau";
+                centerPersonnelUser.LeagueId = leagueId;
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1091,12 +1070,11 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
 
                 centerPersonnelUser = User.CreateTenantCenterPersonnelUser(_tenantId, "personnel1@ctstimisoara.com");
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
-                centerPersonnelUser.IsEmailConfirmed = true;
-                centerPersonnelUser.IsActive = true;
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == User.HospitalAdminUserName).Id;
                 centerPersonnelUser.Surname = "Personnel 1";
                 centerPersonnelUser.Name = "CTS Timisoara";
+                centerPersonnelUser.LeagueId = leagueId;
                 _context.Users.Add(centerPersonnelUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, centerPersonnelUser.Id, centerPersonnelRole.Id));
@@ -1107,18 +1085,19 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
         private void CreateDonorUser(Role donorRole)
         {
             var donorUser = _context.Users.IgnoreQueryFilters().FirstOrDefault(u => u.TenantId == _tenantId && u.UserName == User.DonorUserName);
+            var leagueId = _context.Leagues.FirstOrDefault(league => league.Name == "Bronze").Id;
+
             if (donorUser == null)
             {
                 donorUser = User.CreateTenantDonorUser(_tenantId, "zotaandrei@gmail.com");
                 donorUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(donorUser, "123qwe");
                 donorUser.Surname = "Zota";
                 donorUser.Name = "Andrei";
-                donorUser.IsEmailConfirmed = true;
-                donorUser.IsActive = true;
                 donorUser.Id = 1990305329641;
                 donorUser.UserName = "andreiz";
                 donorUser.CreationTime = new System.DateTime(2021, 1, 2);
                 donorUser.BloodType = BloodTypes.BNegative;
+                donorUser.LeagueId = leagueId;
 
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
@@ -1134,6 +1113,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 1, 2);
                 donorUser.BloodType = BloodTypes.ANegative;
                 donorUser.UserName = "madaist";
+                donorUser.LeagueId = leagueId;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1148,6 +1128,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 1, 2);
                 donorUser.UserName = "popescumaria";
                 donorUser.BloodType = BloodTypes.CPositive;
+                donorUser.LeagueId = leagueId;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1162,6 +1143,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 2, 2);
                 donorUser.UserName = "ion.g";
                 donorUser.BloodType = BloodTypes.ABNegative;
+                donorUser.LeagueId = leagueId;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1175,6 +1157,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.Id = 2951208165828;
                 donorUser.CreationTime = new System.DateTime(2021, 3, 2);
                 donorUser.UserName = "alinam";
+                donorUser.LeagueId = leagueId;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1189,6 +1172,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 4, 2);
                 donorUser.UserName = "gabimusat";
                 donorUser.BloodType = BloodTypes.APositive;
+                donorUser.LeagueId = leagueId;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1202,6 +1186,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.Id = 1981205115227;
                 donorUser.CreationTime = new System.DateTime(2021, 4, 2);
                 donorUser.UserName = "ionutdinu";
+                donorUser.LeagueId = leagueId;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1215,6 +1200,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.Id = 1930419125887;
                 donorUser.CreationTime = new System.DateTime(2021, 5, 2);
                 donorUser.UserName = "adrianmiron";
+                donorUser.LeagueId = leagueId;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1227,7 +1213,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.Name = "Maria";
                 donorUser.Id = 2970421258871;
                 donorUser.CreationTime = new System.DateTime(2021, 6, 2);
-       
+                donorUser.LeagueId = leagueId;
+
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));

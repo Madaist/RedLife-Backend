@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities;
 using RedLife.Authorization.Users;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RedLife.Core.Donations
 {
@@ -12,10 +13,13 @@ namespace RedLife.Core.Donations
         public bool IsBloodAccepted { get; set; }
         public double Quantity { get; set; }
         public string BloodType { get; set; }
+
+        [ForeignKey("DonationInfo")]
         public string Type { get; set; }
         public string MedicalTestsResult { get; set; }
 
         public virtual User Donor { get; set; }
         public virtual User Center { get; set; }
+        public virtual DonationInfo DonationInfo { get; set; }
     }
 }

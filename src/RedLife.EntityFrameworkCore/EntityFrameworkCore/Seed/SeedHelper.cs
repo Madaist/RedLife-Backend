@@ -24,14 +24,18 @@ namespace RedLife.EntityFrameworkCore.Seed
         {
             context.SuppressAutoSetTenantId = true;
             // Host seed
-            new InitialHostDbBuilder(context).Create();
 
             // Default tenant seed (in host database).
+            new LeagueCreator(context).Create();
+            new BadgeCreator(context).Create();
+            new DonationInfoCreator(context).Create();
+            new InitialHostDbBuilder(context).Create();
             new DefaultTenantBuilder(context).Create();
             new TenantRoleAndUserBuilder(context, 1).Create();
             new DonationCreator(context).Create();
             new AppointmentCreator(context).Create();
             new TransfusionCreator(context).Create();
+            
 
         }
 

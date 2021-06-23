@@ -1,6 +1,7 @@
 using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
+using RedLife.Application.Leagues.Dto;
 using RedLife.Authorization.Users;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -46,5 +47,8 @@ namespace RedLife.Users.Dto
         public string InstitutionName { get; set; }
         public long EmployerId { get; set; }
         public string BloodType { get; set; }
+        public int Points { get; set; }
+        public LeagueDto League { get; set; }
+
     }
 }

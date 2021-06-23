@@ -15,6 +15,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Host
         [System.Obsolete]
         public void Create()
         {
+            new LeagueCreator(_context).Create();
             new LastUserIdCreator(_context).Create();
             new DefaultEditionCreator(_context).Create();
             new DefaultLanguagesCreator(_context).Create();
