@@ -9,7 +9,6 @@ using RedLife.Authorization;
 using RedLife.Authorization.Users;
 using RedLife.Core.Achievements;
 using RedLife.Core.Leagues;
-using RedLife.Core.UserBadges;
 using RedLife.Users.Dto;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +48,12 @@ namespace RedLife.Application.Achievements
             long donorId = AbpSession.UserId ?? 0;
             AchievementsDto achievements = ComputeAchievements(donorId);
             return achievements;
+        }
+
+        [AbpAuthorize(PermissionNames.Donor)]
+        public ICollection<UserDto> GetTopByLeagueId(int leagueId)
+        {
+            return GetLeaderboardByLeagueId(leagueId);
         }
 
         private AchievementsDto ComputeAchievements(long donorId)
@@ -93,8 +98,13 @@ namespace RedLife.Application.Achievements
         private ICollection<UserDto> GetLeaderboard(long donorId)
         {
             League league = _userRepository.Get(donorId).League;
+            return GetLeaderboardByLeagueId(league.Id);
+        }
+
+        private ICollection<UserDto> GetLeaderboardByLeagueId(int leagueId)
+        {
             var donors = _userManager.GetUsersInRoleAsync(Tenants.Donor).Result;
-            var topUsers = donors.Where(x => x.LeagueId == league.Id).OrderByDescending(x => x.Points).ToList();
+            var topUsers = donors.Where(x => x.LeagueId == leagueId).OrderByDescending(x => x.Points).ToList();
 
             return _objectMapper.Map<List<UserDto>>(topUsers);
         }
