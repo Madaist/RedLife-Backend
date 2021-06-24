@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RedLife.Authorization.Users;
-using RedLife.Core.Donations;
+﻿using RedLife.Core.Donations;
 using System;
 using System.Linq;
 
@@ -46,7 +44,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                     BloodType = BloodTypes.APositive,
                     Id = users.FirstOrDefault(u => u.UserName == "madaist").Id.ToString() + "20210415",
                     Quantity = 0.4,
-                    Type = DonationTypes.CovidPlasmaDonation
+                    Type = DonationTypes.SpecialDonation
                 };
                 var donation3 = new Donation
                 {

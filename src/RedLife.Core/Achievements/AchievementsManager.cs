@@ -80,6 +80,12 @@ namespace RedLife.Core.Achievements
         public void UpdateLeagueandBadges(User user)
         {
             _badgeManager.AssignBadges(user);
+            UpdateLeague(user);
+           
+        }
+
+        public void UpdateLeague(User user)
+        {
             if (user.Points >= 0 && user.Points <= 35) user.LeagueId = 1;
             else if (user.Points > 35 && user.Points <= 70) user.LeagueId = 2;
             else if (user.Points > 70 && user.Points <= 120) user.LeagueId = 3;

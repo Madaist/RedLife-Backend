@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RedLife.Authorization.Users;
-using RedLife.Core.Transfusions;
+﻿using RedLife.Core.Transfusions;
 using System;
 using System.Linq;
 

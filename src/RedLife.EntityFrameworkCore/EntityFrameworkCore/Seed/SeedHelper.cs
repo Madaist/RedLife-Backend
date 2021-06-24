@@ -23,9 +23,7 @@ namespace RedLife.EntityFrameworkCore.Seed
         public static void SeedHostDb(RedLifeDbContext context)
         {
             context.SuppressAutoSetTenantId = true;
-            // Host seed
 
-            // Default tenant seed (in host database).
             new LeagueCreator(context).Create();
             new BadgeCreator(context).Create();
             new DonationInfoCreator(context).Create();
@@ -35,8 +33,7 @@ namespace RedLife.EntityFrameworkCore.Seed
             new DonationCreator(context).Create();
             new AppointmentCreator(context).Create();
             new TransfusionCreator(context).Create();
-            
-
+            new UserBadgesCreator(context).Create();
         }
 
         private static void WithDbContext<TDbContext>(IIocResolver iocResolver, Action<TDbContext> contextAction)

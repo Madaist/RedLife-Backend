@@ -10,5 +10,6 @@ namespace RedLife.Core.Achievements
         public ICollection<Badge> GetUnassignedBadges(long donorId);
         public ICollection<Badge> GetAssignedBadges(long donorId);
         public void UpdateLeagueandBadges(User user);
+        public void UpdateLeague(User user);
     }
 }

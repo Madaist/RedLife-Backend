@@ -1097,7 +1097,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.UserName = "andreiz";
                 donorUser.CreationTime = new System.DateTime(2021, 1, 2);
                 donorUser.BloodType = BloodTypes.BNegative;
-                donorUser.LeagueId = leagueId;
+                donorUser.LeagueId = 2;
+                donorUser.Points = 40;
 
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
@@ -1113,7 +1114,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 1, 2);
                 donorUser.BloodType = BloodTypes.ANegative;
                 donorUser.UserName = "madaist";
-                donorUser.LeagueId = leagueId;
+                donorUser.LeagueId = 4;
+                donorUser.Points = 145;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1128,7 +1130,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 1, 2);
                 donorUser.UserName = "popescumaria";
                 donorUser.BloodType = BloodTypes.CPositive;
-                donorUser.LeagueId = leagueId;
+                donorUser.LeagueId = 4;
+                donorUser.Points = 140;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1143,7 +1146,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 2, 2);
                 donorUser.UserName = "ion.g";
                 donorUser.BloodType = BloodTypes.ABNegative;
-                donorUser.LeagueId = leagueId;
+                donorUser.LeagueId = 4;
+                donorUser.Points = 145;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
@@ -1172,7 +1176,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 donorUser.CreationTime = new System.DateTime(2021, 4, 2);
                 donorUser.UserName = "gabimusat";
                 donorUser.BloodType = BloodTypes.APositive;
-                donorUser.LeagueId = leagueId;
+                donorUser.LeagueId = 2;
+                donorUser.Points = 40;
                 _context.Users.Add(donorUser);
                 _context.SaveChanges();
                 _context.UserRoles.Add(new UserRole(_tenantId, donorUser.Id, donorRole.Id));
