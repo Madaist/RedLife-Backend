@@ -17,6 +17,8 @@ namespace RedLife.Core.Donations
         [ForeignKey("DonationInfo")]
         public string Type { get; set; }
         public string MedicalTestsResult { get; set; }
+        public string BloodReceiver { get; set; }
+        public string HospitalReceiver { get; set; }
 
         public virtual User Donor { get; set; }
         public virtual User Center { get; set; }

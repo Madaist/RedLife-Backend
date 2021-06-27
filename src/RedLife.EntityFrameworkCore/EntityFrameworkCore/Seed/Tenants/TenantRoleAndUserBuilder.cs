@@ -950,7 +950,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
                 hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
                 hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminUrgentaCluj").Id;
-                hospitalPersonnelUser.UserName = "personnel1_urgentacluj";
+                hospitalPersonnelUser.UserName = User.HospitalPersonnelUserName;
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Urgente Cluj";
                 hospitalPersonnelUser.LeagueId = leagueId;
@@ -1058,7 +1058,7 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 centerPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(centerPersonnelUser, "123qwe");
                 centerPersonnelUser.Id = GetAndUpdateLastUserId();
                 centerPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminCTSBacau").Id;
-                centerPersonnelUser.UserName = "personnel1_ctsbacau";
+                centerPersonnelUser.UserName = User.CenterPersonnelUserName;
                 centerPersonnelUser.Surname = "Personnel 1";
                 centerPersonnelUser.Name = "CTS Bacau";
                 centerPersonnelUser.LeagueId = leagueId;

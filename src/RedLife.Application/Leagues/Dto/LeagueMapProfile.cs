@@ -8,6 +8,7 @@ namespace RedLife.Application.Leagues.Dto
         public LeagueMapProfile()
         {
             CreateMap<League, LeagueDto>();
+            CreateMap<LeagueDto, League>();
         }
     }
 }

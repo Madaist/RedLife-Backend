@@ -16,5 +16,7 @@ namespace RedLife.Application.Donations.Dto
         public string BloodType { get; set; }
         public string Type { get; set; }
         public string MedicalTestsResult { get; set; }
+        public string BloodReceiver { get; set; }
+        public string HospitalReceiver { get; set; }
     }
 }
