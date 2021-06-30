@@ -11,6 +11,8 @@ using Abp.Runtime.Session;
 using Abp.UI;
 using RedLife.Authorization.Roles;
 using RedLife.MultiTenancy;
+using RedLife.Core.Leagues;
+using Abp.Domain.Repositories;
 
 namespace RedLife.Authorization.Users
 {
@@ -22,17 +24,20 @@ namespace RedLife.Authorization.Users
         private readonly UserManager _userManager;
         private readonly RoleManager _roleManager;
         private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IRepository<League> _leagueRepository;
 
         public UserRegistrationManager(
             TenantManager tenantManager,
             UserManager userManager,
             RoleManager roleManager,
-            IPasswordHasher<User> passwordHasher)
+            IPasswordHasher<User> passwordHasher,
+            IRepository<League> leagueRepository)
         {
             _tenantManager = tenantManager;
             _userManager = userManager;
             _roleManager = roleManager;
             _passwordHasher = passwordHasher;
+            _leagueRepository = leagueRepository;
 
             AbpSession = NullAbpSession.Instance;
         }
@@ -53,7 +58,7 @@ namespace RedLife.Authorization.Users
                 IsActive = true,
                 UserName = userName,
                 IsEmailConfirmed = isEmailConfirmed,
-
+                LeagueId = _leagueRepository.FirstOrDefault(l => l.Name == "Bronze").Id,
                 Roles = new List<UserRole>()
             };
 

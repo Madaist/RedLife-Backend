@@ -234,7 +234,8 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                             p.Name == PermissionNames.Transfusions_Get ||
                             p.Name == PermissionNames.Transfusions_Create ||
                             p.Name == PermissionNames.Transfusions_Update ||
-                            p.Name == PermissionNames.Transfusions_Delete 
+                            p.Name == PermissionNames.Transfusions_Delete
+                          
                             )
                 .ToList();
 
@@ -847,6 +848,62 @@ namespace RedLife.EntityFrameworkCore.Seed.Tenants
                 hospitalPersonnelUser.UserName = "personnel1_babes";
                 hospitalPersonnelUser.Surname = "Personnel 1";
                 hospitalPersonnelUser.Name = "Victor Babes";
+                hospitalPersonnelUser.LeagueId = leagueId;
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel1@elias.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminElias").Id;
+                hospitalPersonnelUser.UserName = "personnel1_elias";
+                hospitalPersonnelUser.Surname = "Personnel 1";
+                hospitalPersonnelUser.Name = "Personnel Elias";
+                hospitalPersonnelUser.LeagueId = leagueId;
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel2@elias.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminElias").Id;
+                hospitalPersonnelUser.UserName = "personnel2_elias";
+                hospitalPersonnelUser.Surname = "Personnel 2";
+                hospitalPersonnelUser.Name = "Personnel Elias";
+                hospitalPersonnelUser.LeagueId = leagueId;
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel3@elias.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminElias").Id;
+                hospitalPersonnelUser.UserName = "personnel3_elias";
+                hospitalPersonnelUser.Surname = "Personnel 3";
+                hospitalPersonnelUser.Name = "Personnel Elias";
+                hospitalPersonnelUser.LeagueId = leagueId;
+
+                _context.Users.Add(hospitalPersonnelUser);
+                _context.SaveChanges();
+                _context.UserRoles.Add(new UserRole(_tenantId, hospitalPersonnelUser.Id, hospitalPersonnelRole.Id));
+                _context.SaveChanges();
+
+                hospitalPersonnelUser = User.CreateTenantHospitalPersonnelUser(_tenantId, "personnel4@elias.com");
+                hospitalPersonnelUser.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(hospitalPersonnelUser, "123qwe");
+                hospitalPersonnelUser.Id = GetAndUpdateLastUserId();
+                hospitalPersonnelUser.EmployerId = _context.Users.FirstOrDefault(u => u.UserName == "adminElias").Id;
+                hospitalPersonnelUser.UserName = "personnel4_elias";
+                hospitalPersonnelUser.Surname = "Personnel 4";
+                hospitalPersonnelUser.Name = "Personnel Elias";
                 hospitalPersonnelUser.LeagueId = leagueId;
 
                 _context.Users.Add(hospitalPersonnelUser);

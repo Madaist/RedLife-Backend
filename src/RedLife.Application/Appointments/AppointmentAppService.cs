@@ -63,7 +63,7 @@ namespace RedLife.Application.Appointments
 
             List<AppointmentDto> appointmentDtoOutput = new List<AppointmentDto>();
             var filteredAppointments = CreateFilteredQuery(input).ToList();
-            if(roleName == Tenants.Admin)
+            if (roleName == Tenants.Admin)
             {
                 appointmentDtoOutput = _objectMapper.Map<List<AppointmentDto>>(filteredAppointments.ToList());
             }
@@ -124,15 +124,34 @@ namespace RedLife.Application.Appointments
 
         protected override IQueryable<Appointment> CreateFilteredQuery(PagedAppointmentResultRequestDto input)
         {
+            string keyword = null;
+            if (input.Keyword != null)
+                keyword = input.Keyword.ToLower();
+            else keyword = input.Keyword;
+
             return Repository.GetAll()
-                             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.UserName.Contains(input.Keyword)
-                                      || x.Center.InstitutionName.Contains(input.Keyword)
-                                      || x.Date.ToString().Contains(input.Keyword));
+                             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.UserName.Contains(keyword)
+                                      || x.Center.InstitutionName.ToLower().Contains(keyword)
+                                      || x.Date.ToString().Contains(keyword)
+                                      || x.Donor.Surname.ToLower().Contains(keyword)
+                                      ||x.Donor.Name.ToLower().Contains(keyword));
         }
 
         protected override IQueryable<Appointment> ApplySorting(IQueryable<Appointment> query, PagedAppointmentResultRequestDto input)
         {
             return query.OrderByDescending(r => r.Date);
+        }
+
+        public Boolean IsAppointmentDateValid(long donorId, DateTime date)
+        {
+            var userAppointments = _appointmentRepository.GetAll().Where(a => a.DonorId == donorId).ToList();
+            foreach(Appointment app in userAppointments)
+            {
+                var appDate = app.Date.ToLocalTime().ToString("yyyy-MM-dd");
+                if (appDate == date.ToLocalTime().ToString("yyyy-MM-dd"))
+                    return false;
+            }
+            return true;
         }
 
     }

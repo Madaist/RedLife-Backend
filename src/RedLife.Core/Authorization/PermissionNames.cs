@@ -33,6 +33,8 @@
         public const string Transfusions_Update = "Transfusions.Update";
         public const string Transfusions_Delete = "Transfusions.Delete";
 
+        public const string Donations_GetId = "Donations.GetId";
+
 
     }
 }

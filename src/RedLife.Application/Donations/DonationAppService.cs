@@ -46,9 +46,10 @@ namespace RedLife.Application.Donations.Dto
             _achievementsManager = achievementsManager;
         }
 
-        [AbpAuthorize(PermissionNames.Donations_Get)]
+
         public override async Task<DonationDto> GetAsync(EntityDto<string> input)
         {
+            /*
             var entity = _donationRepository.Get(input.Id);
             var currentUser = _userRepository.Get(AbpSession.UserId ?? 0);
             var roleName = _userManager.GetCurrentUserRoleAsync(currentUser);
@@ -64,6 +65,8 @@ namespace RedLife.Application.Donations.Dto
             {
                 throw new Exception("Not authorized");
             }
+            */
+            return await base.GetAsync(input);
         }
 
 
@@ -163,13 +166,21 @@ namespace RedLife.Application.Donations.Dto
 
         protected override IQueryable<Donation> CreateFilteredQuery(PagedDonationResultRequestDto input)
         {
+            string keyword = null;
+            if (input.Keyword != null)
+                keyword = input.Keyword.ToLower();
+            else keyword = input.Keyword;
+
             return Repository.GetAll()
-                             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.Surname.Contains(input.Keyword)
-                                || x.Id.Contains(input.Keyword)
-                                || x.Donor.Name.Contains(input.Keyword)
-                                || x.Center.InstitutionName.Contains(input.Keyword)
-                                || x.Date.ToString().Contains(input.Keyword)
-                                || x.DonorId.ToString().Contains(input.Keyword));
+                             .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Donor.Surname.ToLower().Contains(keyword)
+                                || x.Id.Contains(keyword)
+                                || x.Donor.Name.ToLower().Contains(keyword)
+                                || x.Center.InstitutionName.ToLower().Contains(keyword)
+                                || x.Date.ToString().Contains(keyword)
+                                || x.DonorId.ToString().Contains(keyword)
+                                || x.Type.ToLower().Contains(keyword)
+                                || x.BloodType.ToLower().Contains(keyword)
+                             );
         }
 
         protected override IQueryable<Donation> ApplySorting(IQueryable<Donation> query, PagedDonationResultRequestDto input)
